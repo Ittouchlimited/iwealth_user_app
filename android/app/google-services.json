@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "793738107822",
+    "project_id": "iwealth-by-norrenberger",
+    "storage_bucket": "iwealth-by-norrenberger.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793738107822:android:cca676be4177056ae1863f",
+        "android_client_info": {
+          "package_name": "com.iwealth.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793738107822-u8oqd6kvmscrmodm8ldher83gv0ff3cj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoj2Rc_owWixelgCmhKXlM67o2jPWKjXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "793738107822-0rg3an3rb574hcemtliba3spki32dua8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793738107822:android:dc7f1842c13f50c0e1863f",
+        "android_client_info": {
+          "package_name": "com.iwealthbynorrenberger.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793738107822-to57r3v38dbo40m8575bbcecsgrjhpvi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iwealthbynorrenberger.app",
+            "certificate_hash": "72f6405579dd1f43254c07c58a26eca56cb4e59c"
+          }
+        },
+        {
+          "client_id": "793738107822-u8oqd6kvmscrmodm8ldher83gv0ff3cj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoj2Rc_owWixelgCmhKXlM67o2jPWKjXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "793738107822-0rg3an3rb574hcemtliba3spki32dua8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
