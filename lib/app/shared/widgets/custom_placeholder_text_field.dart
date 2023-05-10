@@ -55,6 +55,7 @@ class _CustomPlaceyholderTextFormFieldState extends State<CustomPlaceyholderText
     return TextFormField(
       enabled: widget.isEnabled,
       controller: widget.controller,
+      //controller: TextEditingController(text: "Complete the story from here..."),
       style: regularTextStyle,
       maxLines: widget.numberOfLines,
       keyboardType: widget.textInputType,

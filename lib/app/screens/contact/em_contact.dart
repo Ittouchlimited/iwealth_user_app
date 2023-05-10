@@ -99,12 +99,39 @@ class _EmContactState extends State<EmContact> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Emergency Contact',
+          'Beneficiary',
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+      ),
+      /*
+      appBar: AppBar(
+        title: const Text(
+          //'Emergency Contact',
+          'Beneficiary',
           style: TextStyle(
             color: Colors.black,
           ),
         ),
       ),
+      */
+
+
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(

@@ -6,8 +6,9 @@ import '../../app_data/theme_data/colors.dart';
 class SocialsButton extends StatelessWidget {
   SocialsButton({Key? key}) : super(key: key);
   List socialButtons = [
-    "appleId",
+    /*"appleId",
     "facebook",
+    "google",*/
     "google",
   ];
   var radius = 50.00;
@@ -28,13 +29,20 @@ class SocialsButton extends StatelessWidget {
           String social = socialButtons[index];
           IconData icon;
           Color backgroundColor;
-          if (social == "appleId") {
+          /*if (social == "appleId") {
             icon = Icons.apple;
             backgroundColor = Colors.black;
           } else if (social == "facebook") {
             icon = Icons.facebook;
             backgroundColor = Colors.blue[900]!;
           } else if (social == "google") {
+            icon = FontAwesomeIcons.google;
+            backgroundColor = Colors.orange[900]!;
+          } else {
+            icon = Icons.help;
+            backgroundColor = Colors.pink;
+          }*/
+          if (social == "google") {
             icon = FontAwesomeIcons.google;
             backgroundColor = Colors.orange[900]!;
           } else {

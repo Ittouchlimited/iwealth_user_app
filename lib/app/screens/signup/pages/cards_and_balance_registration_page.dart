@@ -8,8 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinext/app/app_data/extensions/string_extensions.dart';
 import 'package:pinext/app/models/pinext_goal_model.dart';
+import 'package:pinext/app/screens/add_and_edit_pinext_card/user_verification.dart';
 import 'package:pinext/app/screens/goals_and_milestones/add_and_edit_goal_and_milestone_screen.dart';
 import 'package:pinext/app/screens/subscriptions/plan_subs.dart';
+import 'package:pinext/app/screens/subscriptions/subscription_plan.dart';
 import 'package:pinext/app/shared/widgets/custom_snackbar.dart';
 import 'package:pinext/app/shared/widgets/pinext_card_minimized.dart';
 
@@ -38,7 +40,7 @@ class CardsAndBalancesRegistrationPage extends StatefulWidget {
     required this.addressController,
     required this.numberController,
     required this.filesController,
-    required this.userRanegController,
+    required this.userRangeController,
     required this.pageController,
   }) : super(key: key);
 
@@ -50,7 +52,7 @@ class CardsAndBalancesRegistrationPage extends StatefulWidget {
   TextEditingController addressController;
   TextEditingController numberController;
   TextEditingController filesController;
-  TextEditingController userRanegController;
+  TextEditingController userRangeController;
   PageController pageController;
 
   @override
@@ -71,8 +73,7 @@ final _formKey = GlobalKey<FormState>();
 
 
 
-class _CardsAndBalancesRegistrationPageState
-    extends State<CardsAndBalancesRegistrationPage> {
+class _CardsAndBalancesRegistrationPageState extends State<CardsAndBalancesRegistrationPage> {
   double netBalance = 0;
   String? _fileName;
   File? _uploadedFile;
@@ -106,6 +107,10 @@ class _CardsAndBalancesRegistrationPageState
               const SizedBox(
                 height: 8,
               ),
+
+
+
+              /*
               Container(
                 padding: const EdgeInsets.all(
                   35,
@@ -122,7 +127,7 @@ class _CardsAndBalancesRegistrationPageState
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Your NET. Balance is",
+                      "Your current net worth is",
                       style: boldTextStyle.copyWith(
                         color: customBlackColor.withOpacity(.6),
                         fontSize: 16,
@@ -150,7 +155,7 @@ class _CardsAndBalancesRegistrationPageState
                       height: 8,
                     ),
                     Text(
-                      "Taka",
+                      "Naira",
                       style: boldTextStyle.copyWith(
                         color: customBlackColor.withOpacity(.6),
                         fontSize: 16,
@@ -159,6 +164,7 @@ class _CardsAndBalancesRegistrationPageState
                     const SizedBox(
                       height: 4,
                     ),
+                    /*
                     Text(
                       "*Please add in cards to see your updated NET balance here!",
                       style: boldTextStyle.copyWith(
@@ -167,9 +173,13 @@ class _CardsAndBalancesRegistrationPageState
                       ),
                       textAlign: TextAlign.center,
                     ),
+                    */
                   ],
                 ),
               ),
+              */
+
+
               const SizedBox(
                 height: 12,
               ),
@@ -294,7 +304,7 @@ class _CardsAndBalancesRegistrationPageState
               /*
 
               CustomTextFormField(
-                controller: widget.userRanegController,
+                controller: widget.userRangeController,
                 hintTitle: "Minimum 100",
                 textInputType: TextInputType.number,
                 onChanged: (String value) {},
@@ -309,6 +319,7 @@ class _CardsAndBalancesRegistrationPageState
 
 
               */
+          /*
               const SizedBox(
                 height: 40,
               ),
@@ -345,6 +356,10 @@ class _CardsAndBalancesRegistrationPageState
                   ),
                 ),
               ),
+              */
+
+
+
               const SizedBox(
                 height: 6,
               ),
@@ -423,12 +438,12 @@ class _CardsAndBalancesRegistrationPageState
               */
 
 
-
+/*
               const SizedBox(
                 height: 12,
               ),
               Text(
-                "Manage Cards",
+                "Portfolio management",
                 style: boldTextStyle,
               ),
               const SizedBox(
@@ -441,7 +456,7 @@ class _CardsAndBalancesRegistrationPageState
                     children: [
                       state.cards.isEmpty
                           ? Text(
-                              "Please add a card/'s to continue with the registration process!",
+                              "Please create a portfolio to continue with the registration process!",
                               style: regularTextStyle.copyWith(
                                 color: customBlackColor.withOpacity(.4),
                               ),
@@ -476,6 +491,7 @@ class _CardsAndBalancesRegistrationPageState
                 },
               ),
 
+              */
 
 
 
@@ -483,13 +499,15 @@ class _CardsAndBalancesRegistrationPageState
 
 
 
+              /*
               const SizedBox(
                 height: 12,
               ),
               Text(
-                "* You must add at least one asset account",
+                "",
                 style: boldTextStyle,
               ),
+              */
               const SizedBox(
                 height: 8,
               ),
@@ -498,9 +516,8 @@ class _CardsAndBalancesRegistrationPageState
                   Navigator.push(
                       context,
                       CustomTransitionPageRoute(
-                        childWidget: AddAndEditPinextCardScreen(
-                          addCardForSignUpProcess: true,
-                        ),
+                        childWidget: UserVerificationScreen(addCardForSignUpProcess: true,),
+                        //childWidget: AddAndEditPinextCardScreen(addCardForSignUpProcess: true,),
                       ));
                 },
                 child: Container(
@@ -537,7 +554,7 @@ class _CardsAndBalancesRegistrationPageState
                         width: 8,
                       ),
                       Text(
-                        "Add a new card",
+                        "Upload your verification data",
                         style: boldTextStyle.copyWith(
                           color: customBlackColor.withOpacity(.4),
                         ),
@@ -558,12 +575,15 @@ class _CardsAndBalancesRegistrationPageState
               const SizedBox(
                 height: 4,
               ),
+
+              /*
               Text(
-                "*You will be using these cards to keep a track on your money sources, be it either income or expenses.",
+                "* Your portfolio will be used to track your assets and liabilities.",
                 style: regularTextStyle.copyWith(
                   color: customBlackColor.withOpacity(.4),
                 ),
               ),
+              */
 
 
 
@@ -719,7 +739,8 @@ class _CardsAndBalancesRegistrationPageState
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => PlanScreen(),
+                        //builder: (context) => const PlanScreen(),
+                        builder: (context) => const SubscriptionPlanScreen(),
                       ),
                     );
                   }
@@ -749,7 +770,7 @@ class _CardsAndBalancesRegistrationPageState
                       callBackFunction: () {
                         widget.monthlyBudgetController.text = "0";
                         widget.budgetSpentSoFarController.text = "0";
-                        widget.userRanegController.text = "0";
+                        widget.userRangeController.text = "0";
                         if (_formKey.currentState!.validate()) {
                           if (widget.monthlyBudgetController.text.isNotEmpty &&
                               widget

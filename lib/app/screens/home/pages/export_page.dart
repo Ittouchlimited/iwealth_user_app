@@ -92,29 +92,31 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                getGreetings(),
-                style: regularTextStyle.copyWith(
-                  color: customBlackColor.withOpacity(.6),
-                ),
-              ),
               BlocBuilder<UserBloc, UserState>(
                 builder: (context, state) {
                   if (state is AuthenticatedUserState) {
                     return Row(
                       children: [
                         Text(
-                          state.username,
-                          style: cursiveTextStyle.copyWith(
-                            fontSize: 30,
-                            color: customBlackColor.withOpacity(.8),
+                          getGreetings(),
+                          style: regularTextStyle.copyWith(
+                            color: customBlackColor.withOpacity(.6),
                           ),
                         ),
                         Text(
                           " 👋",
                           style: TextStyle(
-                            fontSize: 30,
+                            fontSize: 15,
                             color: customBlackColor.withOpacity(.8),
+                          ),
+                        ),
+                        Text(
+                          state.username,
+                          style: regularTextStyle.copyWith(
+                            color: customBlackColor.withOpacity(.6),
+                            /*style: cursiveTextStyle.copyWith(
+                                fontSize: 30,
+                                color: customBlackColor.withOpacity(.8),*/
                           ),
                         ),
                       ],
@@ -319,27 +321,32 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            const Icon(
+                              Icons.download,
+                              size: 30,
+                              color: customBlueColor,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
                             Text(
-                              "Generate report",
+                              "Share",
                               style: boldTextStyle.copyWith(
                                 fontSize: 18,
                               ),
                             ),
-                            const SizedBox(
-                              width: 2,
-                            ),
-                            const Icon(
-                              Icons.download,
-                              size: 18,
-                              color: customBlueColor,
-                            ),
+
+
                           ],
                         ),
                       );
                     },
                   ),
                   const SizedBox(
-                    height: 6,
+                    height: 30,
                   ),
                 ],
               ),
@@ -507,9 +514,9 @@ class TransactionsList extends StatelessWidget {
   }) : super(key: key);
 
   List<String> filters = [
-    "All transactions",
-    "Income",
-    "Expenses",
+    //"All transactions",
+    //"Income",
+    //"Expenses",
   ];
 
   TextEditingController searchController = TextEditingController();
@@ -528,10 +535,10 @@ class TransactionsList extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(
-                height: 8,
+                height: 20,
               ),
               Text(
-                "Transactions",
+                "",
                 style: boldTextStyle.copyWith(
                   fontSize: 18,
                 ),
@@ -680,6 +687,7 @@ class TransactionsList extends StatelessWidget {
                                 child: BlocBuilder<ArchiveSearchCubit,
                                     ArchiveSearchState>(
                                   builder: (context, state) {
+
                                     return Icon(
                                       state.isSearchActive
                                           ? Icons.search_off_rounded
@@ -864,7 +872,7 @@ class TransactionsList extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Text(
-                                                  "-${state.totalExpenses}Tk.",
+                                                  "-${state.totalExpenses} NGN.",
                                                   style: boldTextStyle.copyWith(
                                                     color:
                                                         Colors.redAccent[400],
@@ -899,7 +907,7 @@ class TransactionsList extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Text(
-                                                  "+${state.totalSavings}Tk.",
+                                                  "+${state.totalSavings} NGN.",
                                                   style: boldTextStyle.copyWith(
                                                     color: Colors.green,
                                                   ),
@@ -939,7 +947,7 @@ class TransactionsList extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Text(
-                                                  "${state.outcome}Tk.",
+                                                  "${state.outcome} NGN.",
                                                   style: boldTextStyle.copyWith(
                                                     color: customBlueColor,
                                                   ),

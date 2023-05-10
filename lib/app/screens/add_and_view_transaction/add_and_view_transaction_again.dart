@@ -101,14 +101,10 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
   }
 
   List listOfTransactionDetailSuggestions = [
-    'donation',
-    'breakfast',
-    'lunch',
-    'dinner',
-    'date',
-    'bus fare',
-    'transportation fare',
-    'drinks',
+    'Loans and mortgages',
+    'Debts',
+    'Taxes',
+    'Land and buildings',
   ];
 
   final _formKey = GlobalKey<FormState>();
@@ -164,28 +160,14 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                     const SizedBox(
                       height: 12,
                     ),
-                    Text(
-                      "Amount/Value",
-                      style: boldTextStyle.copyWith(
-                        color: customBlackColor.withOpacity(
-                          .6,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    CustomTextFormField(
-                      isEnabled: !widget.isViewOnly,
-                      controller: amountController,
-                      hintTitle: "Enter amount/value of Liability",
-                      textInputType: TextInputType.number,
-                      onChanged: (String value) {},
-                      validator: (value) {
-                        return InputValidation(value).isCorrectNumber();
-                      },
-                      suffixButtonAction: () {},
-                    ),
+
+
+
+
+
+
+
+
                     const SizedBox(
                       height: 12,
                     ),
@@ -230,6 +212,36 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
 
 
 
+                    const SizedBox(
+                      height: 30,
+                    ),
+
+                    Text(
+                      "Amount/Value",
+                      style: boldTextStyle.copyWith(
+                        color: customBlackColor.withOpacity(
+                          .6,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    CustomTextFormField(
+                      isEnabled: !widget.isViewOnly,
+                      controller: amountController,
+                      hintTitle: "Enter amount/value of Liability",
+                      textInputType: TextInputType.number,
+                      onChanged: (String value) {},
+                      validator: (value) {
+                        return InputValidation(value).isCorrectNumber();
+                      },
+                      suffixButtonAction: () {},
+                    ),
+
+
+
+
 
 
 
@@ -263,7 +275,7 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                         );
                       },*/
                       child: Text(
-                        "Click here to add a new Bank Account Asset",
+                        "",
                         style: regularTextStyle.copyWith(
                           fontSize: 14,
                           color: customBlackColor.withOpacity(.6),
@@ -273,12 +285,12 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
 
 
                     const SizedBox(
-                      height: 25,
+                      height: 0,
                     ),
 
 
                     const SizedBox(
-                      height: 12,
+                      height: 0,
                     ),
                     widget.isViewOnly
                         ? Text(
@@ -290,7 +302,8 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                             ),
                           )
                         : Text(
-                            "Select Account",
+                      //"Please Select a portfolio",
+                      "",
                             style: boldTextStyle.copyWith(
                               color: customBlackColor.withOpacity(
                                 .6,
@@ -298,20 +311,20 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                             ),
                           ),
                     const SizedBox(
-                      height: 8,
+                      height: 0,
                     ),
                   ],
                 ),
               ),
               ShowPinextCardList(),
               const SizedBox(
-                height: 12,
+                height: 0,
               ),
               widget.isViewOnly
                   ? const SizedBox.shrink()
                   : AddTransactionButton(),
               const SizedBox(
-                height: 12,
+                height: 0,
               ),
             ],
           ),
@@ -340,7 +353,7 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
 
         */
         SizedBox(
-          height: 10,
+          height: 0,
         ),
 
 
@@ -525,7 +538,7 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
 
   SizedBox ShowPinextCardList() {
     return SizedBox(
-      height: 185,
+      height: 0,
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
@@ -565,6 +578,12 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                     String color = pinextCardModel.color;
                     late Color cardColor = getColorFromString(color);
 
+                    if (!widget.isViewOnly) {
+                      context
+                          .read<AddTransactionsCubit>()
+                          .selectCard(pinextCardModel.cardId);
+                    }
+                    /*
                     return GestureDetector(
                       onTap: () {
                         if (!widget.isViewOnly) {
@@ -572,7 +591,7 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                               .read<AddTransactionsCubit>()
                               .selectCard(pinextCardModel.cardId);
                         }
-                      },
+                      },*/
                       child: BlocBuilder<AddTransactionsCubit,
                           AddTransactionsState>(
                         builder: (context, state) {
@@ -592,8 +611,9 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                                   : const SizedBox.shrink()
                               : pinextCardWidget;
                         },
-                      ),
                     );
+                   // ),
+                    //);
                   }),
                 );
               }),
@@ -688,9 +708,10 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                   if (state.selectedCardNo == "none") {
                     GetCustomSnackbar(
                       title: "Error",
-                      message: "Please select a valid card and try again!",
+                      message: "Please select a valid portfolio and try again!",
                       snackbarType: SnackbarType.error,
                       context: context,
+
                     );
                   } else {
                     GetCustomSnackbar(

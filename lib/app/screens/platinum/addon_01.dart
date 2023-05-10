@@ -5,19 +5,46 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pinext/app/screens/files/user_files_view.dart';
 
+import '../../../widget/back_icon.dart';
+
 class AddonOneScreen extends StatelessWidget {
   const AddonOneScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         title: const Text(
-          'Addon File 01',
-          style: const TextStyle(
+          'Norrenberger services',
+          style: TextStyle(
             color: Colors.black,
           ),
         ),
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+      ),
+      /*
+      appBar: AppBar(
+        title: const Text(
+          'Addon File 01',
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+
         // StreamBuilder<QuerySnapshot>(
         //   stream: FirebaseFirestore.instance
         //       .collection('pinext_users')
@@ -51,6 +78,10 @@ class AddonOneScreen extends StatelessWidget {
         //   ),
         // ],
       ),
+      */
+
+
+
       body: ListView.builder(
         itemCount: 1, // set the number of items to 5
         itemBuilder: (context, index) {
@@ -103,9 +134,9 @@ class _AddonOneUploadManiaState extends State<AddonOneUploadMania> {
 
     // Show a snackbar to confirm that the notification was sent
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: const Text('Notification sent to admin'),
-        duration: const Duration(seconds: 2),
+      const SnackBar(
+        content: Text('Notification sent to admin'),
+        duration: Duration(seconds: 2),
       ),
     );
   }
@@ -143,9 +174,9 @@ class _AddonOneUploadManiaState extends State<AddonOneUploadMania> {
 
       // Show a snackbar to confirm that the file was downloaded
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Text('File downloaded successfully'),
-          duration: const Duration(seconds: 2),
+        const SnackBar(
+          content: Text('File downloaded successfully'),
+          duration: Duration(seconds: 2),
         ),
       );
 
@@ -156,9 +187,9 @@ class _AddonOneUploadManiaState extends State<AddonOneUploadMania> {
     } catch (e) {
       print('Error downloading file: $e');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Text('Error downloading file'),
-          duration: const Duration(seconds: 2),
+        const SnackBar(
+          content: Text('Error downloading file'),
+          duration: Duration(seconds: 2),
         ),
       );
     }
@@ -175,9 +206,9 @@ class _AddonOneUploadManiaState extends State<AddonOneUploadMania> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'View File',
-                style: const TextStyle(
+              const Text(
+                'Service 01 name goes here',
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),
@@ -198,7 +229,7 @@ class _AddonOneUploadManiaState extends State<AddonOneUploadMania> {
                       child: Text(
                         _fileName.isNotEmpty
                             ? _fileName
-                            : 'File uploaded by admin for this user appears here',
+                            : 'Your requested service report file will appear here when ready.',
                         style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 12,
@@ -219,7 +250,7 @@ class _AddonOneUploadManiaState extends State<AddonOneUploadMania> {
               ElevatedButton(
                 onPressed: _sendNotification,
                 child: const Text(
-                  'Send Notification to Admin app',
+                  'Request service',
                   style: TextStyle(fontSize: 14),
                 ),
               ),

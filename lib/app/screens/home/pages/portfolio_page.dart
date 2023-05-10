@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pinext/app/app_data/app_constants/constants.dart';
 import 'package:pinext/app/app_data/theme_data/colors.dart';
 import 'package:pinext/app/bloc/archive_cubit/search_cubit/search_cubit.dart';
@@ -8,7 +9,9 @@ import 'package:pinext/app/models/pinext_transaction_model.dart';
 import 'package:pinext/app/services/firebase_services.dart';
 import 'package:pinext/app/shared/widgets/customYearPicker.dart';
 import 'package:pinext/app/shared/widgets/custom_text_field.dart';
+import 'package:pinext/market_api_stocks.dart';
 
+import '../../../../config/images.dart';
 import '../../../app_data/app_constants/domentions.dart';
 import '../../../app_data/app_constants/fonts.dart';
 import '../../../bloc/archive_cubit/archive_cubit.dart';
@@ -20,6 +23,10 @@ import '../../../services/handlers/file_handler.dart';
 import '../../../shared/widgets/transaction_details_card.dart';
 import '../../add_and_view_transaction/add_and_view_transaction.dart';
 import '../../add_and_view_transaction/add_and_view_transaction_again.dart';
+import 'package:pinext/config/images.dart';
+import 'package:pinext/config/textstyle.dart';
+
+import '../../settings/settings.dart';
 
 class PortfolioPage extends StatelessWidget {
   const PortfolioPage({Key? key}) : super(key: key);
@@ -87,35 +94,46 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: defaultPadding,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              /*
               Text(
                 getGreetings(),
                 style: regularTextStyle.copyWith(
                   color: customBlackColor.withOpacity(.6),
                 ),
               ),
+              */
               BlocBuilder<UserBloc, UserState>(
                 builder: (context, state) {
                   if (state is AuthenticatedUserState) {
                     return Row(
                       children: [
+
                         Text(
-                          state.username,
-                          style: cursiveTextStyle.copyWith(
-                            fontSize: 30,
-                            color: customBlackColor.withOpacity(.8),
+                          getGreetings(),
+                          style: regularTextStyle.copyWith(
+                            color: customBlackColor.withOpacity(.6),
                           ),
                         ),
                         Text(
                           " 👋",
                           style: TextStyle(
-                            fontSize: 30,
+                            fontSize: 15,
                             color: customBlackColor.withOpacity(.8),
+                          ),
+                        ),
+                        Text(
+                          state.username,
+                          style: regularTextStyle.copyWith(
+                            color: customBlackColor.withOpacity(.6),
+                            /*style: cursiveTextStyle.copyWith(
+                                fontSize: 30,
+                                color: customBlackColor.withOpacity(.8),*/
                           ),
                         ),
                       ],
@@ -137,13 +155,69 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children:  [
               const SizedBox(
-                height: 8,
+                height: 25,
               ),
 
 
 
+              GetSettingsButtonWithIcon(
+                onTapFunction: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => AddAndViewTransactionScreen(),
+                    ),
+                  );
+                },
+                label: "  Add Asset",
+                icon: FontAwesomeIcons.circlePlus,
+                iconSize: 14,
+              ),
+
+              const SizedBox(
+                height: 10,
+              ),
 
 
+              GetSettingsButtonWithIcon(
+                onTapFunction: () {
+
+
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => AddAndViewTransactionAgainScreen(),
+                    ),
+                  );
+                },
+                label: "  Add Liability",
+                icon: FontAwesomeIcons.circlePlus,
+                iconSize: 14,
+              ),
+
+
+              const SizedBox(
+                height: 10,
+              ),
+
+              GetSettingsButtonWithIcon(
+                onTapFunction: () {
+
+
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      //builder: (context) => AddAndViewTransactionAgainScreen(),
+                      builder: (context) => const MarketApiStocks(),
+                    ),
+                  );
+                },
+                label: "  View Live Stocks",
+                icon: FontAwesomeIcons.chartBar,
+                iconSize: 14,
+              ),
+
+
+
+              //Old UI button begin
+              /*
               GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -153,6 +227,10 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
                     ),
                   );
                 },
+
+
+
+
                 child: Container(
                   padding: const EdgeInsets.all(
                     defaultPadding,
@@ -172,6 +250,7 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
 
 
                         children: [
+
                           Text(
                             "Add Asset",
                             style: boldTextStyle.copyWith(
@@ -192,7 +271,8 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
                   ),
                 ),
               ),
-
+*/
+              //Old UI button end
 
 
 
@@ -201,6 +281,8 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
             ],
           ),
         ),
+        //Old UI button begin
+    /*
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
           child: Column(
@@ -209,10 +291,6 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
               const SizedBox(
                 height: 8,
               ),
-
-
-
-
 
               GestureDetector(
                 onTap: () {
@@ -268,6 +346,8 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
             ],
           ),
         ),
+*/
+        //Old UI button begin
         const SizedBox(
           height: 25,
         ),
@@ -904,7 +984,7 @@ class TransactionsList extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Text(
-                                                  "-${state.totalExpenses}Tk.",
+                                                  "-${state.totalExpenses} NGN.",
                                                   style: boldTextStyle.copyWith(
                                                     color:
                                                         Colors.redAccent[400],
@@ -939,7 +1019,7 @@ class TransactionsList extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Text(
-                                                  "+${state.totalSavings}Tk.",
+                                                  "+${state.totalSavings} NGN.",
                                                   style: boldTextStyle.copyWith(
                                                     color: Colors.green,
                                                   ),
@@ -979,7 +1059,7 @@ class TransactionsList extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Text(
-                                                  "${state.outcome}Tk.",
+                                                  "${state.outcome} NGN.",
                                                   style: boldTextStyle.copyWith(
                                                     color: customBlueColor,
                                                   ),

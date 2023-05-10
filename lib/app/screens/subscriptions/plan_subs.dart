@@ -14,12 +14,15 @@ import '../../app_data/routing/routes.dart';
 class PlanScreen extends StatefulWidget {
   const PlanScreen({Key? key}) : super(key: key);
 
+
   @override
   _PlanScreenState createState() => _PlanScreenState();
 }
 
 class _PlanScreenState extends State<PlanScreen> {
   Map<String, dynamic>? paymentIntent;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,7 @@ class _PlanScreenState extends State<PlanScreen> {
           ),
         ),
         backgroundColor: customBlueColor,
-        title: Text('Upgrade Plan',
+        title: Text('Subscription Plans',
             style: GoogleFonts.quicksand(color: ColorPalette.appbarTextColor)),
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -48,22 +51,22 @@ class _PlanScreenState extends State<PlanScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-                Text('You are currently using 3 days free trial!',
+                Text('Please choose a subscription plan!',
                     style:
                         GoogleFonts.quicksand(color: ColorPalette.textColor)),
-                Text('Purchase any new plan...',
+                Text('',
                     style:
                         GoogleFonts.quicksand(color: ColorPalette.textColor)),
                 Container(
                   width: double.infinity,
-                  margin: EdgeInsets.all(10),
+                  margin: const EdgeInsets.all(10),
                   child: InkWell(
                     onTap: () async {
                       await makePayment();
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                      child: Image(
+                      child: const Image(
                         image: AssetImage('assets/images/1.png'),
                       ),
                     ),
@@ -78,7 +81,7 @@ class _PlanScreenState extends State<PlanScreen> {
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                      child: Image(
+                      child: const Image(
                         image: AssetImage('assets/images/2.png'),
                       ),
                     ),
@@ -93,7 +96,7 @@ class _PlanScreenState extends State<PlanScreen> {
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                      child: Image(
+                      child: const Image(
                         image: AssetImage('assets/images/3.png'),
                       ),
                     ),

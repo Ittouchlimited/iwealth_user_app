@@ -825,7 +825,7 @@ class TransactionsList extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Text(
-                                                  "-${state.totalExpenses}Tk.",
+                                                  "-${state.totalExpenses} NGN.",
                                                   style: boldTextStyle.copyWith(
                                                     color:
                                                         Colors.redAccent[400],
@@ -860,7 +860,7 @@ class TransactionsList extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Text(
-                                                  "+${state.totalSavings}Tk.",
+                                                  "+${state.totalSavings} NGN.",
                                                   style: boldTextStyle.copyWith(
                                                     color: Colors.green,
                                                   ),
@@ -900,7 +900,7 @@ class TransactionsList extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Text(
-                                                  "${state.outcome}Tk.",
+                                                  "${state.outcome} NGN.",
                                                   style: boldTextStyle.copyWith(
                                                     color: customBlueColor,
                                                   ),

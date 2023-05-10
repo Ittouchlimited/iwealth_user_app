@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:pinext/app/screens/silver/file_02.dart';
+import 'package:pinext/app/screens/silver/silver_will_preparation.dart';
 
 import 'file_01.dart';
 
 const double defaultPaddingNew = 16.0;
 const double defaultBorderNew = 16.0;
 final Color greyColorNew = Colors.grey.shade200;
-final TextStyle boldTextStyleNew = TextStyle(fontWeight: FontWeight.bold);
+const TextStyle boldTextStyleNew = TextStyle(fontWeight: FontWeight.bold);
 
 class SilverScreen extends StatelessWidget {
+  const SilverScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Silver Screen',
+        title: const Text(
+          'Silver Plan',
           style: TextStyle(
             color: Colors.black,
           ),
@@ -24,7 +27,7 @@ class SilverScreen extends StatelessWidget {
             Navigator.pop(context);
           },
           child: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back,
               color: Colors.black,
             ),
@@ -47,7 +50,7 @@ class SilverScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => FilesOneScreen(),
+                    builder: (context) => const SilverPortfolioEvaluationScreen(),
                   ),
                 );
               },
@@ -69,7 +72,8 @@ class SilverScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "View users File 01 uploaded by Admin",
+                          //"View users File 01 uploaded by Admin",
+                          "Portfolio Valuation",
                           style: boldTextStyleNew.copyWith(
                             fontSize: 16,
                           ),
@@ -95,20 +99,24 @@ class SilverScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => FilesTwoScreen(),
+                    builder: (context) => const SilverWillPreparationScreen(),
                   ),
                 );
               },
+
               child: Container(
+
                 padding: const EdgeInsets.all(
                   defaultPaddingNew,
                 ),
+
                 width: getWidth(context),
                 decoration: BoxDecoration(
                   color: greyColorNew,
                   borderRadius: BorderRadius.circular(
                     defaultBorderNew,
                   ),
+
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -116,8 +124,10 @@ class SilverScreen extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        //Image.asset(width: 5, height: 5, "assets/images/h19a.png"),
                         Text(
-                          "View users File 02 uploaded by Admin",
+                          //"View users File 02 uploaded by Admin",
+                          "Will Preparation",
                           style: boldTextStyleNew.copyWith(
                             fontSize: 16,
                           ),
@@ -127,6 +137,7 @@ class SilverScreen extends StatelessWidget {
                           style: boldTextStyleNew.copyWith(
                             fontSize: 15,
                             color: Colors.grey,
+
                           ),
                         ),
                       ],
@@ -156,7 +167,8 @@ class SilverScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "View Rep set to this user by Admin",
+                        //"View Rep set to this user by Admin",
+                        "Relationship Manager",
                         style: boldTextStyleNew.copyWith(
                           fontSize: 16,
                         ),

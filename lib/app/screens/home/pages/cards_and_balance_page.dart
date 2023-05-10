@@ -115,7 +115,7 @@ class CardsAndBalanceView extends StatelessWidget {
                     },
                   ),
                   Text(
-                    "Taka",
+                    "Naira",
                     style: boldTextStyle.copyWith(
                       color: whiteColor.withOpacity(.6),
                       fontSize: 16,
@@ -128,7 +128,7 @@ class CardsAndBalanceView extends StatelessWidget {
               height: 12,
             ),
             Text(
-              "Manage Cards",
+              "Manage Portfolio",
               style: boldTextStyle,
             ),
             const SizedBox(
@@ -311,7 +311,7 @@ class CardsAndBalanceView extends StatelessWidget {
                         width: 8,
                       ),
                       Text(
-                        "Add a new card",
+                        "Upload your verification data",
                         style: boldTextStyle.copyWith(
                           color: customBlackColor.withOpacity(.4),
                         ),

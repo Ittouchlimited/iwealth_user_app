@@ -4,6 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:pinext/app/app_data/app_constants/constants.dart';
 import 'package:pinext/app/app_data/app_constants/fonts.dart';
 import 'package:pinext/app/screens/goals_and_milestones/view_goals_and_milestones_screen.dart';
+import 'package:pinext/app/screens/settings/passcode_screen.dart';
 import 'package:pinext/app/screens/silver/silver_screen.dart';
 import 'package:pinext/app/services/handlers/app_handler.dart';
 
@@ -25,12 +26,28 @@ class AppSettingsScreen extends StatelessWidget {
 
   AppSettingsScreen({required this.currentUserId});
 
+  String getGreetings() {
+    int currentHour = DateTime.now().hour;
+    if (currentHour > 0 && currentHour <= 5) {
+      return "Hello,";
+    } else if (currentHour > 5 && currentHour <= 11) {
+      return "Good morning,";
+    } else if (currentHour > 11 && currentHour <= 18) {
+      return "Good afternoon,";
+    } else if (currentHour > 18 && currentHour <= 24) {
+      return "Good evening,";
+    }
+    return "Hello";
+  }
+
+  bool isSubscribed = false;
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Container(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: defaultPadding,
       ),
       height: height,
@@ -41,14 +58,34 @@ class AppSettingsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             RichText(
-              text: TextSpan(
+              text: const TextSpan(
                 children: [
+
+                  /*
+                  TextSpan(
+                    text: "Hello, ",
+                    style: regularTextStyle.copyWith(
+                      color: customBlackColor.withOpacity(.6),
+                    ),
+                  ),
+                  TextSpan(
+                    text: " 👋 ${UserHandler().currentUser.username}",
+                    style: regularTextStyle.copyWith(
+                      color: customBlackColor.withOpacity(.6),
+                      /*style: cursiveTextStyle.copyWith(
+                                fontSize: 30,
+                                color: customBlackColor.withOpacity(.8),*/
+                    ),
+                  ),
+                  */
+                  /*
                   TextSpan(
                     text: "Hello,\n",
                     style: regularTextStyle.copyWith(
                       color: customBlackColor.withOpacity(.6),
                     ),
                   ),
+
                   TextSpan(
                     text: "${UserHandler().currentUser.username} 👋",
                     style: cursiveTextStyle.copyWith(
@@ -57,6 +94,7 @@ class AppSettingsScreen extends StatelessWidget {
                       color: customBlackColor.withOpacity(.8),
                     ),
                   ),
+                  */
                 ],
               ),
             ),
@@ -104,7 +142,7 @@ class AppSettingsScreen extends StatelessWidget {
 
 
             const SizedBox(
-              height: 8,
+              height: 20,
             ),
             GetSettingsButtonWithIcon(
               onTapFunction: () {
@@ -115,8 +153,8 @@ class AppSettingsScreen extends StatelessWidget {
                   ),
                 );
               },
-              label: "Profile",
-              icon: FontAwesomeIcons.addressBook,
+              label: "   Profile",
+              icon: FontAwesomeIcons.user,
               iconSize: 14,
             ),
             const SizedBox(
@@ -129,13 +167,13 @@ class AppSettingsScreen extends StatelessWidget {
               onTapFunction: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => EmContact(),
+                    builder: (context) => const EmContact(),
                   ),
                 );
               },
-              label: "Beneficiary",
+              label: "   Beneficiary",
               //label: "Emergency Contact",
-              icon: FontAwesomeIcons.addressBook,
+              icon: FontAwesomeIcons.userPlus,
               iconSize: 14,
             ),
             const SizedBox(
@@ -145,13 +183,14 @@ class AppSettingsScreen extends StatelessWidget {
               onTapFunction: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => UserFilesScreen(),
+                    builder: (context) => const UserFilesScreen(),
+                    //builder: (context) => const PasscodeScreen(title: title, passwordEnteredCallback: passwordEnteredCallback, cancelButton: cancelButton, deleteButton: deleteButton, shouldTriggerVerification: shouldTriggerVerification),
                   ),
                 );
               },
-              label: "Safety Deposit Box",
+              label: "   Safety Deposit Box",
               //label: "User Files",
-              icon: FontAwesomeIcons.fileCircleCheck,
+              icon: FontAwesomeIcons.solidHardDrive,
               iconSize: 14,
             ),
             const SizedBox(
@@ -161,12 +200,12 @@ class AppSettingsScreen extends StatelessWidget {
               onTapFunction: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => SilverScreen(),
+                    builder: (context) => const SilverScreen(),
                   ),
                 );
               },
-              label: "Silver",
-              icon: FontAwesomeIcons.paypal,
+              label: "   Silver",
+              icon: FontAwesomeIcons.solidStar,
               iconSize: 14,
             ),
             const SizedBox(
@@ -180,8 +219,8 @@ class AppSettingsScreen extends StatelessWidget {
                   ),
                 );
               },
-              label: "Platinum",
-              icon: FontAwesomeIcons.moneyBillTrendUp,
+              label: "   Platinum",
+              icon: FontAwesomeIcons.star,
               iconSize: 14,
             ),
 

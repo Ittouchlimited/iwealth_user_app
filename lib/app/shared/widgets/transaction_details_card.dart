@@ -65,8 +65,8 @@ class TransactionDetailsCard extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: Text(
                   pinextTransactionModel.transactionType == 'Expense'
-                      ? "- ${pinextTransactionModel.amount}Tk"
-                      : "+ ${pinextTransactionModel.amount}Tk",
+                      ? "- ${pinextTransactionModel.amount} NGN"
+                      : "+ ${pinextTransactionModel.amount} NGN",
                   style: boldTextStyle.copyWith(
                     color: pinextTransactionModel.transactionType == 'Expense'
                         ? Colors.red

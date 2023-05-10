@@ -14,9 +14,24 @@ class PlatinumFilesOneScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'User 01 Files',
-          style: const TextStyle(
+          'Portfolio valuation',
+          style: TextStyle(
             color: Colors.black,
+          ),
+        ),
+
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
         ),
         // StreamBuilder<QuerySnapshot>(
@@ -107,9 +122,9 @@ class _PlatinumFilesOneUploadManiaState
 
     // Show a snackbar to confirm that the notification was sent
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: const Text('Notification sent to admin'),
-        duration: const Duration(seconds: 2),
+      const SnackBar(
+        content: Text('Notification sent to admin'),
+        duration: Duration(seconds: 2),
       ),
     );
   }
@@ -147,9 +162,9 @@ class _PlatinumFilesOneUploadManiaState
 
       // Show a snackbar to confirm that the file was downloaded
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Text('File downloaded successfully'),
-          duration: const Duration(seconds: 2),
+        const SnackBar(
+          content: Text('File downloaded successfully'),
+          duration: Duration(seconds: 2),
         ),
       );
 
@@ -160,9 +175,9 @@ class _PlatinumFilesOneUploadManiaState
     } catch (e) {
       print('Error downloading file: $e');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Text('Error downloading file'),
-          duration: const Duration(seconds: 2),
+        const SnackBar(
+          content: Text('Error downloading file'),
+          duration: Duration(seconds: 2),
         ),
       );
     }
@@ -179,9 +194,9 @@ class _PlatinumFilesOneUploadManiaState
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'View File',
-                style: const TextStyle(
+              const Text(
+                '',
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),
@@ -202,7 +217,7 @@ class _PlatinumFilesOneUploadManiaState
                       child: Text(
                         _fileName.isNotEmpty
                             ? _fileName
-                            : 'File uploaded by admin for this user appears here',
+                            : 'Your requested service report file will appear here when ready.',
                         style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 12,
@@ -223,7 +238,7 @@ class _PlatinumFilesOneUploadManiaState
               ElevatedButton(
                 onPressed: _sendNotification,
                 child: const Text(
-                  'Send Notification to Admin app',
+                  'Request service',
                   style: TextStyle(fontSize: 14),
                 ),
               ),

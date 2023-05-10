@@ -14,9 +14,25 @@ class FilesTwoScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'User 02 Files',
-          style: const TextStyle(
+          //'User 02 Files',
+          'Will Preparation',
+          style: TextStyle(
             color: Colors.black,
+          ),
+        ),
+
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
         ),
         // StreamBuilder<QuerySnapshot>(
@@ -97,16 +113,16 @@ class _FilesTwoUploadManiaState extends State<FilesTwoUploadMania> {
 
     // Create a document in the "notification" subcollection with the title and file URL
     final notificationData = {
-      'title': userId + ' Requested for Silver file 02',
+      'title': userId + ' wants to prepare a Will',
       'sendfile': _fileName,
     };
     await notificationCollection.add(notificationData);
 
     // Show a snackbar to confirm that the notification was sent
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: const Text('Notification sent to admin'),
-        duration: const Duration(seconds: 2),
+      const SnackBar(
+        content: Text('Service request successful'),
+        duration: Duration(seconds: 2),
       ),
     );
   }
@@ -144,9 +160,9 @@ class _FilesTwoUploadManiaState extends State<FilesTwoUploadMania> {
 
       // Show a snackbar to confirm that the file was downloaded
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Text('File downloaded successfully'),
-          duration: const Duration(seconds: 2),
+        const SnackBar(
+          content: Text('File downloaded successfully'),
+          duration: Duration(seconds: 2),
         ),
       );
 
@@ -157,9 +173,9 @@ class _FilesTwoUploadManiaState extends State<FilesTwoUploadMania> {
     } catch (e) {
       print('Error downloading file: $e');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Text('Error downloading file'),
-          duration: const Duration(seconds: 2),
+        const SnackBar(
+          content: Text('Error downloading file'),
+          duration: Duration(seconds: 2),
         ),
       );
     }
@@ -176,9 +192,9 @@ class _FilesTwoUploadManiaState extends State<FilesTwoUploadMania> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'View File',
-                style: const TextStyle(
+              const Text(
+                '',
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),
@@ -199,7 +215,7 @@ class _FilesTwoUploadManiaState extends State<FilesTwoUploadMania> {
                       child: Text(
                         _fileName.isNotEmpty
                             ? _fileName
-                            : 'File uploaded by admin for this user appears here',
+                            : 'Your requested service report file will appear here when ready.',
                         style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 12,
@@ -220,7 +236,8 @@ class _FilesTwoUploadManiaState extends State<FilesTwoUploadMania> {
               ElevatedButton(
                 onPressed: _sendNotification,
                 child: const Text(
-                  'Send Notification to Admin app',
+                  //'Request service',
+                  'Request service',
                   style: TextStyle(fontSize: 14),
                 ),
               ),

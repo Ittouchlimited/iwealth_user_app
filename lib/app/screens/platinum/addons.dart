@@ -6,7 +6,7 @@ import 'package:pinext/app/screens/silver/file_02.dart';
 const double defaultPaddingNew = 16.0;
 const double defaultBorderNew = 16.0;
 final Color greyColorNew = Colors.grey.shade200;
-final TextStyle boldTextStyleNew = TextStyle(fontWeight: FontWeight.bold);
+const TextStyle boldTextStyleNew = TextStyle(fontWeight: FontWeight.bold);
 
 class AddonsScreen extends StatelessWidget {
   @override
@@ -14,7 +14,7 @@ class AddonsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Addons Screen',
+          'Addon services',
           style: TextStyle(
             color: Colors.black,
           ),
@@ -24,7 +24,7 @@ class AddonsScreen extends StatelessWidget {
             Navigator.pop(context);
           },
           child: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back,
               color: Colors.black,
             ),
@@ -47,7 +47,7 @@ class AddonsScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AddonOneScreen(),
+                    builder: (context) => const AddonOneScreen(),
                   ),
                 );
               },
@@ -69,7 +69,7 @@ class AddonsScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Addon Service 01",
+                          "Norrenberger services",
                           style: boldTextStyleNew.copyWith(
                             fontSize: 16,
                           ),
@@ -95,7 +95,7 @@ class AddonsScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AddonTwoScreen(),
+                    builder: (context) => const AddonTwoScreen(),
                   ),
                 );
               },
@@ -117,7 +117,7 @@ class AddonsScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Addon Service 02",
+                          "3rd Party services",
                           style: boldTextStyleNew.copyWith(
                             fontSize: 16,
                           ),

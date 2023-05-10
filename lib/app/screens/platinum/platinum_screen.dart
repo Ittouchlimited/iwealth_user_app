@@ -7,15 +7,15 @@ import 'p_file_02.dart';
 const double defaultPaddingNew = 16.0;
 const double defaultBorderNew = 16.0;
 final Color greyColorNew = Colors.grey.shade200;
-final TextStyle boldTextStyleNew = TextStyle(fontWeight: FontWeight.bold);
+final TextStyle boldTextStyleNew = const TextStyle(fontWeight: FontWeight.bold);
 
 class PlatinumScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Platinum Screen',
+        title: const Text(
+          'Platinum Plan',
           style: TextStyle(
             color: Colors.black,
           ),
@@ -25,7 +25,7 @@ class PlatinumScreen extends StatelessWidget {
             Navigator.pop(context);
           },
           child: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back,
               color: Colors.black,
             ),
@@ -48,7 +48,7 @@ class PlatinumScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => PlatinumFilesOneScreen(),
+                    builder: (context) => const PlatinumFilesOneScreen(),
                   ),
                 );
               },
@@ -70,7 +70,8 @@ class PlatinumScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "View users File 01 uploaded by Admin",
+                          //"View users File 01 uploaded by Admin",
+                          "Portfolio Valuation",
                           style: boldTextStyleNew.copyWith(
                             fontSize: 16,
                           ),
@@ -96,7 +97,7 @@ class PlatinumScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => PlatinumFilesTwoScreen(),
+                    builder: (context) => const PlatinumFilesTwoScreen(),
                   ),
                 );
               },
@@ -118,7 +119,8 @@ class PlatinumScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "View users File 02 uploaded by Admin",
+                          //"View users File 02 uploaded by Admin",
+                          "Will Preparation",
                           style: boldTextStyleNew.copyWith(
                             fontSize: 16,
                           ),
@@ -157,7 +159,8 @@ class PlatinumScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "View Rep set to this user by Admin",
+                        //"View Rep set to this user by Admin",
+                        "Relationship manager",
                         style: boldTextStyleNew.copyWith(
                           fontSize: 16,
                         ),

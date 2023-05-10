@@ -111,6 +111,8 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
     'Crypto',
   ];
 
+  final bool _checkCard = false;
+
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -164,33 +166,20 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                     const SizedBox(
                       height: 12,
                     ),
-                    Text(
-                      "Amount/Value",
-                      style: boldTextStyle.copyWith(
-                        color: customBlackColor.withOpacity(
-                          .6,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    CustomTextFormField(
-                      isEnabled: !widget.isViewOnly,
-                      controller: amountController,
-                      hintTitle: "Enter amount/value of Asset",
-                      textInputType: TextInputType.number,
-                      onChanged: (String value) {},
-                      validator: (value) {
-                        return InputValidation(value).isCorrectNumber();
-                      },
-                      suffixButtonAction: () {},
-                    ),
+
+
+
+
+
                     const SizedBox(
                       height: 12,
                     ),
+
+
+
+
                     Text(
-                      "Details",
+                      "Asset Name/Details",
                       style: boldTextStyle.copyWith(
                         color: customBlackColor.withOpacity(
                           .6,
@@ -226,24 +215,56 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                             ],
                           ),
 
+                    const SizedBox(
+                      height: 30,
+                    ),
+
+
+
+
+                    Text(
+                      "Amount/Value",
+                      style: boldTextStyle.copyWith(
+                        color: customBlackColor.withOpacity(
+                          .6,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    CustomTextFormField(
+                      isEnabled: !widget.isViewOnly,
+                      controller: amountController,
+                      hintTitle: "Enter amount/value of Asset",
+                      textInputType: TextInputType.number,
+                      onChanged: (String value) {},
+                      validator: (value) {
+                        return InputValidation(value).isCorrectNumber();
+                      },
+                      suffixButtonAction: () {},
+                    ),
 
 
 
 
                     const SizedBox(
-                      height: 25,
+                      height: 0,
                     ),
 
                     GestureDetector(
 
 
                       onTap: () {
+                        onPanDown: _onPanDown;
+                        /*
                         Navigator.push(
                           context,
                           CustomTransitionPageRoute(
                             childWidget: AddAndEditPinextCardScreen(),
                           ),
                         );
+                        */
                       },
 
 
@@ -259,7 +280,7 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                         );
                       },*/
                       child: Text(
-                        "Click here to add a new Bank Account Asset",
+                        "",
                         style: regularTextStyle.copyWith(
                           fontSize: 14,
                           color: customBlackColor.withOpacity(.6),
@@ -270,18 +291,15 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
 
 
                     const SizedBox(
-                      height: 25,
+                      height: 0,
                     ),
 
-
-
-
                     const SizedBox(
-                      height: 12,
+                      height: 0,
                     ),
                     widget.isViewOnly
                         ? Text(
-                            "Card",
+                            "",
                             style: boldTextStyle.copyWith(
                               color: customBlackColor.withOpacity(
                                 .6,
@@ -289,7 +307,9 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                             ),
                           )
                         : Text(
-                            "Please Select",
+                      //"Please Select a portfolio",
+
+                      "",
                             style: boldTextStyle.copyWith(
                               color: customBlackColor.withOpacity(
                                 .6,
@@ -306,13 +326,13 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
               ),
               ShowPinextCardList(),
               const SizedBox(
-                height: 12,
+                height: 0,
               ),
               widget.isViewOnly
                   ? const SizedBox.shrink()
                   : AddTransactionButton(),
               const SizedBox(
-                height: 12,
+                height: 0,
               ),
             ],
           ),
@@ -320,7 +340,11 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
       ),
     );
   }
+  /*
+  _onPanDown(DragDownDetails details) {
 
+  }
+  */
   Column SelectTransactionTypeCard() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -493,9 +517,7 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                   (index) {
                     return GestureDetector(
                       onTap: () {
-                        String selectedDescription =
-                            listOfTransactionDetailSuggestions[index]
-                                .toString();
+                        String selectedDescription = listOfTransactionDetailSuggestions[index].toString();
                         log(selectedDescription);
                         log(state.selectedDescription);
                         if (state.selectedDescription != selectedDescription) {
@@ -503,6 +525,8 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                           context
                               .read<AddTransactionsCubit>()
                               .changeSelectedDescription(selectedDescription);
+                              //.selectCard(pinextCardModel.cardId);
+
                         } else {
                           context
                               .read<AddTransactionsCubit>()
@@ -536,9 +560,11 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
     );
   }
 
+
+  //Card begin
   SizedBox ShowPinextCardList() {
     return SizedBox(
-      height: 185,
+      height: 0,
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
@@ -577,18 +603,27 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
 
                     String color = pinextCardModel.color;
                     late Color cardColor = getColorFromString(color);
+                    if (!widget.isViewOnly) {
+                      context
+                          .read<AddTransactionsCubit>()
+                          .selectCard(pinextCardModel.cardId);
+                    }
+                   // return GestureDetector(
+                     // onTap: () {
+                       // _checkCard;
+                        /*
+                      //  if (!widget.isViewOnly) {
+                     //     context
+                      //        .read<AddTransactionsCubit>()
+                     //         .selectCard(pinextCardModel.cardId);
+                     //   }
+                        */
+                   //   },
 
-                    return GestureDetector(
-                      onTap: () {
-                        if (!widget.isViewOnly) {
-                          context
-                              .read<AddTransactionsCubit>()
-                              .selectCard(pinextCardModel.cardId);
-                        }
-                      },
                       child: BlocBuilder<AddTransactionsCubit,
                           AddTransactionsState>(
                         builder: (context, state) {
+
                           Widget pinextCardWidget = PinextCard(
                             title: pinextCardModel.title,
                             balance: pinextCardModel.balance,
@@ -599,18 +634,22 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                                 pinextCardModel.lastTransactionData,
                             cardDetails: pinextCardModel.description,
                           );
+
+
                           return widget.isViewOnly
                               ? state.selectedCardNo == pinextCardModel.cardId
                                   ? pinextCardWidget
                                   : const SizedBox.shrink()
                               : pinextCardWidget;
                         },
-                      ),
+                    //),
                     );
+                   // );
                   }),
                 );
               }),
             ),
+
             const SizedBox(
               width: defaultPadding - 10,
             ),
@@ -619,7 +658,10 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
       ),
     );
   }
+  //Card end
+  _onPanDown(DragDownDetails details) {
 
+  }
   Padding AddTransactionButton() {
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -673,7 +715,14 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
             buttonColor: customBlueColor,
             isLoading: state is AddTransactionsLoadingState ? true : false,
             callBackFunction: () {
+              if (!widget.isViewOnly) {
+                context
+                    .read<AddTransactionsCubit>();
+                    //.selectCard(pinextCardModel.cardId);
+              }
+
               if (_formKey.currentState!.validate()) {
+
                 if (amountController.text.isNotEmpty &&
                     detailsController.text.isNotEmpty &&
                     state.selectedCardNo != "none") {
@@ -701,9 +750,10 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                   if (state.selectedCardNo == "none") {
                     GetCustomSnackbar(
                       title: "Error",
-                      message: "Please select a valid card and try again!",
+                      message: "Please select a valid portfolio and try again!",
                       snackbarType: SnackbarType.error,
                       context: context,
+
                     );
                   } else {
                     GetCustomSnackbar(

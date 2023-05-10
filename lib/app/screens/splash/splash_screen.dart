@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinext/app/app_data/app_constants/constants.dart';
 import 'package:pinext/app/app_data/app_constants/domentions.dart';
-import 'package:pinext/app/app_data/app_constants/fonts.dart';
+//import 'package:pinext/app/app_data/app_constants/fonts.dart';
 import 'package:pinext/app/app_data/routing/routes.dart';
 import 'package:pinext/app/app_data/theme_data/colors.dart';
 import 'package:pinext/app/bloc/homeframe_cubit/homeframe_page_cubit.dart';
@@ -15,12 +15,19 @@ import 'package:quick_actions/quick_actions.dart';
 
 import '../onboarding/onboarding_screen.dart';
 
+
+
+
+
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
+
+
 
 class _SplashScreenState extends State<SplashScreen> {
   void triggerSplashScreenAnimation(BuildContext context) async {
@@ -104,12 +111,15 @@ class _SplashScreenState extends State<SplashScreen> {
         }
       }
     });
+
   }
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: customBlueColor,
+      backgroundColor: whiteColor,
       body: BlocListener<UserBloc, UserState>(
         listener: (context, state) {
           if (state is AuthenticatedUserState) {
@@ -139,7 +149,7 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/images/iwealth_max.png',
+                'assets/images/iwealthappIcon.png',
                 height: MediaQuery.of(context).size.width * 0.5,
                 width: MediaQuery.of(context).size.width * 0.5,
               ),

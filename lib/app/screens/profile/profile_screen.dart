@@ -118,7 +118,7 @@ class PinextUsersScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               'Net Balance:',
                               style: TextStyle(
                                 fontSize: 16,
@@ -136,11 +136,13 @@ class PinextUsersScreen extends StatelessWidget {
                             ),
                           ],
                         ),
+                        /*
                         SizedBox(height: 8),
+
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               'Monthly Budget:',
                               style: TextStyle(
                                 fontSize: 16,
@@ -158,11 +160,14 @@ class PinextUsersScreen extends StatelessWidget {
                             )
                           ],
                         ),
+                        */
+                        /*
                         SizedBox(height: 8),
+
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               'Monthly Expenses:',
                               style: TextStyle(
                                 fontSize: 16,
@@ -180,6 +185,8 @@ class PinextUsersScreen extends StatelessWidget {
                             )
                           ],
                         ),
+                        */
+                        /*
                         SizedBox(height: 8),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -202,6 +209,8 @@ class PinextUsersScreen extends StatelessWidget {
                             )
                           ],
                         ),
+                        */
+                        /*
                         SizedBox(height: 8),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -224,6 +233,8 @@ class PinextUsersScreen extends StatelessWidget {
                             )
                           ],
                         ),
+                        */
+                        /*
                         SizedBox(height: 8),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -246,6 +257,8 @@ class PinextUsersScreen extends StatelessWidget {
                             )
                           ],
                         ),
+                        */
+                        /*
                         SizedBox(height: 8),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -269,6 +282,8 @@ class PinextUsersScreen extends StatelessWidget {
                             )
                           ],
                         ),
+                        */
+                        /*
                         SizedBox(height: 8),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -291,7 +306,10 @@ class PinextUsersScreen extends StatelessWidget {
                             )
                           ],
                         ),
+                        */
                         SizedBox(height: 8),
+
+                        /*
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -314,6 +332,10 @@ class PinextUsersScreen extends StatelessWidget {
                           ],
                         ),
                         SizedBox(height: 8),
+                        */
+
+
+
                       ],
                     ),
                   ),
@@ -536,16 +558,16 @@ class _EditPinextUserScreenState extends State<EditPinextUserScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         ListTile(
-                          leading: Icon(Icons.camera_alt),
-                          title: Text('Take a picture'),
+                          leading: const Icon(Icons.camera_alt),
+                          title: const Text('Take a picture'),
                           onTap: () {
                             Navigator.pop(context);
                             _getImage(ImageSource.camera);
                           },
                         ),
                         ListTile(
-                          leading: Icon(Icons.photo),
-                          title: Text('Select from gallery'),
+                          leading: const Icon(Icons.photo),
+                          title: const Text('Select from gallery'),
                           onTap: () {
                             Navigator.pop(context);
                             _getImage(ImageSource.gallery);
@@ -570,7 +592,7 @@ class _EditPinextUserScreenState extends State<EditPinextUserScreen> {
               ),
             ),
             Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -633,6 +655,7 @@ class _EditPinextUserScreenState extends State<EditPinextUserScreen> {
                         return null;
                       },
                     ),
+                    /*
                     SizedBox(height: 16.0),
                     TextFormField(
                       controller: _netBalanceController,
@@ -649,6 +672,9 @@ class _EditPinextUserScreenState extends State<EditPinextUserScreen> {
                         return null;
                       },
                     ),
+                    */
+
+                    /*
                     SizedBox(height: 16.0),
                     TextFormField(
                       controller: _monthlyBudgetController,
@@ -665,6 +691,8 @@ class _EditPinextUserScreenState extends State<EditPinextUserScreen> {
                         return null;
                       },
                     ),
+                    */
+                  /*
                     SizedBox(height: 16.0),
                     TextFormField(
                       controller: _monthlyExpensesController,
@@ -681,6 +709,8 @@ class _EditPinextUserScreenState extends State<EditPinextUserScreen> {
                         return null;
                       },
                     ),
+                    */
+                    /*
                     SizedBox(height: 16.0),
                     TextFormField(
                       controller: _dailyExpensesController,
@@ -697,6 +727,8 @@ class _EditPinextUserScreenState extends State<EditPinextUserScreen> {
                         return null;
                       },
                     ),
+                    */
+                    /*
                     SizedBox(height: 16.0),
                     TextFormField(
                       controller: _weeklyExpensesController,
@@ -713,6 +745,8 @@ class _EditPinextUserScreenState extends State<EditPinextUserScreen> {
                         return null;
                       },
                     ),
+                    */
+                  /*
                     SizedBox(height: 16.0),
                     TextFormField(
                       controller: _monthlySavingsController,
@@ -729,16 +763,17 @@ class _EditPinextUserScreenState extends State<EditPinextUserScreen> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 16.0),
+                    */
+                    const SizedBox(height: 16.0),
                     SizedBox(
                       width: double.infinity,
                       height: 44,
                       child:
                           _isLoading // Conditionally render the progress indicator or the button
-                              ? CircularProgressIndicator()
+                              ? const CircularProgressIndicator()
                               : ElevatedButton(
                                   onPressed: () => _updateUser(context),
-                                  child: Text('Update'),
+                                  child: const Text('Update'),
                                 ),
                     ),
                   ],

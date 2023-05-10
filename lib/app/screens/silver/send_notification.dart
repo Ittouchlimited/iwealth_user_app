@@ -60,9 +60,9 @@ class _SendNotificationScreenState extends State<SendNotificationScreen> {
             .set(notificationData);
 
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: const Text('Notification sent to admin'),
-            duration: const Duration(seconds: 2),
+          const SnackBar(
+            content: Text('Notification sent to admin'),
+            duration: Duration(seconds: 2),
           ),
         );
 

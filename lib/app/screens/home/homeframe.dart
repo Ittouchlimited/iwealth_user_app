@@ -21,6 +21,10 @@ import 'package:badges/badges.dart' as badges;
 import 'package:pinext/app/screens/home/pages/layout_page.dart';
 import 'package:pinext/app/screens/home/pages/portfolio_page.dart';
 import 'package:pinext/app/screens/home/pages/silver_layout_page.dart';
+import 'package:pinext/app/screens/subscriptions/subscription_plan.dart';
+import 'package:pinext/screens/store.dart';
+import 'package:pinext/view/market/empty_screen.dart';
+import 'package:pinext/view/market/maintenance_screen.dart';
 import '../../app_data/app_constants/constants.dart';
 import '../../app_data/app_constants/fonts.dart';
 import '../../bloc/archive_cubit/user_statistics_cubit/user_statistics_cubit.dart';
@@ -88,8 +92,16 @@ List homeframePages = [
   const Homepage(),
   const PortfolioPage(),
   const ExportPage(),
+  //const ArchivePage(),
+  AppSettingsScreen(currentUserId: currentUserId,)
+  //const MaintenanceScreen(),
+/*
+  const PortfolioPage(),
+  const ExportPage(),
   //const CardsAndBalancePage(),
   AppSettingsScreen(currentUserId: currentUserId,)
+
+  */
   // Center(
   //   child: Text(
   //     "The section is still under development.\nAnd will be updated at a later date!",
@@ -136,7 +148,7 @@ class HomeframeView extends StatelessWidget {
                         child: badges.Badge(
                           badgeContent: Text(
                             '$_unreadNotificationsCount',
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           ),
                           position: badges.BadgePosition.topEnd(),
                         ),
@@ -184,11 +196,14 @@ class HomeframeView extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const PlanScreen(),
+                            //Click here to open the subscription page
+                            builder: (context) => const SubscriptionPlanScreen(),
+                            //builder: (context) => const Store(),
+                            //builder: (context) => const PlanScreen(),
                           ),
                         );
                       },
-                      backgroundColor: customBlackColor,
+                      backgroundColor: customOrangeColor,
                       child: const Icon(
                         Icons.money_off_sharp,
                         color: whiteColor,

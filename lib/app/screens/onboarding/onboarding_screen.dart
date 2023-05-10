@@ -3,6 +3,7 @@ import 'package:pinext/app/screens/onboarding/onboarding_contents.dart';
 import 'package:pinext/app/screens/onboarding/size_config.dart';
 
 import '../../app_data/routing/routes.dart';
+import '../../app_data/theme_data/colors.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -52,7 +53,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     double height = SizeConfig.screenH!;
 
     return Scaffold(
-      backgroundColor: colors[_currentPage],
+      backgroundColor: whiteColor,
       body: SafeArea(
         child: Column(
           children: [

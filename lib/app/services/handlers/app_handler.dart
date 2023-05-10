@@ -192,7 +192,7 @@ class AppHandler {
   _sendEmail(BuildContext context, String subject, String body) async {
     final Uri email = Uri(
         scheme: "mailto",
-        path: "mail@mail.com",
+        path: "io@ittouch.io",
         query:
             "subject=${Uri.encodeComponent(subject)}&body=${Uri.encodeComponent(body)}");
     if (await canLaunchUrl(email)) {

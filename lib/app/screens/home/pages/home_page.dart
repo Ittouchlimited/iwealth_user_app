@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +14,9 @@ import 'package:pinext/app/screens/settings/settings.dart';
 import 'package:pinext/app/services/firebase_services.dart';
 import 'package:pinext/app/shared/widgets/custom_snackbar.dart';
 import 'package:pinext/app/shared/widgets/pinext_goal_minimized.dart';
+import 'package:pinext/view/home/card.dart';
 
+import '../../../../widget/about_iwealth_view.dart';
 import '../../../app_data/app_constants/constants.dart';
 import '../../../app_data/app_constants/domentions.dart';
 import '../../../app_data/custom_transition_page_route/custom_transition_page_route.dart';
@@ -28,10 +32,46 @@ import '../../add_and_view_transaction/add_and_view_transaction_again.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:pinext/app/services/carousel.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+// ignore_for_file: deprecated_member_use
+
+import 'package:pinext/config/images.dart';
+import 'package:pinext/config/textstyle.dart';
+import 'package:pinext/controller/home_controller.dart';
+import 'package:pinext/view/home/card.dart';
+import 'package:pinext/view/home/top_move_screen.dart';
+import 'package:pinext/view/market/about_screen.dart';
+import 'package:pinext/view/market/bitcoin_screen.dart';
+import 'package:pinext/view/market/empty_screen.dart';
+import 'package:pinext/view/market/lifechecker_screen.dart';
+import 'package:pinext/view/market/notifications_screen.dart';
+import 'package:pinext/view/market/share_sheet.dart';
+import 'package:pinext/view/market/stocklist_view_screen.dart';
+import 'package:pinext/view/profile/notification_screen.dart';
+import 'package:pinext/view/profile/scan_screen.dart';
+import 'package:pinext/widget/about_iwealth_view.dart';
+import 'package:pinext/widget/coin_view.dart';
+import 'package:pinext/widget/lifechecker_view.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'dart:async';
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:in_app_purchase_android/billing_client_wrappers.dart';
+import 'package:in_app_purchase_android/in_app_purchase_android.dart';
+import 'package:in_app_purchase_storekit/in_app_purchase_storekit.dart';
+import 'package:in_app_purchase_storekit/store_kit_wrappers.dart';
+
+import 'consumable_store.dart';
 
 
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);
+  //StreamSubscription<List<PurchaseDetails>> _subscription;
 
   @override
   Widget build(BuildContext context) {
@@ -98,29 +138,38 @@ class HomepageView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  /*
                   Text(
                     getGreetings(),
                     style: regularTextStyle.copyWith(
                       color: customBlackColor.withOpacity(.6),
                     ),
-                  ),
+                  ), */
                   BlocBuilder<UserBloc, UserState>(
                     builder: (context, state) {
                       if (state is AuthenticatedUserState) {
                         return Row(
                           children: [
                             Text(
-                              state.username,
-                              style: cursiveTextStyle.copyWith(
-                                fontSize: 30,
-                                color: customBlackColor.withOpacity(.8),
+                              getGreetings(),
+                              style: regularTextStyle.copyWith(
+                                color: customBlackColor.withOpacity(.6),
                               ),
                             ),
                             Text(
                               " 👋",
                               style: TextStyle(
-                                fontSize: 30,
+                                fontSize: 15,
                                 color: customBlackColor.withOpacity(.8),
+                              ),
+                            ),
+                            Text(
+                              state.username,
+                              style: regularTextStyle.copyWith(
+                                color: customBlackColor.withOpacity(.6),
+                                /*style: cursiveTextStyle.copyWith(
+                                fontSize: 30,
+                                color: customBlackColor.withOpacity(.8),*/
                               ),
                             ),
                           ],
@@ -130,9 +179,8 @@ class HomepageView extends StatelessWidget {
                       }
                     },
                   ),
-                  // const SizedBox(
-                  //   height: 8,
-                  // ),
+
+                  const SizedBox(height: 10,),
                 ],
               ),
             ),
@@ -175,16 +223,25 @@ class HomepageView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
+                  /*
                   Text(
                     "Balance",
                     style: boldTextStyle.copyWith(
                       fontSize: 24,
                     ),
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
+                  */
+                  //SizedBox(height: 2,),
+
+
+
+
+
+
+                  CardView(),
+                  //user balance section start
+              /*
                   Container(
                     padding: const EdgeInsets.all(
                       defaultPadding,
@@ -209,6 +266,7 @@ class HomepageView extends StatelessWidget {
                             const SizedBox(
                               height: 4,
                             ),
+                            //Displays the users balance - start
                             BlocBuilder<UserBloc, UserState>(
                               builder: (context, state) {
                                 if (state is AuthenticatedUserState) {
@@ -227,6 +285,10 @@ class HomepageView extends StatelessWidget {
                                 );
                               },
                             ),
+
+
+
+                            //Displays the users balance - end
                             const SizedBox(
                               height: 14,
                             ),
@@ -258,6 +320,7 @@ class HomepageView extends StatelessWidget {
                             ),
                           ],
                         ),
+
                         Row(
                           children: [
                             ElevatedButton(
@@ -298,9 +361,16 @@ class HomepageView extends StatelessWidget {
                       ],
                     ),
                   ),
+                  */
                 ],
               ),
             ),
+
+            //user balance section end
+
+
+
+
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: defaultPadding),
               /*child: Column(
@@ -557,15 +627,89 @@ class HomepageView extends StatelessWidget {
 
 
                   */
+                  //Quick links area
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    child: Text(
+                      "Quick links",
+                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                    const EdgeInsets.only(left: 20, right: 20, top: 15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        for (var i = 0; i < 1; i++)
+                        //for (var i = 0; i < 2; i++)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 15),
+                            child: AboutiWealthView(
+                              image: i == 0
+                                  ? DefaultImages.h14b
+                                  : DefaultImages.h19b,
+                              text1: i == 0 ? "About" : "Your SD Box",
+                              text2: i == 0 ? "iWealth" : "Continue",
+                              text3: i == 0 ? "" : "",
+                              text4: i == 0 ? "" : "",
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+
+
+
+
+
+                  Padding(
+                    padding:
+                    const EdgeInsets.only(left: 20, right: 20, /*top: 15*/),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        for (var i = 0; i < 1; i++)
+                        //for (var i = 0; i < 2; i++)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 15),
+                            child: LifecheckerView(
+                              image: i == 0
+                                  ? DefaultImages.h14f
+                                  : DefaultImages.h19b,
+                              text1: i == 0 ? "Life Checker" : "Your SD Box",
+                              text2: i == 0 ? "iWealth" : "Continue",
+                              text3: i == 0 ? "" : "",
+                              text4: i == 0 ? "" : "",
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+
+
+
+
+
+                  /*
                   const SizedBox(
                     height: 12,
                   ),
+
+                   */
+                  /*
                   Text(
                     "Quick Links",
                     style: boldTextStyle.copyWith(
                       fontSize: 20,
                     ),
                   ),
+                  */
+
+                  /*
                   const SizedBox(
                     height: 12,
                   ),
@@ -574,6 +718,9 @@ class HomepageView extends StatelessWidget {
                   const SizedBox(
                     height: 8,
                   ),
+
+                  */
+                  /*
                   GetSettingsButtonWithIcon(
                     onTapFunction: () {
                       /*Navigator.of(context).push(
@@ -592,6 +739,12 @@ class HomepageView extends StatelessWidget {
                   const SizedBox(
                     height: 8,
                   ),
+                  */
+
+                  //Old UI About button ends here
+
+                  //Old UI Life Checker button starts here
+                  /*
                   GetSettingsButtonWithIcon(
                     onTapFunction: () {
 
@@ -607,6 +760,9 @@ class HomepageView extends StatelessWidget {
                     icon: FontAwesomeIcons.addressBook,
                     iconSize: 14,
                   ),
+
+                  */
+                  //Old UI Life Checker button ends here
                   /*
 
 
@@ -693,10 +849,13 @@ class HomepageView extends StatelessWidget {
 
 
 
+                  /*
                   const SizedBox(
                     height: 12,
                   ),
 
+
+                   */
 
 
                   /*

@@ -6,17 +6,33 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pinext/app/screens/files/user_files_view.dart';
 
-class FilesOneScreen extends StatelessWidget {
-  const FilesOneScreen({Key? key}) : super(key: key);
+class SilverPortfolioEvaluationScreen extends StatelessWidget {
+  const SilverPortfolioEvaluationScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'User 01 Files',
-          style: const TextStyle(
+          //'User 01 Files',
+          'Portfolio Valuation',
+          style: TextStyle(
             color: Colors.black,
+          ),
+        ),
+
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
         ),
         // StreamBuilder<QuerySnapshot>(
@@ -97,16 +113,17 @@ class _FilesOneUploadManiaState extends State<FilesOneUploadMania> {
 
     // Create a document in the "notification" subcollection with the title and file URL
     final notificationData = {
-      'title': userId + ' Requested for Silver file 01',
+      'title': '$userId wants their Portfolio evaluated.',
+      //'title': userId + ' wants their Portfolio evaluated.',
       'sendfile': _fileName,
     };
     await notificationCollection.add(notificationData);
 
     // Show a snackbar to confirm that the notification was sent
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: const Text('Notification sent to admin'),
-        duration: const Duration(seconds: 2),
+      const SnackBar(
+        content: Text('Service request successful'),
+        duration: Duration(seconds: 2),
       ),
     );
   }
@@ -144,9 +161,9 @@ class _FilesOneUploadManiaState extends State<FilesOneUploadMania> {
 
       // Show a snackbar to confirm that the file was downloaded
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Text('File downloaded successfully'),
-          duration: const Duration(seconds: 2),
+        const SnackBar(
+          content: Text('File downloaded successfully'),
+          duration: Duration(seconds: 2),
         ),
       );
 
@@ -157,9 +174,9 @@ class _FilesOneUploadManiaState extends State<FilesOneUploadMania> {
     } catch (e) {
       print('Error downloading file: $e');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Text('Error downloading file'),
-          duration: const Duration(seconds: 2),
+        const SnackBar(
+          content: Text('Error downloading file'),
+          duration: Duration(seconds: 2),
         ),
       );
     }
@@ -176,9 +193,9 @@ class _FilesOneUploadManiaState extends State<FilesOneUploadMania> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'View File',
-                style: const TextStyle(
+              const Text(
+                '',
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),
@@ -199,7 +216,7 @@ class _FilesOneUploadManiaState extends State<FilesOneUploadMania> {
                       child: Text(
                         _fileName.isNotEmpty
                             ? _fileName
-                            : 'File uploaded by admin for this user appears here',
+                            : 'Your requested service report file will appear here when ready.',
                         style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 12,
@@ -220,7 +237,8 @@ class _FilesOneUploadManiaState extends State<FilesOneUploadMania> {
               ElevatedButton(
                 onPressed: _sendNotification,
                 child: const Text(
-                  'Send Notification to Admin app',
+                  //'Request service',
+                  'Request service',
                   style: TextStyle(fontSize: 14),
                 ),
               ),

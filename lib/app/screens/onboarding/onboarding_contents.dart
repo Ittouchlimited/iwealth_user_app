@@ -12,19 +12,18 @@ class OnboardingContents {
 
 List<OnboardingContents> contents = [
   OnboardingContents(
-    title: "Track Your money and get the result",
-    image: "assets/images/image1.png",
-    desc: "Remember to keep track of your income & expenses.",
+    title: "Track everything you own on the go",
+    image: "assets/images/o1.png",
+    desc: "",
   ),
   OnboardingContents(
-    title: "Fastest & More secured",
-    image: "assets/images/image2.png",
-    desc: "Best way to get the result from your credit or debit transactions.",
+    title: "Be ready for all emergencies",
+    image: "assets/images/o2.png",
+    desc: "",
   ),
   OnboardingContents(
-    title: "Get notified when work happens",
-    image: "assets/images/image3.png",
-    desc:
-        "Take control of notifications, collaborate live or on your own time.",
+    title: "Secure wealth tracking with Safe Deposit Box",
+    image: "assets/images/o1.png",
+    desc: "",
   ),
 ];

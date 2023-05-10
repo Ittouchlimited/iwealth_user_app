@@ -61,15 +61,23 @@ class FileHandler {
           String type = doc.docs[i]["transactionType"];
           if (type == "Income") {
             income += double.parse(amount);
+            sheet.getRangeByName('A${i + offset}').setText(
+              DateFormat('dd-MM-yyyy').format(DateTime.parse(date)),
+            );
+            sheet.getRangeByName("B${i + offset}").setText(details);
+            sheet.getRangeByName("C${i + offset}").setText(amount);
+            sheet.getRangeByName("D${i + offset}").setText("Asset");
+
           } else if (type == "Expense") {
             expense += double.parse(amount);
+
+            sheet.getRangeByName('A${i + offset}').setText(
+              DateFormat('dd-MM-yyyy').format(DateTime.parse(date)),
+            );
+            sheet.getRangeByName("B${i + offset}").setText(details);
+            sheet.getRangeByName("C${i + offset}").setText(amount);
+            sheet.getRangeByName("D${i + offset}").setText("Liability");
           }
-          sheet.getRangeByName('A${i + offset}').setText(
-                DateFormat('dd-MM-yyyy').format(DateTime.parse(date)),
-              );
-          sheet.getRangeByName("B${i + offset}").setText(details);
-          sheet.getRangeByName("C${i + offset}").setText(amount);
-          sheet.getRangeByName("D${i + offset}").setText(type);
         }
       }
 
@@ -78,14 +86,14 @@ class FileHandler {
             "A${totalTransactions + offset + 1}",
           )
           .setText(
-            "Total income: +$income ₦",
+            "Total Assets: +$income ₦",
           );
       sheet
           .getRangeByName(
             "A${totalTransactions + offset + 2}",
           )
           .setText(
-            "Total expense: -$expense ₦",
+            "Total Liabilities: -$expense ₦",
           );
       sheet
           .getRangeByName(

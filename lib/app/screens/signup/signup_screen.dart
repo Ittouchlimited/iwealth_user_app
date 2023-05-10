@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinext/app/app_data/theme_data/colors.dart';
 import 'package:pinext/app/bloc/signup_cubit/signin_cubit_cubit.dart';
 import 'package:pinext/app/screens/signup/pages/cards_and_balance_registration_page.dart';
-import 'package:pinext/app/screens/signup/pages/user_registration_page.dart';
+
+import 'pages/user_registration_page.dart';
+
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -32,7 +34,7 @@ class _SignupScreenViewState extends State<SignupScreenView> {
   late TextEditingController numberController;
   late TextEditingController filesController;
   late TextEditingController addressController;
-  late TextEditingController userRanegController;
+  late TextEditingController userRangeController;
 
   late PageController signupPageController;
 
@@ -46,14 +48,20 @@ class _SignupScreenViewState extends State<SignupScreenView> {
     numberController = TextEditingController();
     addressController = TextEditingController();
     filesController = TextEditingController();
-    userRanegController = TextEditingController();
+    userRangeController = TextEditingController();
     signupPageController = PageController();
 
     registrationPages.add(
       UserRegistrationPage(
+        budgetSpentSoFarController: budgetSpentSoFarController,
+        monthlyBudgetController: monthlyBudgetController,
+        emailController: emailController,
         userNameController: userNameController,
         passwordController: passwordController,
-        emailController: emailController,
+        numberController: numberController,
+        addressController: addressController,
+        filesController: filesController,
+        userRangeController: userRangeController,
         pageController: signupPageController,
       ),
     );
@@ -67,7 +75,7 @@ class _SignupScreenViewState extends State<SignupScreenView> {
         numberController: numberController,
         addressController: addressController,
         filesController: filesController,
-        userRanegController: userRanegController,
+        userRangeController: userRangeController,
         pageController: signupPageController,
       ),
     );
@@ -84,7 +92,7 @@ class _SignupScreenViewState extends State<SignupScreenView> {
     numberController.dispose();
     addressController.dispose();
     filesController.dispose();
-    userRanegController.dispose();
+    userRangeController.dispose();
     signupPageController.dispose();
     super.dispose();
   }

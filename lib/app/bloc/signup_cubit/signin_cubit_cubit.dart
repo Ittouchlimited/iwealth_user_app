@@ -6,7 +6,11 @@ import 'package:pinext/app/models/pinext_card_model.dart';
 import 'package:pinext/app/models/pinext_goal_model.dart';
 import 'package:pinext/app/services/authentication_services.dart';
 
+
 part 'signin_cubit_state.dart';
+
+
+
 
 class SigninCubit extends Cubit<SigninState> {
   SigninCubit()

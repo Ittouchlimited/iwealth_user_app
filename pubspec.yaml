@@ -58,16 +58,28 @@ dependencies:
   file_picker: 4.6.1
   badges: ^3.1.1
   provider: ^6.0.5
+
+  #Homepage image slider
   carousel_slider: ^4.2.1
 
-
   get: ^4.6.5
+
+  #Drop down menus
   country_pickers: ^2.0.0
+  dropdown_button2: ^2.1.0
   flutter_svg: ^2.0.5
   google_sign_in: ^6.1.0
-  dropdown_button2: ^2.1.0
   http: ^0.13.5
 
+#Added on the 10052023
+  in_app_purchase: ^3.1.5
+  permission_handler: ^10.2.0
+  baseflow_plugin_template: ^2.1.1
+  flutter_spinkit: ^5.2.0
+  fl_chart: ^0.62.0
+  ionicons: ^0.2.2
+  onepref: ^0.0.5
+  flutter_staggered_animations: ^1.1.1
 
 
 

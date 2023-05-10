@@ -22,11 +22,17 @@ class Carousel extends StatefulWidget {
 
 class _CarouselState extends State<Carousel> {
   late PageController _pageController;
-
+/*
   List<String> images = [
     "https://images.wallpapersden.com/image/download/purple-sunrise-4k-vaporwave_bGplZmiUmZqaraWkpJRmbmdlrWZlbWU.jpg",
     "https://wallpaperaccess.com/full/2637581.jpg",
     "https://uhdwallpapers.org/uploads/converted/20/01/14/the-mandalorian-5k-1920x1080_477555-mm-90.jpg"
+  ];
+  */
+  List<String> images = [
+    "https://docs.google.com/uc?export=download&id=1Z7RJcMu6ADClwYTu4dGQXx2UWVr8A8x8",
+    "https://docs.google.com/uc?export=download&id=1LglTogzuXCmpR202F6TY36-viadTg6rJ",
+    "https://docs.google.com/uc?export=download&id=13_03l8Vy8jVuhlZGKjOmgn75h6WMWHTU"
   ];
 
   int activePage = 1;
