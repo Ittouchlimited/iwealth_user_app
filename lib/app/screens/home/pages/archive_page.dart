@@ -308,6 +308,8 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
+
+
                   GestureDetector(
                     onTap: () {
                       var selectedDate = DateTime.now();
@@ -370,6 +372,8 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
                       },
                     ),
                   ),
+
+
                   const SizedBox(
                     height: 8,
                   ),

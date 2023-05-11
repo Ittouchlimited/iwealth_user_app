@@ -379,6 +379,22 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_paystack:
+    dependency: "direct main"
+    description:
+      name: flutter_paystack
+      sha256: b2038c8f0cfa5a3bdb7b0e2016ceaedbc57e4445180ce6aea56cb0d83a016973
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.7"
+  flutter_paystack_client:
+    dependency: "direct main"
+    description:
+      name: flutter_paystack_client
+      sha256: a39dcfe6348e326af49da973c659c7b24c9da451b9a9dff907aaf37519b06820
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.1"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -654,7 +670,7 @@ packages:
     source: hosted
     version: "5.0.0"
   js:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: js
       sha256: "5528c2f391ededb7775ec1daa69e65a2d61276f7552de2b5f7b8d34ee9fd4ab7"

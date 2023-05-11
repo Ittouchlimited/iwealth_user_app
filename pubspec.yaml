@@ -81,6 +81,14 @@ dependencies:
   onepref: ^0.0.5
   flutter_staggered_animations: ^1.1.1
 
+#Added on the 11052023
+  js: ^0.6.3
+  flutter_paystack: ^1.0.7
+  flutter_paystack_client: ^0.1.1
+
+#10am+
+
+
 
 
 dev_dependencies:

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pinext/app/screens/platinum/addons.dart';
+import 'package:pinext/app/screens/platinum/platinum_portfolio_evaluation.dart';
+import 'package:pinext/app/screens/platinum/platinum_will_preparation.dart';
 
 import 'p_file_01.dart';
 import 'p_file_02.dart';
@@ -48,7 +50,7 @@ class PlatinumScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const PlatinumFilesOneScreen(),
+                    builder: (context) => const PlatinumPortfolioEvaluationScreen(),
                   ),
                 );
               },
@@ -97,7 +99,7 @@ class PlatinumScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const PlatinumFilesTwoScreen(),
+                    builder: (context) => const PlatinumWillPreparationScreen(),
                   ),
                 );
               },
