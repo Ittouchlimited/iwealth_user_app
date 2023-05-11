@@ -102,11 +102,14 @@ class CardView extends StatelessWidget {
                     ],
                   ),
                 ),
+
+
                 Expanded(
                   child: Image.asset(
                     DefaultImages.h32,
                   ),
                 ),
+
               ],
             ),
             const SizedBox(height: 10),

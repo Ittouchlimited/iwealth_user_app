@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AppProvider extends ChangeNotifier {
 
   //theme provider
-  //this is responsible for switching from dark mode tp light mode
+  //this is responsible for switching from dark mode to light mode
   final String key = 'theme';
   SharedPreferences? _prefs;
   bool _darkTheme = false;

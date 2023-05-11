@@ -197,9 +197,9 @@ class HomeframeView extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             //Click here to open the subscription page
-                            builder: (context) => const SubscriptionPlanScreen(),
+                            //builder: (context) => const SubscriptionPlanScreen(),
                             //builder: (context) => const Store(),
-                            //builder: (context) => const PlanScreen(),
+                            builder: (context) => const PlanScreen(),
                           ),
                         );
                       },

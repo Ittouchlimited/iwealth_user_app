@@ -36,6 +36,21 @@ class _PlanScreenState extends State<PlanScreen> {
         backgroundColor: customBlueColor,
         title: Text('Subscription Plans',
             style: GoogleFonts.quicksand(color: ColorPalette.appbarTextColor)),
+
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
         centerTitle: true,
         automaticallyImplyLeading: false,
         elevation: 0,
@@ -77,7 +92,7 @@ class _PlanScreenState extends State<PlanScreen> {
                   margin: EdgeInsets.all(10),
                   child: InkWell(
                     onTap: () async {
-                      await monthPayment();
+                      await silverPayment();
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
@@ -92,7 +107,7 @@ class _PlanScreenState extends State<PlanScreen> {
                   margin: EdgeInsets.all(10),
                   child: InkWell(
                     onTap: () async {
-                      await annualPayment();
+                      await platinumPayment();
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
@@ -112,7 +127,7 @@ class _PlanScreenState extends State<PlanScreen> {
 
   Future<void> makePayment() async {
     try {
-      paymentIntent = await createPaymentIntent('1900', 'USD');
+      paymentIntent = await createPaymentIntent('0', 'USD');
 
       var gpay = const PaymentSheetGooglePay(
           merchantCountryCode: "US", currencyCode: "USD", testEnv: true);
@@ -178,9 +193,9 @@ class _PlanScreenState extends State<PlanScreen> {
     }
   }
 
-  Future<void> monthPayment() async {
+  Future<void> silverPayment() async {
     try {
-      paymentIntent = await createPaymentIntentMonth('19900', 'USD');
+      paymentIntent = await createPaymentIntentMonth('50000', 'USD');
 
       var gpay = PaymentSheetGooglePay(
           merchantCountryCode: "US", currencyCode: "USD", testEnv: true);
@@ -247,9 +262,9 @@ class _PlanScreenState extends State<PlanScreen> {
     }
   }
 
-  Future<void> annualPayment() async {
+  Future<void> platinumPayment() async {
     try {
-      paymentIntent = await createPaymentIntentAnnual('49900', 'USD');
+      paymentIntent = await createPaymentIntentAnnual('250000', 'USD');
 
       var gpay = PaymentSheetGooglePay(
           merchantCountryCode: "US", currencyCode: "USD", testEnv: true);

@@ -1143,16 +1143,19 @@ class PastTransactionsModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: const [
+        /*
         Text(
           "Recently added portfolio items",
           style: boldTextStyle.copyWith(
             fontSize: 20,
           ),
         ),
-        const SizedBox(
+        */
+        SizedBox(
           height: 4,
         ),
+        /*
         StreamBuilder(
           stream: FirebaseServices()
               .firebaseFirestore
@@ -1218,6 +1221,7 @@ class PastTransactionsModule extends StatelessWidget {
             );
           }),
         ),
+        */
       ],
     );
   }
