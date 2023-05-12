@@ -40,7 +40,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
             onPressed: () {
               pickImage();
             },
-            child: Text('Upload File')),
+            child: Text('Upload Verification File')),
 
         Wrap(
             children: images.map((image) {

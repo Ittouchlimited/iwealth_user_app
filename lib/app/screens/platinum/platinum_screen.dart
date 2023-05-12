@@ -3,6 +3,7 @@ import 'package:pinext/app/screens/platinum/addons.dart';
 import 'package:pinext/app/screens/platinum/platinum_portfolio_evaluation.dart';
 import 'package:pinext/app/screens/platinum/platinum_will_preparation.dart';
 
+import '../../../view/profile/user_relationship_manager_screen.dart';
 import 'p_file_01.dart';
 import 'p_file_02.dart';
 
@@ -91,6 +92,7 @@ class PlatinumScreen extends StatelessWidget {
                 ),
               ),
             ),
+            /*
             const SizedBox(
               height: 10,
             ),
@@ -140,47 +142,65 @@ class PlatinumScreen extends StatelessWidget {
                 ),
               ),
             ),
+            */
             const SizedBox(
               height: 10,
             ),
-            Container(
-              padding: const EdgeInsets.all(
-                defaultPaddingNew,
-              ),
-              width: getWidth(context),
-              decoration: BoxDecoration(
-                color: greyColorNew,
-                borderRadius: BorderRadius.circular(
-                  defaultBorderNew,
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        //"View Rep set to this user by Admin",
-                        "Relationship manager",
-                        style: boldTextStyleNew.copyWith(
-                          fontSize: 16,
-                        ),
-                      ),
-                      Text(
-                        "",
-                        style: boldTextStyleNew.copyWith(
-                          fontSize: 15,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    //builder: (context) => const RelationshipManagerScreen(),
+                    builder: (context) => const UserRelationshipManagerScreen(),
                   ),
-                ],
+                );
+              },
+
+              child: Container(
+
+                padding: const EdgeInsets.all(
+                  defaultPaddingNew,
+                ),
+
+                width: getWidth(context),
+                decoration: BoxDecoration(
+                  color: greyColorNew,
+                  borderRadius: BorderRadius.circular(
+                    defaultBorderNew,
+                  ),
+
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        //Image.asset(width: 5, height: 5, "assets/images/h19a.png"),
+                        Text(
+                          //"View users File 02 uploaded by Admin",
+                          "Relationship Manager",
+                          style: boldTextStyleNew.copyWith(
+                            fontSize: 16,
+                          ),
+                        ),
+                        Text(
+                          "",
+                          style: boldTextStyleNew.copyWith(
+                            fontSize: 15,
+                            color: Colors.grey,
+
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             const SizedBox(
-              height: 16,
+              height: 10,
             ),
             GestureDetector(
               onTap: () {

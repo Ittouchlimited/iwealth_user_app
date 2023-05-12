@@ -5,20 +5,22 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pinext/app/screens/files/user_files_view.dart';
 
-class PlatinumWillPreparationScreen extends StatelessWidget {
-  const PlatinumWillPreparationScreen({Key? key}) : super(key: key);
+import '../../../widget/back_icon.dart';
+
+class TaxAdvisoryServicesNorrenbergerServicesPlatinumScreen extends StatelessWidget {
+  const TaxAdvisoryServicesNorrenbergerServicesPlatinumScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         title: const Text(
-          'Will Preparation',
+          'Norrenberger Services',
           style: TextStyle(
             color: Colors.black,
           ),
         ),
-
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context);
@@ -33,6 +35,16 @@ class PlatinumWillPreparationScreen extends StatelessWidget {
             },
           ),
         ),
+      ),
+      /*
+      appBar: AppBar(
+        title: const Text(
+          'Addon File 01',
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+
         // StreamBuilder<QuerySnapshot>(
         //   stream: FirebaseFirestore.instance
         //       .collection('pinext_users')
@@ -66,29 +78,30 @@ class PlatinumWillPreparationScreen extends StatelessWidget {
         //   ),
         // ],
       ),
+      */
+
+
+
       body: ListView.builder(
         itemCount: 1, // set the number of items to 5
         itemBuilder: (context, index) {
-          return PlatinumFilesTwoUploadMania(index: index);
+          return AddonOneUploadMania(index: index);
         },
       ),
     );
   }
 }
 
-class PlatinumFilesTwoUploadMania extends StatefulWidget {
+class AddonOneUploadMania extends StatefulWidget {
   final int index;
 
-  const PlatinumFilesTwoUploadMania({Key? key, required this.index})
-      : super(key: key);
+  const AddonOneUploadMania({Key? key, required this.index}) : super(key: key);
 
   @override
-  _PlatinumFilesTwoUploadManiaState createState() =>
-      _PlatinumFilesTwoUploadManiaState();
+  _AddonOneUploadManiaState createState() => _AddonOneUploadManiaState();
 }
 
-class _PlatinumFilesTwoUploadManiaState
-    extends State<PlatinumFilesTwoUploadMania> {
+class _AddonOneUploadManiaState extends State<AddonOneUploadMania> {
   late File _file;
   bool _isUploading = false;
   String _fileName = '';
@@ -103,7 +116,7 @@ class _PlatinumFilesTwoUploadManiaState
 
     // Create a reference to the "notification" subcollection
     final notificationCollection =
-        adminCollection.doc(userId).collection('files_notification');
+        adminCollection.doc(userId).collection('addons_notification');
 
     // Check if the "notification" subcollection exists
     final snapshot = await notificationCollection.limit(1).get();
@@ -114,7 +127,7 @@ class _PlatinumFilesTwoUploadManiaState
 
     // Create a document in the "notification" subcollection with the title and file URL
     final notificationData = {
-      'title': userId + ' wants to prepare a Will ',
+      'title': userId + ' Requested for addon 01',
       'sendfile': _fileName,
     };
     await notificationCollection.add(notificationData);
@@ -194,7 +207,7 @@ class _PlatinumFilesTwoUploadManiaState
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                '',
+                'Tax Advisory Services',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,

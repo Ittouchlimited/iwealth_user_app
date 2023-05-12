@@ -3,6 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:pinext/app/screens/platinum/addon_01.dart';
 import 'package:pinext/app/screens/platinum/addon_02.dart';
+import 'package:pinext/app/screens/platinum/norrenberger_services_listing_screen.dart';
+import 'package:pinext/app/screens/platinum/value_statement_guarantee_norrenberger_services_platinum.dart';
+import 'package:pinext/app/screens/platinum/third_party_addons_screen.dart';
 import 'package:pinext/app/screens/silver/file_02.dart';
 
 //Added on the 11052023
@@ -12,6 +15,7 @@ import 'package:pinext/config/images.dart';
 import 'package:pinext/config/textstyle.dart';
 import 'package:pinext/controller/profile_controller.dart';
 import 'package:pinext/main.dart';
+import 'package:pinext/view/profile/3rd_party_services_screen.dart';
 import 'package:pinext/widget/back_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -81,7 +85,7 @@ class AddonsScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const AddonOneScreen(),
+                    builder: (context) => NorrenbergerServicesListingScreen(),
                   ),
                 );
               },
@@ -183,6 +187,9 @@ class AddonsScreen extends StatelessWidget {
                 ),
               ),
             ),
+
+
+
             const SizedBox(
               height: 10,
             ),
@@ -417,7 +424,8 @@ class AddonsScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const AddonTwoScreen(),
+                    //builder: (context) => const ThirdPartyServicesScreen(),
+                    builder: (context) => ThirdPartyAddOnsScreen(),
                   ),
                 );
                 //AddonTwoScreen();
@@ -557,7 +565,9 @@ class AddonsScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const AddonTwoScreen(),
+                        builder: (context) => ThirdPartyAddOnsScreen(),
+                        //builder: (context) => const ThirdPartyServicesScreen(),
+
                       ),
                     );
 
@@ -604,7 +614,7 @@ class AddonsScreen extends StatelessWidget {
       Navigator.of(context).pop();
     }
   }
-
+/*
   _openThirdPartyServices(BuildContext context) async {
 
     Get.to(
@@ -620,7 +630,7 @@ class AddonsScreen extends StatelessWidget {
       );
 
       //Navigator.of(context).pop();
-    }
+    }*/
   }
 
 

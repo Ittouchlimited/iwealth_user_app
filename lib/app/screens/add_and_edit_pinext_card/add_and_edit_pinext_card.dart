@@ -430,9 +430,9 @@ class _AddAndEditPinextCardViewState extends State<AddAndEditPinextCardView> {
                           }
                           Navigator.pop(context);
                           GetCustomSnackbar(
-                            title: "Congratulations!",
+                            title: "Thank you!",
                             message:
-                                "Portfolio created successfully.",
+                                "Your KYC submission will be reviewed.",
                             snackbarType: SnackbarType.success,
                             context: context,
                           );
@@ -442,8 +442,8 @@ class _AddAndEditPinextCardViewState extends State<AddAndEditPinextCardView> {
                     builder: (context, state) {
                       return GetCustomButton(
                         title: widget.isEditCardScreen
-                            ? "Update Your Portfolio"
-                            : "Create Portfolio",
+                            ? "Upload"
+                            : "Upload",
                         titleColor: whiteColor,
                         buttonColor: customBlueColor,
                         isLoading: state is AddCardDefaultState ? false : true,

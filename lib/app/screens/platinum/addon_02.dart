@@ -87,6 +87,7 @@ class AddonTwoScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           return AddonTwoUploadMania(index: index);
         },
+
       ),
     );
   }
@@ -127,7 +128,7 @@ class _AddonTwoUploadManiaState extends State<AddonTwoUploadMania> {
 
     // Create a document in the "notification" subcollection with the title and file URL
     final notificationData = {
-      'title': userId + ' Requested for addon 02',
+      'title': userId + ' Requested for 3rd Party Will preparation service.',
       'sendfile': _fileName,
     };
     await notificationCollection.add(notificationData);
@@ -207,7 +208,7 @@ class _AddonTwoUploadManiaState extends State<AddonTwoUploadMania> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Service 01 name goes here',
+                'Simple Will Preparation',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,

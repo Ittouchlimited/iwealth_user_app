@@ -5,20 +5,20 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pinext/app/screens/files/user_files_view.dart';
 
-class PlatinumWillPreparationScreen extends StatelessWidget {
-  const PlatinumWillPreparationScreen({Key? key}) : super(key: key);
+class SimpleWillPreparationThirdPartyAddOnScreen extends StatelessWidget {
+  const SimpleWillPreparationThirdPartyAddOnScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         title: const Text(
-          'Will Preparation',
+          '3rd Party Addon Service',
           style: TextStyle(
             color: Colors.black,
           ),
         ),
-
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context);
@@ -31,6 +31,16 @@ class PlatinumWillPreparationScreen extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
+          ),
+        ),
+      ),
+
+      /*
+      appBar: AppBar(
+        title: const Text(
+          'Addon File 02',
+          style: TextStyle(
+            color: Colors.black,
           ),
         ),
         // StreamBuilder<QuerySnapshot>(
@@ -66,29 +76,33 @@ class PlatinumWillPreparationScreen extends StatelessWidget {
         //   ),
         // ],
       ),
+      */
+
+
+
+
+
       body: ListView.builder(
         itemCount: 1, // set the number of items to 5
         itemBuilder: (context, index) {
-          return PlatinumFilesTwoUploadMania(index: index);
+          return AddonTwoUploadMania(index: index);
         },
+
       ),
     );
   }
 }
 
-class PlatinumFilesTwoUploadMania extends StatefulWidget {
+class AddonTwoUploadMania extends StatefulWidget {
   final int index;
 
-  const PlatinumFilesTwoUploadMania({Key? key, required this.index})
-      : super(key: key);
+  const AddonTwoUploadMania({Key? key, required this.index}) : super(key: key);
 
   @override
-  _PlatinumFilesTwoUploadManiaState createState() =>
-      _PlatinumFilesTwoUploadManiaState();
+  _AddonTwoUploadManiaState createState() => _AddonTwoUploadManiaState();
 }
 
-class _PlatinumFilesTwoUploadManiaState
-    extends State<PlatinumFilesTwoUploadMania> {
+class _AddonTwoUploadManiaState extends State<AddonTwoUploadMania> {
   late File _file;
   bool _isUploading = false;
   String _fileName = '';
@@ -103,7 +117,7 @@ class _PlatinumFilesTwoUploadManiaState
 
     // Create a reference to the "notification" subcollection
     final notificationCollection =
-        adminCollection.doc(userId).collection('files_notification');
+        adminCollection.doc(userId).collection('addons_notification');
 
     // Check if the "notification" subcollection exists
     final snapshot = await notificationCollection.limit(1).get();
@@ -114,7 +128,7 @@ class _PlatinumFilesTwoUploadManiaState
 
     // Create a document in the "notification" subcollection with the title and file URL
     final notificationData = {
-      'title': userId + ' wants to prepare a Will ',
+      'title': userId + ' Requested for 3rd Party Will preparation service.',
       'sendfile': _fileName,
     };
     await notificationCollection.add(notificationData);
@@ -194,7 +208,7 @@ class _PlatinumFilesTwoUploadManiaState
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                '',
+                'Simple Will Preparation',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,

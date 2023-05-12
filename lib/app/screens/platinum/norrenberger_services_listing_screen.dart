@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:pinext/app/screens/silver/file_02.dart';
-import 'package:pinext/app/screens/silver/silver_will_preparation.dart';
-import 'package:pinext/view/profile/relationship_manager_screen.dart';
-import 'package:pinext/view/profile/user_relationship_manager_screen.dart';
+import 'package:pinext/app/screens/platinum/addons.dart';
+import 'package:pinext/app/screens/platinum/platinum_portfolio_evaluation.dart';
+import 'package:pinext/app/screens/platinum/platinum_will_preparation.dart';
+import 'package:pinext/app/screens/platinum/tax_advisory_services_norrenberger_services_platinum.dart';
+import 'package:pinext/app/screens/platinum/value_statement_guarantee_norrenberger_services_platinum.dart';
 
-import 'file_01.dart';
+import '../../../view/profile/user_relationship_manager_screen.dart';
+import 'inheritance_planning_norrenberger_services_platinum.dart';
+import 'p_file_01.dart';
+import 'p_file_02.dart';
 
 const double defaultPaddingNew = 16.0;
 const double defaultBorderNew = 16.0;
 final Color greyColorNew = Colors.grey.shade200;
-const TextStyle boldTextStyleNew = TextStyle(fontWeight: FontWeight.bold);
+final TextStyle boldTextStyleNew = const TextStyle(fontWeight: FontWeight.bold);
 
-class SilverScreen extends StatelessWidget {
-  const SilverScreen({super.key});
-
+class NorrenbergerServicesListingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Silver Plan',
+          'Norrenberger Services',
           style: TextStyle(
             color: Colors.black,
           ),
@@ -52,7 +54,7 @@ class SilverScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const SilverPortfolioEvaluationScreen(),
+                    builder: (context) => const ValueStatementGuaranteeNorrenbergerServicesPlatinumScreen(),
                   ),
                 );
               },
@@ -75,7 +77,7 @@ class SilverScreen extends StatelessWidget {
                       children: [
                         Text(
                           //"View users File 01 uploaded by Admin",
-                          "Portfolio Valuation",
+                          "Value Statement Guarantee",
                           style: boldTextStyleNew.copyWith(
                             fontSize: 16,
                           ),
@@ -93,6 +95,7 @@ class SilverScreen extends StatelessWidget {
                 ),
               ),
             ),
+            /*
             const SizedBox(
               height: 10,
             ),
@@ -101,24 +104,20 @@ class SilverScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const SilverWillPreparationScreen(),
+                    builder: (context) => const PlatinumWillPreparationScreen(),
                   ),
                 );
               },
-
               child: Container(
-
                 padding: const EdgeInsets.all(
                   defaultPaddingNew,
                 ),
-
                 width: getWidth(context),
                 decoration: BoxDecoration(
                   color: greyColorNew,
                   borderRadius: BorderRadius.circular(
                     defaultBorderNew,
                   ),
-
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -126,7 +125,6 @@ class SilverScreen extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        //Image.asset(width: 5, height: 5, "assets/images/h19a.png"),
                         Text(
                           //"View users File 02 uploaded by Admin",
                           "Will Preparation",
@@ -139,7 +137,6 @@ class SilverScreen extends StatelessWidget {
                           style: boldTextStyleNew.copyWith(
                             fontSize: 15,
                             color: Colors.grey,
-
                           ),
                         ),
                       ],
@@ -148,6 +145,7 @@ class SilverScreen extends StatelessWidget {
                 ),
               ),
             ),
+            */
             const SizedBox(
               height: 10,
             ),
@@ -157,7 +155,7 @@ class SilverScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     //builder: (context) => const RelationshipManagerScreen(),
-                    builder: (context) => const UserRelationshipManagerScreen(),
+                    builder: (context) => const InheritancePlanningNorrenbergerServicesPlatinumScreen(),
                   ),
                 );
               },
@@ -185,7 +183,7 @@ class SilverScreen extends StatelessWidget {
                         //Image.asset(width: 5, height: 5, "assets/images/h19a.png"),
                         Text(
                           //"View users File 02 uploaded by Admin",
-                          "Relationship Manager",
+                          "Inheritance Planning",
                           style: boldTextStyleNew.copyWith(
                             fontSize: 16,
                           ),
@@ -207,47 +205,50 @@ class SilverScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            /*
-            Container(
-              padding: const EdgeInsets.all(
-                defaultPaddingNew,
-              ),
-              width: getWidth(context),
-              decoration: BoxDecoration(
-                color: greyColorNew,
-                borderRadius: BorderRadius.circular(
-                  defaultBorderNew,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const TaxAdvisoryServicesNorrenbergerServicesPlatinumScreen(),
+                  ),
+                );
+              },
+              child: Container(
+                padding: const EdgeInsets.all(
+                  defaultPaddingNew,
+                ),
+                width: getWidth(context),
+                decoration: BoxDecoration(
+                  color: greyColorNew,
+                  borderRadius: BorderRadius.circular(
+                    defaultBorderNew,
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Tax Advisory Services",
+                          style: boldTextStyleNew.copyWith(
+                            fontSize: 16,
+                          ),
+                        ),
+                        Text(
+                          "",
+                          style: boldTextStyleNew.copyWith(
+                            fontSize: 15,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        //"View Rep set to this user by Admin",
-                        "Relationship Manager",
-                        style: boldTextStyleNew.copyWith(
-                          fontSize: 16,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      Text(
-                        "",
-                        style: boldTextStyleNew.copyWith(
-                          fontSize: 15,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            */
-            const SizedBox(
-              height: 16,
             ),
           ],
         ),

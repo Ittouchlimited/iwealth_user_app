@@ -15,6 +15,7 @@ import 'package:pinext/app/screens/subscriptions/subscription_plan.dart';
 import 'package:pinext/app/shared/widgets/custom_snackbar.dart';
 import 'package:pinext/app/shared/widgets/pinext_card_minimized.dart';
 
+
 import '../../../app_data/app_constants/constants.dart';
 import '../../../app_data/app_constants/domentions.dart';
 import '../../../app_data/app_constants/fonts.dart';
@@ -29,8 +30,9 @@ import '../../../shared/widgets/custom_text_field.dart';
 import '../../../shared/widgets/pinext_goal_minimized.dart';
 import '../../add_and_edit_pinext_card/add_and_edit_pinext_card.dart';
 
-class CardsAndBalancesRegistrationPage extends StatefulWidget {
-  CardsAndBalancesRegistrationPage({
+
+class UserRegistrationPage extends StatefulWidget {
+  UserRegistrationPage({
     Key? key,
     required this.monthlyBudgetController,
     required this.budgetSpentSoFarController,
@@ -56,15 +58,9 @@ class CardsAndBalancesRegistrationPage extends StatefulWidget {
   PageController pageController;
 
   @override
-  State<CardsAndBalancesRegistrationPage> createState() =>
-      _CardsAndBalancesRegistrationPageState();
+  State<UserRegistrationPage> createState() =>
+      _UserRegistrationPageState();
 }
-
-//Added on the 12052023
-//6am+
-//We want to deactivate the button after it gets pressed once
-bool isButtonActive = true;
-bool isContainerActive = true;
 
 final List<String> incomerangeItems = [
   //'100-1000',
@@ -84,7 +80,7 @@ final _formKey = GlobalKey<FormState>();
 
 
 
-class _CardsAndBalancesRegistrationPageState extends State<CardsAndBalancesRegistrationPage> {
+class _UserRegistrationPageState extends State<UserRegistrationPage> {
   double netBalance = 0;
   String? _fileName;
   File? _uploadedFile;
@@ -522,11 +518,6 @@ class _CardsAndBalancesRegistrationPageState extends State<CardsAndBalancesRegis
               const SizedBox(
                 height: 8,
               ),
-
-
-
-
-              /*
               GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -570,90 +561,6 @@ class _CardsAndBalancesRegistrationPageState extends State<CardsAndBalancesRegis
                         width: 8,
                       ),
                       Text(
-                        "Upload your verification data",
-                        style: boldTextStyle.copyWith(
-                          color: customBlackColor.withOpacity(.4),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              */
-
-
-
-              const SizedBox(
-                height: 8,
-              ),
-
-
-
-              /*
-              ElevatedButton(
-                  onPressed: () {
-                  },
-                  child: Text('Upload File')),
-
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(disabledForegroundColor: Colors.deepOrangeAccent.withOpacity(0.38), disabledBackgroundColor: Colors.deepOrangeAccent.withOpacity(0.12)),
-                onPressed: isButtonActive? () {
-                  setState(() => isButtonActive = false);
-                }
-                    : null,
-                child: const Text("Upload Your Verification Data"),
-              ),
-              */
-
-
-
-              GestureDetector(
-                onTap: /*isContainerActive?*/ () {
-                  //setState(() => isContainerActive = false);
-                  Navigator.push(
-                      context,
-                      CustomTransitionPageRoute(
-                        childWidget: UserVerificationScreen(addCardForSignUpProcess: true,),
-                        //childWidget: AddAndEditPinextCardScreen(addCardForSignUpProcess: true,),
-                          //setState(() => isButtonActive = false);
-                      ));
-                } /*:null*/,
-
-                child: Container(
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: greyColor,
-                    borderRadius: BorderRadius.circular(
-                      defaultBorder,
-                    ),
-                  ),
-                  alignment: Alignment.center,
-                  width: getWidth(context),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-
-                      Container(
-                        height: 25,
-                        width: 25,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            25,
-                          ),
-                          border: Border.all(
-                            color: customBlackColor.withOpacity(.4),
-                          ),
-                        ),
-                        child: Icon(
-                          Icons.add,
-                          size: 16,
-                          color: customBlackColor.withOpacity(.4),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      Text(
                         "Upload your verification data (KYC)",
                         style: boldTextStyle.copyWith(
                           color: customBlackColor.withOpacity(.4),
@@ -663,7 +570,6 @@ class _CardsAndBalancesRegistrationPageState extends State<CardsAndBalancesRegis
                   ),
                 ),
               ),
-
 
 
 

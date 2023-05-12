@@ -49,7 +49,7 @@ class HomeframeCubit extends Cubit<HomeframeState> {
             child: ListBody(
               children: [
                 Text(
-                  "Welcome to the iWealth. A logbook of one's personal income and expenses. where you, the user can keep track of your everyday spending or income and archive it on the cloud. Further more, You can use the app to directly generate reports based on your transactions, examine or change your transactions at any moment, and more! :)",
+                  "Welcome to iWealth from Norrenberger. Your personal wealth management assistant!",
                   style: regularTextStyle,
                 ),
               ],

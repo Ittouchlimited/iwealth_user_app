@@ -42,24 +42,11 @@ class _ThirdPartyServicesScreenState extends State<ThirdPartyServicesScreen> {
               ],
             ),
 
-
-
-
-
-
-
-
-
-
-
             Expanded(
               child: ListView(
                 padding: EdgeInsets.zero,
                 physics: const ClampingScrollPhysics(),
                 children: [
-
-
-
 
                   Column(
                     children: [
@@ -80,7 +67,7 @@ class _ThirdPartyServicesScreenState extends State<ThirdPartyServicesScreen> {
 
                           const SizedBox(width: 14),
                           Text(
-                            "Service 01",
+                            "Simple Will Preparation",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText1!

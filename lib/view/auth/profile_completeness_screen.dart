@@ -29,7 +29,7 @@ class ProfileCompletenessScreen extends StatefulWidget {
 
 
 final List<String> incomerangeItems = [
-  '100-1000',
+  '1000-1000',
   '2000-5000',
 ];
 final List<String> items = [
