@@ -18,7 +18,7 @@ import 'package:pinext/view/market/liability_screen.dart';
 import 'package:pinext/view/market/share_sheet.dart';
 import 'package:pinext/view/profile/scan_screen.dart';
 import 'package:pinext/widget/add_asset_view.dart';
-import 'package:pinext/widget/add_liability_view.dart';
+import 'package:pinext/widget/add_liability_loans_view.dart';
 import 'package:pinext/widget/coin_view.dart';
 import 'package:pinext/widget/portfolio_assets_view.dart';
 import 'package:pinext/widget/portfolio_liabilities_view.dart';
@@ -278,7 +278,7 @@ class _DashboardPortfolioState extends State<DashboardPortfolio> {
 
                           Padding(
                             padding: const EdgeInsets.only(bottom: 15),
-                            child: AddLiabilityView(
+                            child: AddLiabilityLoansView(
                               image: i == 0
                                   ? DefaultImages.h14d
                                   : DefaultImages.h19b,

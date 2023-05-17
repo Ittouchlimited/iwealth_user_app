@@ -330,7 +330,8 @@ class _CardsAndBalancesRegistrationPageState extends State<CardsAndBalancesRegis
 
 
               */
-          /*
+              /*
+
               const SizedBox(
                 height: 40,
               ),
@@ -363,11 +364,13 @@ class _CardsAndBalancesRegistrationPageState extends State<CardsAndBalancesRegis
                         });
                       }
                     },
-                    icon: Icon(Icons.upload),
+                    icon: const Icon(Icons.upload),
                   ),
                 ),
               ),
-              */
+
+               */
+
 
 
 
@@ -665,6 +668,46 @@ class _CardsAndBalancesRegistrationPageState extends State<CardsAndBalancesRegis
               ),
 
 
+
+
+              /*
+              const SizedBox(
+                height: 40,
+              ),
+              Text(
+                "Upload User Verification File",
+                style: boldTextStyle,
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              TextFormField(
+                controller: widget.filesController,
+                decoration: InputDecoration(
+                  hintText: _fileName ?? 'Click here to upload',
+                  hintStyle: const TextStyle(color: Colors.grey),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                    borderSide: const BorderSide(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  suffixIcon: IconButton(
+                    onPressed: () async {
+                      FilePickerResult? result =
+                          await FilePicker.platform.pickFiles();
+                      if (result != null) {
+                        setState(() {
+                          _uploadedFile = File(result.files.single.path!);
+                          _fileName = path.basename(_uploadedFile!.path);
+                        });
+                      }
+                    },
+                    icon: Icon(Icons.upload),
+                  ),
+                ),
+              ),
+              */
 
 
 

@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:elegant_notification/elegant_notification.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinext/app/app_data/app_constants/constants.dart';
@@ -23,6 +24,29 @@ import '../../shared/widgets/custom_text_field.dart';
 
 import 'package:dropdown_button2/dropdown_button2.dart';
 
+//Added on the 15052023
+import 'package:permission_handler/permission_handler.dart';
+
+
+//Added on the 17052023
+import 'dart:developer';
+import 'dart:io';
+import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:path/path.dart' as path;
+
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pinext/app/app_data/extensions/string_extensions.dart';
+import 'package:pinext/app/models/pinext_goal_model.dart';
+import 'package:pinext/app/screens/add_and_edit_pinext_card/user_verification.dart';
+import 'package:pinext/app/screens/goals_and_milestones/add_and_edit_goal_and_milestone_screen.dart';
+import 'package:pinext/app/screens/subscriptions/plan_subs.dart';
+import 'package:pinext/app/screens/subscriptions/subscription_plan.dart';
+import 'package:pinext/app/shared/widgets/custom_snackbar.dart';
+import 'package:pinext/app/shared/widgets/pinext_card_minimized.dart';
+
+
 
 class UserVerificationScreen extends StatelessWidget {
   UserVerificationScreen({
@@ -30,6 +54,7 @@ class UserVerificationScreen extends StatelessWidget {
     this.addCardForSignUpProcess = false,
     this.isEditCardScreen = false,
     this.pinextCardModel,
+
     //this.filesController = false,
 
   }) : super(key: key);
@@ -37,6 +62,8 @@ class UserVerificationScreen extends StatelessWidget {
   bool addCardForSignUpProcess;
   bool isEditCardScreen;
   PinextCardModel? pinextCardModel;
+  //TextEditingController filesController;
+
 
 
   @override
@@ -55,6 +82,8 @@ class UserVerificationScreen extends StatelessWidget {
     );
   }
 }
+
+
 
 
 final List<String> verificationTypeItems = [
@@ -78,6 +107,8 @@ class AddAndEditPinextCardView extends StatefulWidget {
   bool isEditCardScreen;
   PinextCardModel? pinextCardModel;
 
+  //get filesController => null;
+
   @override
   State<AddAndEditPinextCardView> createState() =>
       _AddAndEditPinextCardViewState();
@@ -87,6 +118,7 @@ class _AddAndEditPinextCardViewState extends State<AddAndEditPinextCardView> {
   late TextEditingController titleController;
   late TextEditingController descriptionController;
   late TextEditingController balanceController;
+  late TextEditingController filesController;
   //final TextEditingController _controller = TextEditingController();
 
   String? _fileName;
@@ -95,6 +127,7 @@ class _AddAndEditPinextCardViewState extends State<AddAndEditPinextCardView> {
 
   @override
   void initState() {
+    _requestPermission(Permission.photos);
     titleController = TextEditingController();
     descriptionController = TextEditingController();
     balanceController = TextEditingController();
@@ -238,8 +271,8 @@ class _AddAndEditPinextCardViewState extends State<AddAndEditPinextCardView> {
 
 
 
-/*
 
+/*
                     const SizedBox(
                       height: 40,
                     ),
@@ -276,10 +309,8 @@ class _AddAndEditPinextCardViewState extends State<AddAndEditPinextCardView> {
                         ),
                       ),
                     ),
-*/
 
-
-
+ */
 
 
 
@@ -666,5 +697,16 @@ class _AddAndEditPinextCardViewState extends State<AddAndEditPinextCardView> {
         ),
       ),
     );
+  }
+  Future<bool> _requestPermission(Permission permission) async {
+    if (await permission.isGranted) {
+      return true;
+    } else {
+      var result = await permission.request();
+      if (result == PermissionStatus.granted) {
+        return true;
+      }
+    }
+    return false;
   }
 }

@@ -1,22 +1,24 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:pinext/app/screens/home/pages/add_asset_portfolio_page.dart';
+import 'package:pinext/app/screens/add_and_view_transaction/add_liability_loans.dart';
+import 'package:pinext/app/screens/add_and_view_transaction/add_liability_others.dart';
 import 'package:pinext/config/images.dart';
 import 'package:pinext/config/textstyle.dart';
 import 'package:pinext/view/auth/add_asset_screen.dart';
+import 'package:pinext/view/auth/add_liability_screen.dart';
 import 'package:pinext/view/market/about_screen.dart';
 import 'package:pinext/view/market/bitcoin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AddAssetView extends StatelessWidget {
+class AddLiabilityOthersView extends StatelessWidget {
   final String image;
   final String text1;
   final String text2;
   final String text3;
   final String text4;
   final String? graphImage;
-  const AddAssetView(
+  const AddLiabilityOthersView(
       {super.key,
       required this.image,
       required this.text1,
@@ -31,7 +33,7 @@ class AddAssetView extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const AddAssetPortfolioPage()),
+          MaterialPageRoute(builder: (context) => AddLiabilityOthersScreen()),
         );
       },
       child: Container(

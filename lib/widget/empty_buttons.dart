@@ -9,14 +9,14 @@ import 'package:pinext/view/market/bitcoin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AddAssetView extends StatelessWidget {
+class EmptyButtonView extends StatelessWidget {
   final String image;
   final String text1;
   final String text2;
   final String text3;
   final String text4;
   final String? graphImage;
-  const AddAssetView(
+  const EmptyButtonView(
       {super.key,
       required this.image,
       required this.text1,
@@ -29,11 +29,24 @@ class AddAssetView extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const AddAssetPortfolioPage()),
-        );
-      },
+      Get.to(
+        /*
+                    Fluttertoast.showToast(
+                        msg: "This is a Toast message",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        textColor: Colors.white,
+                        fontSize: 16.0
+                    )
+                    */
+
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text("Sorry! This feature is currently unavailable."),
+          )
+          )
+      );
+    },
       child: Container(
         height: 80,
         width: Get.width,

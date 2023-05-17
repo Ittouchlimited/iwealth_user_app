@@ -121,4 +121,12 @@ class DefaultImages {
   static const String h4Dark = 'assets/images/h4Dark.png';
   static const String firebaseLogo = 'assets/images/firebase_logo.png';
   static const String googleLogo = 'assets/images/google_logo.png';
+  static const String bank_assets = 'assets/images/bank_assets.png';
+  static const String stocks_assets = 'assets/images/stocks_assets.png';
+  static const String vehicle_assets = 'assets/images/vehicle_assets.png';
+  static const String digital_assets = 'assets/images/digital_assets.png';
+  static const String real_estate_assets = 'assets/images/real_estate_assets.png';
+  static const String custom_assets = 'assets/images/custom_assets.png';
+  static const String loans_liability = 'assets/images/loans_liability.png';
+  static const String others_liability = 'assets/images/others_liability.png';
 }

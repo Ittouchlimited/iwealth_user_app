@@ -14,11 +14,13 @@ import 'package:pinext/app/app_data/theme_data/colors.dart';
 import 'package:pinext/app/bloc/userBloc/user_bloc.dart';
 import 'package:pinext/app/screens/home/pages/app_settings_screen/app_settings_screen.dart';
 import 'package:pinext/app/screens/home/pages/archive_page.dart';
+import 'package:pinext/app/screens/home/pages/asset_portfolio_page.dart';
 import 'package:pinext/app/screens/home/pages/cards_and_balance_page.dart';
 import 'package:pinext/app/screens/home/pages/export_page.dart';
 import 'package:pinext/app/screens/home/pages/home_page.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:pinext/app/screens/home/pages/layout_page.dart';
+import 'package:pinext/app/screens/home/pages/liability_portfolio_page.dart';
 import 'package:pinext/app/screens/home/pages/portfolio_page.dart';
 import 'package:pinext/app/screens/home/pages/silver_layout_page.dart';
 import 'package:pinext/app/screens/subscriptions/subscription_plan.dart';
@@ -90,11 +92,12 @@ final String currentUserId = currentUser?.uid ?? '';
 
 List homeframePages = [
   const Homepage(),
-  const PortfolioPage(),
+  const AssetPortfolioPage(),
+  const LiabilityPortfolioPage(),
+  //const PortfolioPage(),
   const ExportPage(),
-  //const ArchivePage(),
-  AppSettingsScreen(currentUserId: currentUserId,)
-  //const MaintenanceScreen(),
+  AppSettingsScreen(currentUserId: currentUserId,),
+  const MaintenanceScreen()
 /*
   const PortfolioPage(),
   const ExportPage(),
@@ -155,6 +158,7 @@ class HomeframeView extends StatelessWidget {
                       ),
                   ],
                 ),
+
               ),
             ],
             leading: IconButton(
@@ -261,7 +265,7 @@ class HomeframeView extends StatelessWidget {
                     text: intro_label_three,
                     builder: (context, introkey) {
                       return const Icon(
-                        Iconsax.archive,
+                        Iconsax.card_add,
                       );
                     }),
                 label: "Archive",
@@ -272,7 +276,7 @@ class HomeframeView extends StatelessWidget {
                     text: intro_label_four,
                     builder: (context, introkey) {
                       return const Icon(
-                        Iconsax.wallet_1,
+                        Iconsax.wallet_money,
                       );
                     }),
                 label: "Wallet",
@@ -280,6 +284,30 @@ class HomeframeView extends StatelessWidget {
               BottomNavigationBarItem(
                 icon: IntroStepBuilder(
                     order: 5,
+                    text: intro_label_five,
+                    builder: (context, introkey) {
+                      return const Icon(
+                        Iconsax.share4,
+                      );
+                    }),
+                label: "Admin settings",
+              ),
+
+              BottomNavigationBarItem(
+                icon: IntroStepBuilder(
+                    order: 6,
+                    text: intro_label_five,
+                    builder: (context, introkey) {
+                      return const Icon(
+                        Iconsax.user_square,
+                      );
+                    }),
+                label: "Admin settings",
+              ),
+
+              BottomNavigationBarItem(
+                icon: IntroStepBuilder(
+                    order: 7,
                     text: intro_label_five,
                     builder: (context, introkey) {
                       return const Icon(

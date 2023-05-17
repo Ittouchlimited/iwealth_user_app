@@ -6,6 +6,7 @@ import 'package:pinext/config/images.dart';
 import 'package:pinext/config/textstyle.dart';
 import 'package:pinext/view/auth/add_asset_screen.dart';
 import 'package:pinext/view/auth/add_liability_screen.dart';
+import 'package:pinext/widget/add_asset_view.dart';
 import 'package:pinext/widget/custom_button.dart';
 import 'package:pinext/view/market/share_sheet.dart';
 import 'package:flutter/material.dart';
@@ -182,7 +183,9 @@ class CardView extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AddAndViewTransactionScreen(),
+                          //builder: (context) => AddAndViewTransactionScreen(),
+                          builder: (context) => const AddAssetScreen(),
+
                         ),
                       );
                     },
@@ -219,7 +222,7 @@ class CardView extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AddAndViewTransactionAgainScreen(),
+                          builder: (context) => const AddLiabilityScreen(),
                         ),
                       );
                     },

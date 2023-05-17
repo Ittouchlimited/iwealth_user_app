@@ -12,6 +12,7 @@ import 'package:pinext/app/shared/widgets/custom_text_field.dart';
 import 'package:pinext/market_api_stocks.dart';
 
 import '../../../../config/images.dart';
+import '../../../../widget/about_iwealth_view.dart';
 import '../../../app_data/app_constants/domentions.dart';
 import '../../../app_data/app_constants/fonts.dart';
 import '../../../bloc/archive_cubit/archive_cubit.dart';
@@ -28,8 +29,8 @@ import 'package:pinext/config/textstyle.dart';
 
 import '../../settings/settings.dart';
 
-class PortfolioPage extends StatelessWidget {
-  const PortfolioPage({Key? key}) : super(key: key);
+class AddAssetPortfolioPage extends StatelessWidget {
+  const AddAssetPortfolioPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -149,136 +150,7 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children:  [
-              const SizedBox(
-                height: 25,
-              ),
 
-
-
-              GetSettingsButtonWithIcon(
-                onTapFunction: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => AddAndViewTransactionScreen(),
-                    ),
-                  );
-                },
-                label: "  Add Asset",
-                icon: FontAwesomeIcons.circlePlus,
-                iconSize: 14,
-              ),
-
-              const SizedBox(
-                height: 10,
-              ),
-
-
-              GetSettingsButtonWithIcon(
-                onTapFunction: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => AddAndViewTransactionAgainScreen(),
-                    ),
-                  );
-                },
-                label: "  Add Liability",
-                icon: FontAwesomeIcons.circlePlus,
-                iconSize: 14,
-              ),
-
-
-              const SizedBox(
-                height: 10,
-              ),
-
-              GetSettingsButtonWithIcon(
-                onTapFunction: () {
-
-
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      //builder: (context) => AddAndViewTransactionAgainScreen(),
-                      builder: (context) => const MarketApiStocks(),
-                    ),
-                  );
-                },
-                label: "  View Live Stocks",
-                icon: FontAwesomeIcons.chartBar,
-                iconSize: 14,
-              ),
-
-
-
-              //Old UI button begin
-              /*
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AddAndViewTransactionScreen(),
-                    ),
-                  );
-                },
-
-
-
-
-                child: Container(
-                  padding: const EdgeInsets.all(
-                    defaultPadding,
-                  ),
-                  width: getWidth(context),
-                  decoration: BoxDecoration(
-                    color: greyColor,
-                    borderRadius: BorderRadius.circular(
-                      defaultBorder,
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-
-
-                        children: [
-
-                          Text(
-                            "Add Asset",
-                            style: boldTextStyle.copyWith(
-                              fontSize: 21,
-                            ),
-                          ),
-                          Text(
-                            "Click to continue",
-                            style: boldTextStyle.copyWith(
-                              fontSize: 15,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                    ],
-                  ),
-                ),
-              ),
-*/
-              //Old UI button end
-
-
-
-
-
-            ],
-          ),
-        ),
         //Old UI button begin
     /*
         Padding(
@@ -646,6 +518,188 @@ class TransactionsList extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
 
+
+
+              GetSettingsButtonWithIcon(
+                onTapFunction: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => AddAndViewTransactionScreen(),
+                    ),
+                  );
+                },
+                label: "  Add Asset",
+                icon: FontAwesomeIcons.circlePlus,
+                iconSize: 14,
+              ),
+
+              const SizedBox(
+                height: 0,
+              ),
+
+
+              //Quick links area
+              Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: Text(
+                  "",
+                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+              Padding(
+                padding:
+                const EdgeInsets.only(left: 0, right: 0, top: 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (var i = 0; i < 1; i++)
+                    //for (var i = 0; i < 2; i++)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: AboutiWealthView(
+                          image: i == 0
+                              ? DefaultImages.bank_assets
+                              : DefaultImages.h19b,
+                          text1: i == 0 ? "Bank & Cash" : "Your SD Box",
+                          text2: i == 0 ? "Asset" : "Continue",
+                          text3: i == 0 ? "0" : "",
+                          text4: i == 0 ? "Total" : "",
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+
+
+              Padding(
+                padding:
+                const EdgeInsets.only(left: 0, right: 0, top: 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (var i = 0; i < 1; i++)
+                    //for (var i = 0; i < 2; i++)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: AboutiWealthView(
+                          image: i == 0
+                              ? DefaultImages.stocks_assets
+                              : DefaultImages.h19b,
+                          text1: i == 0 ? "Stocks" : "Your SD Box",
+                          text2: i == 0 ? "Asset" : "Continue",
+                          text3: i == 0 ? "0" : "",
+                          text4: i == 0 ? "Total" : "",
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+
+
+              Padding(
+                padding:
+                const EdgeInsets.only(left: 0, right: 0, top: 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (var i = 0; i < 1; i++)
+                    //for (var i = 0; i < 2; i++)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: AboutiWealthView(
+                          image: i == 0
+                              ? DefaultImages.vehicle_assets
+                              : DefaultImages.h19b,
+                          text1: i == 0 ? "Vehicle" : "Your SD Box",
+                          text2: i == 0 ? "Asset" : "Continue",
+                          text3: i == 0 ? "0" : "",
+                          text4: i == 0 ? "Total" : "",
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+
+
+
+              Padding(
+                padding:
+                const EdgeInsets.only(left: 0, right: 0, top: 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (var i = 0; i < 1; i++)
+                    //for (var i = 0; i < 2; i++)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: AboutiWealthView(
+                          image: i == 0
+                              ? DefaultImages.digital_assets
+                              : DefaultImages.h19b,
+                          text1: i == 0 ? "Digital Assets" : "Your SD Box",
+                          text2: i == 0 ? "Asset" : "Continue",
+                          text3: i == 0 ? "0" : "",
+                          text4: i == 0 ? "Total" : "",
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+
+
+
+              Padding(
+                padding:
+                const EdgeInsets.only(left: 0, right: 0, top: 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (var i = 0; i < 1; i++)
+                    //for (var i = 0; i < 2; i++)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: AboutiWealthView(
+                          image: i == 0
+                              ? DefaultImages.real_estate_assets
+                              : DefaultImages.h19b,
+                          text1: i == 0 ? "Real Estate" : "Your SD Box",
+                          text2: i == 0 ? "Asset" : "Continue",
+                          text3: i == 0 ? "0" : "",
+                          text4: i == 0 ? "Total" : "",
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+
+
+
+              Padding(
+                padding:
+                const EdgeInsets.only(left: 0, right: 0, top: 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (var i = 0; i < 1; i++)
+                    //for (var i = 0; i < 2; i++)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: AboutiWealthView(
+                          image: i == 0
+                              ? DefaultImages.custom_assets
+                              : DefaultImages.h19b,
+                          text1: i == 0 ? "Custom Asset" : "Your SD Box",
+                          text2: i == 0 ? "Asset" : "Continue",
+                          text3: i == 0 ? "0" : "",
+                          text4: i == 0 ? "Total" : "",
+                        ),
+                      ),
+                  ],
+                ),
+              ),
 
 
 

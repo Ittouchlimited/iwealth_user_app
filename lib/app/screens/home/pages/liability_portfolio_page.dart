@@ -10,8 +10,12 @@ import 'package:pinext/app/services/firebase_services.dart';
 import 'package:pinext/app/shared/widgets/customYearPicker.dart';
 import 'package:pinext/app/shared/widgets/custom_text_field.dart';
 import 'package:pinext/market_api_stocks.dart';
+import 'package:pinext/view/auth/add_liability_screen.dart';
+import 'package:pinext/widget/empty_button_liability_loans.dart';
+import 'package:pinext/widget/empty_button_liability_others.dart';
 
 import '../../../../config/images.dart';
+import '../../../../widget/about_iwealth_view.dart';
 import '../../../app_data/app_constants/domentions.dart';
 import '../../../app_data/app_constants/fonts.dart';
 import '../../../bloc/archive_cubit/archive_cubit.dart';
@@ -28,8 +32,8 @@ import 'package:pinext/config/textstyle.dart';
 
 import '../../settings/settings.dart';
 
-class PortfolioPage extends StatelessWidget {
-  const PortfolioPage({Key? key}) : super(key: key);
+class LiabilityPortfolioPage extends StatelessWidget {
+  const LiabilityPortfolioPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -153,63 +157,9 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
           padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children:  [
-              const SizedBox(
+            children:  const [
+              SizedBox(
                 height: 25,
-              ),
-
-
-
-              GetSettingsButtonWithIcon(
-                onTapFunction: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => AddAndViewTransactionScreen(),
-                    ),
-                  );
-                },
-                label: "  Add Asset",
-                icon: FontAwesomeIcons.circlePlus,
-                iconSize: 14,
-              ),
-
-              const SizedBox(
-                height: 10,
-              ),
-
-
-              GetSettingsButtonWithIcon(
-                onTapFunction: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => AddAndViewTransactionAgainScreen(),
-                    ),
-                  );
-                },
-                label: "  Add Liability",
-                icon: FontAwesomeIcons.circlePlus,
-                iconSize: 14,
-              ),
-
-
-              const SizedBox(
-                height: 10,
-              ),
-
-              GetSettingsButtonWithIcon(
-                onTapFunction: () {
-
-
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      //builder: (context) => AddAndViewTransactionAgainScreen(),
-                      builder: (context) => const MarketApiStocks(),
-                    ),
-                  );
-                },
-                label: "  View Live Stocks",
-                icon: FontAwesomeIcons.chartBar,
-                iconSize: 14,
               ),
 
 
@@ -646,6 +596,84 @@ class TransactionsList extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
 
+
+
+              GetSettingsButtonWithIcon(
+                onTapFunction: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      //builder: (context) => AddAndViewTransactionAgainScreen(),
+                      builder: (context) => const AddLiabilityScreen(),
+                    ),
+                  );
+                },
+                label: "  Add Liability",
+                icon: FontAwesomeIcons.circlePlus,
+                iconSize: 14,
+              ),
+
+
+
+
+              //Quick links area
+              Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: Text(
+                  "",
+                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+              Padding(
+                padding:
+                const EdgeInsets.only(left: 0, right: 0, top: 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (var i = 0; i < 1; i++)
+                    //for (var i = 0; i < 2; i++)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: EmptyButtonLiabilityLoansView(
+                          image: i == 0
+                              ? DefaultImages.loans_liability
+                              : DefaultImages.h19b,
+                          text1: i == 0 ? "Loans" : "Your SD Box",
+                          text2: i == 0 ? "Liability" : "Continue",
+                          text3: i == 0 ? "0" : "",
+                          text4: i == 0 ? "Total" : "",
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+
+
+              Padding(
+                padding:
+                const EdgeInsets.only(left: 0, right: 0, top: 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (var i = 0; i < 1; i++)
+                    //for (var i = 0; i < 2; i++)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: EmptyButtonLiabilityOthersView(
+                          image: i == 0
+                              ? DefaultImages.others_liability
+                              : DefaultImages.h19b,
+                          text1: i == 0 ? "Others" : "Your SD Box",
+                          text2: i == 0 ? "Liability" : "Continue",
+                          text3: i == 0 ? "0" : "",
+                          text4: i == 0 ? "Total" : "",
+                        ),
+                      ),
+                  ],
+                ),
+              ),
 
 
 

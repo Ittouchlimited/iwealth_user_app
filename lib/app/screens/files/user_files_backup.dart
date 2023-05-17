@@ -12,9 +12,6 @@ import 'package:pinext/app/screens/files/user_files_view.dart';
 //Added this on the 14052023
 import 'package:permission_handler/permission_handler.dart';
 import 'package:media_store_plus/media_store_plus.dart';
-//Added this around 6pm
-import 'package:file_selector/file_selector.dart';
-import 'package:pinext/app/screens/files/open_image_page.dart';
 
 
 
@@ -256,7 +253,6 @@ class _UploadManiaState extends State<UploadMania> {
                     ? null
                     : () {
                         _pickFile();
-                        //const OpenImagePage();
                       },
                 child: const Text('Choose File'),
               ),
@@ -279,16 +275,4 @@ class _UploadManiaState extends State<UploadMania> {
       ],
     );
   }
-  Future<bool> _requestPermission(Permission permission) async {
-    if (await permission.isGranted) {
-      return true;
-    } else {
-      var result = await permission.request();
-      if (result == PermissionStatus.granted) {
-        return true;
-      }
-    }
-    return false;
-  }
-
 }

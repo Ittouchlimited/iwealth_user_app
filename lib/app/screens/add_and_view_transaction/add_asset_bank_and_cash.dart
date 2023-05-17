@@ -18,6 +18,7 @@ import 'package:pinext/app/shared/widgets/custom_button.dart';
 import 'package:pinext/app/shared/widgets/custom_snackbar.dart';
 import 'package:pinext/app/shared/widgets/custom_text_field.dart';
 
+import '../../../config/textstyle.dart';
 import '../../app_data/app_constants/constants.dart';
 import '../../app_data/custom_transition_page_route/custom_transition_page_route.dart';
 import '../../bloc/userBloc/user_bloc.dart';
@@ -27,8 +28,8 @@ import '../../shared/widgets/pinext_card.dart';
 import '../add_and_edit_pinext_card/add_and_edit_pinext_card.dart';
 import '../goals_and_milestones/view_goals_and_milestones_screen.dart';
 
-class AddAndViewTransactionScreen extends StatelessWidget {
-  AddAndViewTransactionScreen({
+class AddAssetBankAndCashScreen extends StatelessWidget {
+  AddAssetBankAndCashScreen({
     Key? key,
     this.isAQuickAction = false,
     this.isViewOnly = false,
@@ -43,7 +44,7 @@ class AddAndViewTransactionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AddTransactionsCubit(),
-      child: AddAndViewTransactionView(
+      child: AddAssetBankAndCashView(
         isAQuickAction: isAQuickAction,
         isViewOnly: isViewOnly,
         pinextTransactionModel: pinextTransactionModel,
@@ -52,8 +53,8 @@ class AddAndViewTransactionScreen extends StatelessWidget {
   }
 }
 
-class AddAndViewTransactionView extends StatefulWidget {
-  AddAndViewTransactionView({
+class AddAssetBankAndCashView extends StatefulWidget {
+  AddAssetBankAndCashView({
     Key? key,
     required this.isAQuickAction,
     required this.isViewOnly,
@@ -64,11 +65,11 @@ class AddAndViewTransactionView extends StatefulWidget {
   PinextTransactionModel? pinextTransactionModel;
 
   @override
-  State<AddAndViewTransactionView> createState() =>
-      _AddAndViewTransactionViewState();
+  State<AddAssetBankAndCashView> createState() =>
+      _AddAssetBankAndCashViewState();
 }
 
-class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
+class _AddAssetBankAndCashViewState extends State<AddAssetBankAndCashView> {
   late TextEditingController amountController;
   late TextEditingController detailsController;
 
@@ -76,6 +77,7 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
   void initState() {
     amountController = TextEditingController();
     detailsController = TextEditingController();
+    detailsController.text = "Bank and Cash";
     if (widget.isViewOnly) {
       amountController.text = widget.pinextTransactionModel!.amount;
       detailsController.text = widget.pinextTransactionModel!.details;
@@ -104,11 +106,8 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
   }
 
   List listOfTransactionDetailSuggestions = [
-    'FBN',
-    'Stocks with FBN Holdings',
-    'Land Property at Eko',
-    'NFT',
-    'Crypto',
+    'Bank: ',
+    'Cash:  ',
   ];
 
   final bool _checkCard = false;
@@ -144,7 +143,7 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
         title: Text(
           widget.isViewOnly
               ? "Transaction details"
-              : "Add an Asset",
+              : "Add a Bank and Cash Asset",
           style: regularTextStyle,
         ),
       ),
@@ -186,6 +185,8 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                         ),
                       ),
                     ),
+
+                    GetSuggestionsList(),
                     const SizedBox(
                       height: 8,
                     ),
@@ -207,11 +208,11 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                     widget.isViewOnly
                         ? const SizedBox.shrink()
                         : Column(
-                            children: [
+                            children:  [
                               const SizedBox(
                                 height: 8,
                               ),
-                              GetSuggestionsList(),
+
                             ],
                           ),
 
@@ -244,13 +245,89 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                       },
                       suffixButtonAction: () {},
                     ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    //Here is a working divider
+                    /*Divider(
+                      height: 4,
+                      color: HexColor(AppTheme.secondaryColorString!)
+                          .withOpacity(0.5),
+                    ),*/
+
+                    Divider(
+                      height: 1,
+                      color: HexColor(AppTheme.primaryColorString!).withOpacity(0.2),
+                      thickness: 2.0,
+                    ),
+/*
+                    Text(
+                      "You can fetch your current bank account balance from your physical bank account.",
+                      style: regularTextStyle.copyWith(
+                        fontSize: 14,
+                        color: customBlackColor.withOpacity(0.6),
+                      ),
+                    ),*/
+                    const SizedBox(
+                      height: 10,
+                    ),
 
 
+                    GetCustomButton(
+                      title: "Fetch Balance from your Bank Account",
+                      titleColor: whiteColor,
+                      buttonColor: Colors.black,
+                      icon: Icons.attach_money,
+                      isLoading: false,
+                      callBackFunction: () {
+
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text("Sorry, this feature is currently unavailable!"),
+                          duration: Duration(seconds: 1),
+                        )
+                        );
+                        //widget.pageController.jumpToPage(
+                        //  0,
+                        // );
+                      },
+                    ),
+                    /*
+                    ElevatedButton(
+
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.grey,
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                            textStyle: const TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold)),
+                        onPressed:  () {
+
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                            content: Text("Sorry, this feature is currently unavailable!"),
+                            duration: Duration(seconds: 1),
+                          )
+                          );
+
+                          //onPanDown: _onPanDown;
+                          /*
+                        Navigator.push(
+                          context,
+                          CustomTransitionPageRoute(
+                            childWidget: AddAndEditPinextCardScreen(),
+                          ),
+                        );
+                        */
+                        },
+                        child: const Text("Fetch balance from\nyour Bank account")
+                    ),
+
+                     */
 
 
                     const SizedBox(
                       height: 0,
                     ),
+
 
                     GestureDetector(
 
@@ -325,8 +402,10 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
                 ),
               ),
               ShowPinextCardList(),
+
+
               const SizedBox(
-                height: 0,
+                height: 150,
               ),
               widget.isAQuickAction/*widget.isViewOnly*/
                   ? const SizedBox.shrink()
@@ -499,7 +578,8 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Suggestions (i.e. Bank and Cash Equivalent, Investments, Properties, Land and buildings, Digital Assets etc)",
+          //"Suggestions (i.e. Bank and Cash Equivalent, Investments, Properties, Land and buildings, Digital Assets etc)",
+          "",
           style: boldTextStyle.copyWith(
             color: customBlackColor.withOpacity(
               .6,
@@ -772,4 +852,11 @@ class _AddAndViewTransactionViewState extends State<AddAndViewTransactionView> {
       ),
     );
   }
+/*
+  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+  content: Text("Sorry, this feature is currently unavailable!"),
+  duration: Duration(seconds: 1),
+  )
+  );
+ */
 }
