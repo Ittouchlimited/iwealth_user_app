@@ -29,6 +29,9 @@ class AddAssetStocksView extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        //Copy this
+        Navigator.pop(context);
+        //Copy this
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => AddAssetStocksScreen()),

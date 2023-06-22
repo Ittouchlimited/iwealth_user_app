@@ -41,6 +41,8 @@ class DefaultImages {
   static const String h19 = 'assets/images/h19.png';
   static const String h19a = 'assets/images/h19a.png';
   static const String h19b = 'assets/images/h19b.png';
+  static const String h19c = 'assets/images/h19c.png';
+  static const String h19d = 'assets/images/h19d.png';
   static const String h20 = 'assets/images/h20.png';
   static const String h20a = 'assets/images/h20a.png';
   static const String h20b = 'assets/images/h20b.png';

@@ -1,92 +1,142 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:pinext/app/app_data/app_constants/fonts.dart';
-import 'package:pinext/app/models/pinext_card_model.dart';
-import 'package:pinext/app/models/pinext_goal_model.dart';
-import 'package:pinext/app/screens/goals_and_milestones/view_goals_and_milestones_screen.dart';
-import 'package:pinext/app/screens/home/homeframe.dart';
-import 'package:pinext/app/screens/profile/profile_screen.dart';
-import 'package:pinext/app/screens/settings/settings.dart';
 import 'package:pinext/app/services/firebase_services.dart';
-import 'package:pinext/app/shared/widgets/custom_snackbar.dart';
-import 'package:pinext/app/shared/widgets/pinext_goal_minimized.dart';
+import 'package:pinext/controller/assetsOnlyReportController.dart';
+import 'package:pinext/controller/transDetailController.dart';
+import 'package:pinext/controller/transDetailControllerLiabilities.dart';
 import 'package:pinext/view/home/card.dart';
-
+import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../widget/about_iwealth_view.dart';
+import '../../../../widget/beneficiary_view.dart';
 import '../../../app_data/app_constants/constants.dart';
 import '../../../app_data/app_constants/domentions.dart';
-import '../../../app_data/custom_transition_page_route/custom_transition_page_route.dart';
 import '../../../app_data/theme_data/colors.dart';
-import '../../../bloc/homeframe_cubit/homeframe_page_cubit.dart';
 import '../../../bloc/homepage_cubit/homepage_cubit.dart';
 import '../../../bloc/userBloc/user_bloc.dart';
 import '../../../models/pinext_transaction_model.dart';
 import '../../../services/date_time_services.dart';
-import '../../../shared/widgets/pinext_card.dart';
 import '../../../shared/widgets/transaction_details_card.dart';
-import '../../add_and_view_transaction/add_and_view_transaction_again.dart';
-
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:pinext/app/services/carousel.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-// ignore_for_file: deprecated_member_use
-
 import 'package:pinext/config/images.dart';
-import 'package:pinext/config/textstyle.dart';
-import 'package:pinext/controller/home_controller.dart';
-import 'package:pinext/view/home/card.dart';
-import 'package:pinext/view/home/top_move_screen.dart';
-import 'package:pinext/view/market/about_screen.dart';
-import 'package:pinext/view/market/bitcoin_screen.dart';
-import 'package:pinext/view/market/empty_screen.dart';
-import 'package:pinext/view/market/lifechecker_screen.dart';
-import 'package:pinext/view/market/notifications_screen.dart';
-import 'package:pinext/view/market/share_sheet.dart';
-import 'package:pinext/view/market/stocklist_view_screen.dart';
-import 'package:pinext/view/profile/notification_screen.dart';
-import 'package:pinext/view/profile/scan_screen.dart';
-import 'package:pinext/widget/about_iwealth_view.dart';
-import 'package:pinext/widget/coin_view.dart';
 import 'package:pinext/widget/lifechecker_view.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'dart:async';
-import 'dart:io';
+import 'package:pinext/services/notifi_service.dart';
 
-import 'package:flutter/material.dart';
-import 'package:in_app_purchase/in_app_purchase.dart';
-import 'package:in_app_purchase_android/billing_client_wrappers.dart';
-import 'package:in_app_purchase_android/in_app_purchase_android.dart';
-import 'package:in_app_purchase_storekit/in_app_purchase_storekit.dart';
-import 'package:in_app_purchase_storekit/store_kit_wrappers.dart';
+final Uri _url = Uri.parse('https://flutter.dev');
 
-import 'consumable_store.dart';
 
+int id = 0;
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+FlutterLocalNotificationsPlugin();
+
+
+DateTime scheduleTime = DateTime.now();
+
+//DateTime addedTime = scheduleTime.add(const Duration(seconds: 20));
+DateTime addedTime = scheduleTime.add(const Duration(days: 30));
+
+
+late TextEditingController titleController;
+
+var isDisable=true;
+
+bool _isEnabled = true;
+
+late String title;
+
+
+
+ cancelAllNotifications() async {
+  //var flutterLocalNotificationsPlugin;
+  //flutterLocalNotificationsPlugin.cancel(0);
+  await flutterLocalNotificationsPlugin.cancelAll();
+}
+
+sendFirstNotifications() async {
+  /*
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    content: Text('Notification Scheduled for $scheduleTime'),
+    duration: const Duration(seconds: 20),
+  )
+  );
+
+   */
+  //scheduleTime = titleController as DateTime;
+  //debugPrint('Notification Scheduled for $scheduleTime');
+  debugPrint('Notification Scheduled for $addedTime');
+
+  NotificationService().scheduleNotification(
+      title: 'Hello there!',
+      //body: '$scheduleTime',
+      body: 'We noticed you have not used the iWealthApp for some time now. Just checking on you.',
+      //scheduledNotificationDateTime: scheduleTime
+      //scheduledNotificationDateTime: scheduleTime.add(const Duration(days: 30)));
+      scheduledNotificationDateTime: addedTime);
+  //scheduledNotificationDateTime =
+
+}
+
+
+
+//titleController.text = scheduleTime.hour.minutes.inSeconds.toString();
+//titleController.text = "$scheduleTime";
+//titleController.text = scheduleTime.add(const Duration(hours: 1, minutes: 1, seconds: 1, microseconds: 1, milliseconds: 1)).toString();
+
+
+@override
+void initState(){
+  //requestNotificationPermissions();
+  cancelAllNotifications();
+  sendFirstNotifications();
+
+}
 
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);
   //StreamSubscription<List<PurchaseDetails>> _subscription;
+  static AssetsOnlyReportController? assetsOnlyReportController;
 
   @override
   Widget build(BuildContext context) {
+    //assetsOnlyReportController = Provider.of<AssetsOnlyReportController>(context);
+
+
+    initState(); {
+      //requestNotificationPermissions();
+      //cancelAllNotifications();
+      //XsendFirstNotifications();
+      /*
+      requestNotificationPermissions().then((value) {
+        //print('Async done');
+      });
+       */
+    }
+
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (context) => HomepageCubit(),
         ),
+
       ],
+
       child: HomepageView(),
     );
+
   }
+
 }
 
+
+
 class HomepageView extends StatelessWidget {
+
   HomepageView({
     Key? key,
   }) : super(key: key);
@@ -121,8 +171,17 @@ class HomepageView extends StatelessWidget {
     return "Hello";
   }
 
+
   @override
   Widget build(BuildContext context) {
+    //Added for category support
+    TransDetailController transDetailController =
+    Provider.of<TransDetailController>(context);
+
+    TransDetailControllerLiabilities transDetailControllerLiabilities =
+    Provider.of<TransDetailControllerLiabilities>(context);
+    //Added for category support
+
     return SizedBox(
       height: getHeight(context),
       width: getWidth(context),
@@ -138,6 +197,7 @@ class HomepageView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
                   /*
                   Text(
                     getGreetings(),
@@ -201,10 +261,12 @@ class HomepageView extends StatelessWidget {
                           scrollDirection: Axis.horizontal,
                           itemCount: homepageFilters.length,
                           itemBuilder: ((context, index) {
+                            /*
                             return MenuFilterPill(
                               filtertitle: homepageFilters[index],
                               selectedFilter: state.selectedFilter,
                             );
+                             */
                           }),
                         );
                       },
@@ -217,7 +279,7 @@ class HomepageView extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 25,
+              height: 5,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
@@ -240,6 +302,14 @@ class HomepageView extends StatelessWidget {
 
 
                   CardView(),
+                  //HomeScreen(),
+                  //HomeScreen(),
+
+
+
+
+
+
                   //user balance section start
               /*
                   Container(
@@ -372,7 +442,9 @@ class HomepageView extends StatelessWidget {
 
 
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+              padding: EdgeInsets.symmetric(
+                  horizontal: defaultPadding
+              ),
               /*child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -451,10 +523,16 @@ class HomepageView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
+
                   const SizedBox(
                     // height: 16,
-                    height: 22,
+                    height: 5,
                   ),
+                  //HomeScreen(),
+                  //const CategorySelectHeader(),
+                  //ReportController(),
+                  //const AssetsOnlyReportScreen(),
                   const Carousel(),
 
                   /*Text(
@@ -627,6 +705,8 @@ class HomepageView extends StatelessWidget {
 
 
                   */
+
+
                   //Quick links area
                   Padding(
                     padding: const EdgeInsets.only(left: 20, right: 20),
@@ -647,15 +727,55 @@ class HomepageView extends StatelessWidget {
                         for (var i = 0; i < 1; i++)
                         //for (var i = 0; i < 2; i++)
                           Padding(
-                            padding: const EdgeInsets.only(bottom: 15),
+                            padding: const EdgeInsets.only(bottom: 5),
                             child: AboutiWealthView(
                               image: i == 0
                                   ? DefaultImages.h14b
                                   : DefaultImages.h19b,
                               text1: i == 0 ? "About" : "Your SD Box",
                               text2: i == 0 ? "iWealth" : "Continue",
-                              text3: i == 0 ? "" : "",
-                              text4: i == 0 ? "" : "",
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                    const EdgeInsets.only(left: 20, right: 20, top: 5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        for (var i = 0; i < 1; i++)
+                        //for (var i = 0; i < 2; i++)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 5),
+                            child: LifecheckerView(
+                              image: i == 0
+                                  ? DefaultImages.h19b
+                                  : DefaultImages.h19b,
+                              text1: i == 0 ? "Life Checker" : "Your SD Box",
+                              text2: i == 0 ? "Learn more" : "Continue",
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                    const EdgeInsets.only(left: 20, right: 20, top: 5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        for (var i = 0; i < 1; i++)
+                        //for (var i = 0; i < 2; i++)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 5),
+                            child: BeneficiaryView(
+                              image: i == 0
+                                  ? DefaultImages.h19d
+                                  : DefaultImages.h19b,
+                              text1: i == 0 ? "Beneficiary" : "Your SD Box",
+                              text2: i == 0 ? "Learn more" : "Continue",
                             ),
                           ),
                       ],
@@ -663,9 +783,64 @@ class HomepageView extends StatelessWidget {
                   ),
 
 
+                  /*
+                  Padding(
+                    padding:
+                    const EdgeInsets.only(left: 20, right: 20, /*top: 15*/),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        for (var i = 0; i < 1; i++)
+                        //for (var i = 0; i < 2; i++)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 15),
+                            child: GeneralTermsAndConditionsView(
+                              image: i == 0
+                                  ? DefaultImages.h14f
+                                  : DefaultImages.h19b,
+                              text1: i == 0 ? "Terms and conditions" : "Your SD Box",
+                              text2: i == 0 ? "he" : "Continue",
+                              text3: i == 0 ? "he" : "",
+                              text4: i == 0 ? "eee" : "",
+                            ),
+                          ),
 
 
+                        GestureDetector(
+                          onTap: () {
+                            AppHandler().openPortfolio(context);
+                          },
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
 
+
+                            Text(
+                              "By",
+                              style: regularTextStyle.copyWith(
+                                fontSize: 10,
+                                color: customBlackColor.withOpacity(.4),
+                              ),
+                            ),
+
+                            Text(
+                              "YG Studio.",
+                              style: regularTextStyle.copyWith(
+                                fontSize: 12,
+                                color: customBlackColor.withOpacity(.4),
+                              ),
+                            ),
+
+
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+
+                   */
+                  /*
                   Padding(
                     padding:
                     const EdgeInsets.only(left: 20, right: 20, /*top: 15*/),
@@ -681,7 +856,7 @@ class HomepageView extends StatelessWidget {
                                   ? DefaultImages.h14f
                                   : DefaultImages.h19b,
                               text1: i == 0 ? "Life Checker" : "Your SD Box",
-                              text2: i == 0 ? "iWealth" : "Continue",
+                              text2: i == 0 ? "" : "Continue",
                               text3: i == 0 ? "" : "",
                               text4: i == 0 ? "" : "",
                             ),
@@ -689,6 +864,46 @@ class HomepageView extends StatelessWidget {
                       ],
                     ),
                   ),
+
+                   */
+
+
+                  /*
+                  Padding(
+                    padding:
+                    const EdgeInsets.only(left: 20, right: 20, /*top: 15*/),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        //Text($scheduleTime)
+                        /*
+                        Padding(
+                            padding: EdgeInsets.only(bottom: 15, left: 15),
+                            //child: Text (scheduleTime.day.hours.toString(),
+                              //child: Text ('Life Checker is active and will check on you on $scheduleTime.'
+                                  child: Text ('Life Checker is active and will check on you on $scheduleTime'
+                              ),
+
+                          ),
+
+                         */
+
+                        /*
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 15, left: 15),
+                          //child: Text (scheduleTime.day.hours.toString(),
+                          //child: Text ('Life Checker is active and will check on you on $scheduleTime.'
+                          child: Text ('$scheduleTime
+                          ),
+
+                        ),
+
+                         */
+                      ],
+                    ),
+                  ),
+
+                   */
 
 
 
@@ -720,26 +935,26 @@ class HomepageView extends StatelessWidget {
                   ),
 
                   */
+
                   /*
                   GetSettingsButtonWithIcon(
                     onTapFunction: () {
-                      /*Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              PinextUsersScreen(currentUserId: currentUserId),
-                        ),
-                      );*/
+                      _launchUrl();
+
                     },
-                    label: "About",
-                    icon: FontAwesomeIcons.addressBook,
+                    label: "Terms and Conditions",
+                    icon: FontAwesomeIcons.internetExplorer,
                     iconSize: 14,
                   ),
-
 
                   const SizedBox(
                     height: 8,
                   ),
-                  */
+
+                   */
+
+
+
 
                   //Old UI About button ends here
 
@@ -985,8 +1200,7 @@ class HomepageView extends StatelessWidget {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-
+                        children:  const <Widget> [
 
 
                           /*
@@ -1118,12 +1332,25 @@ class HomepageView extends StatelessWidget {
 
 
                       */
+
+
+
                     ],
                   )
+
+
+
                 ],
+
+
+
+
               ),
             ),
+
+
             const YourCardsModule(),
+            //HomeScreen(),
             const SizedBox(
               height: 12,
             ),
@@ -1134,6 +1361,57 @@ class HomepageView extends StatelessWidget {
   }
 }
 
+/*
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    TransactionController transactionController =
+    Provider.of<TransactionController>(context);
+    TransDetailController transactionDetailController =
+    Provider.of<TransDetailController>(context);
+
+    return transactionController.fetching
+        ? const Center(child: CircularProgressIndicator())
+        : Column(
+      children: [
+        //userData
+        //UserProfileCard(),
+        //balance container
+        HomeReportContainer(transactionController: transactionController),
+        //recent transactions title
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Expanded(
+                flex: 4,
+                child: Text("Recent transactions",
+                    style: TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold))),
+            Expanded(
+              child: CustomTextButton(
+                press: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const TransactionList())),
+                textStyle: const TextStyle(
+                    color: selectedTextButton,
+                    fontWeight: FontWeight.bold),
+                text: 'See All',
+              ),
+            )
+          ],
+        ),
+        //transaction List View
+        RecentTransList(
+            transController: transactionController,
+            transDetailController: transactionDetailController),
+      ],
+    );
+  }
+}
+ */
+
 class PastTransactionsModule extends StatelessWidget {
   const PastTransactionsModule({
     Key? key,
@@ -1143,19 +1421,47 @@ class PastTransactionsModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        /*
+      children: [
+
         Text(
           "Recently added portfolio items",
           style: boldTextStyle.copyWith(
             fontSize: 20,
           ),
         ),
-        */
-        SizedBox(
+
+        const SizedBox(
           height: 4,
         ),
-        /*
+/*
+        ElevatedButton(
+          onPressed: () {
+            String selectedMonth =
+            "0${int.parse(state.selectedMonth)}".length > 2
+                ? "0${int.parse(state.selectedMonth)}"
+                .substring(1, 3)
+                : "0${int.parse(state.selectedMonth)}";
+            FileHandler().createReportForMonth(
+              int.parse(selectedMonth),
+              context,
+            );
+
+          },
+          child: const Text(
+            //'Request service',
+            'Download',
+            style: TextStyle(fontSize: 14),
+          ),
+        ),
+
+
+ */
+
+        const SizedBox(
+          height: 10,
+        ),
+
+
         StreamBuilder(
           stream: FirebaseServices()
               .firebaseFirestore
@@ -1188,7 +1494,7 @@ class PastTransactionsModule extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 0.0),
                   child: ListView.builder(
                     itemCount: snapshot.data!.docs.length > 10
                         ? 10
@@ -1221,7 +1527,7 @@ class PastTransactionsModule extends StatelessWidget {
             );
           }),
         ),
-        */
+
       ],
     );
   }
@@ -1345,6 +1651,8 @@ class YourCardsModule extends StatelessWidget {
   }
 }
 
+
+/*
 class MenuFilterPill extends StatelessWidget {
   MenuFilterPill({
     Key? key,
@@ -1362,17 +1670,10 @@ class MenuFilterPill extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           if (filtertitle != "Overview") {
-            GetCustomSnackbar(
-              title: "Snap",
-              message:
-                  "The section is still under development.\nAnd will be updated at a later date!",
-              snackbarType: SnackbarType.info,
-              context: context,
-            );
           } else {
             context.read<HomepageCubit>().changeMenuFilter(
-                  filtertitle,
-                );
+              filtertitle,
+            );
           }
         },
         child: Container(
@@ -1399,5 +1700,45 @@ class MenuFilterPill extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+ */
+
+
+class OpenGeneralTermsAndConditions extends StatelessWidget {
+  const OpenGeneralTermsAndConditions({
+    Key? key
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 10),
+      child: GestureDetector(
+        onTap: () {
+
+        },
+        child: Container(
+          height: 35,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            // vertical: 10,
+          ),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(
+              defaultBorder,
+            ),
+          ),
+          child: const Text("Hello"),
+        ),
+      ),
+    );
+  }
+}
+
+Future<void> _launchUrl() async {
+  if (!await launchUrl(_url)) {
+    throw Exception('Could not launch $_url');
   }
 }

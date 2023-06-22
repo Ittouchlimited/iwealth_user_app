@@ -451,6 +451,7 @@ class AddonsScreen extends StatelessWidget {
             content: SingleChildScrollView(
               child: ListBody(
                 children: const <Widget>[
+                  //this one is working
                   Text('You must accept our terms and conditions to continue.'),
 
                 ],
@@ -467,7 +468,7 @@ class AddonsScreen extends StatelessWidget {
                 },
                 child: IconButton(
                   icon: const Icon(
-                    Icons.web_asset,
+                    Icons.file_present,
                     color: Colors.black,
                   ),
                   onPressed: () {
@@ -598,7 +599,7 @@ class AddonsScreen extends StatelessWidget {
   }
 
   _openTermsAndConditions(BuildContext context) async {
-    String url = "https://ittouch.io";
+    String url = "https://netorgft7975710-my.sharepoint.com/:w:/g/personal/james_ittouch_io/EXZhqXEvswlDkxZXxIFJi-kBZLaqUih8zUSEVpg3PxVWqg?e=23DbVc";
     if (await canLaunchUrl(Uri.parse(url))) {
       await launchUrl(
         Uri.parse(url),

@@ -83,7 +83,7 @@ class ViewGoalsAndMilestoneView extends StatelessWidget {
                   }
                   if (snapshot.data!.docs.isEmpty) {
                     return Text(
-                      "404 - No record found!",
+                      "No Record Available!",
                       style: regularTextStyle.copyWith(
                         color: customBlackColor.withOpacity(.4),
                       ),
@@ -101,11 +101,11 @@ class ViewGoalsAndMilestoneView extends StatelessWidget {
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: ((context, index) {
                             if (snapshot.data!.docs.isEmpty) {
-                              return const Text("No data found! :(");
+                              return const Text("No Record Avaliable! :(");
                             }
                             if (snapshot.data!.docs.isEmpty) {
                               return Text(
-                                "No data found! :(",
+                                "No Record Available! :(",
                                 style: regularTextStyle.copyWith(
                                   color: customBlackColor.withOpacity(.4),
                                 ),

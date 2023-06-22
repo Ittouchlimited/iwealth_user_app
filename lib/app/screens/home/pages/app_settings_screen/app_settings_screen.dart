@@ -7,6 +7,7 @@ import 'package:pinext/app/screens/goals_and_milestones/view_goals_and_milestone
 import 'package:pinext/app/screens/settings/passcode_screen.dart';
 import 'package:pinext/app/screens/silver/silver_screen.dart';
 import 'package:pinext/app/services/handlers/app_handler.dart';
+import 'package:pinext/constFiles/colors.dart';
 
 import '../../../../app_data/appVersion.dart';
 import '../../../../app_data/app_constants/domentions.dart';
@@ -196,6 +197,7 @@ class AppSettingsScreen extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
+            /*
             GetSettingsButtonWithIcon(
               onTapFunction: () {
                 Navigator.of(context).push(
@@ -223,6 +225,7 @@ class AppSettingsScreen extends StatelessWidget {
               icon: FontAwesomeIcons.star,
               iconSize: 14,
             ),
+            */
 
             // const SizedBox(
             //   height: 8,
@@ -395,10 +398,10 @@ class GetSettingsButtonWithIcon extends StatelessWidget {
         onTapFunction();
       },
       child: Container(
-        height: 70,
+        height: 60,
         width: getWidth(context),
         decoration: BoxDecoration(
-          color: greyColor,
+          color: addAssetButton,
           borderRadius: BorderRadius.circular(defaultBorder),
         ),
         alignment: Alignment.centerLeft,
@@ -418,7 +421,7 @@ class GetSettingsButtonWithIcon extends StatelessWidget {
             Text(
               label,
               style: regularTextStyle.copyWith(
-                fontSize: 18,
+                fontSize: 13,
               ),
             ),
           ],

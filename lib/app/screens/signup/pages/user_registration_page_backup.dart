@@ -12,6 +12,7 @@ import 'package:pinext/app/screens/add_and_edit_pinext_card/user_verification.da
 import 'package:pinext/app/screens/goals_and_milestones/add_and_edit_goal_and_milestone_screen.dart';
 import 'package:pinext/app/screens/subscriptions/plan_subs.dart';
 import 'package:pinext/app/screens/subscriptions/subscription_plan.dart';
+import 'package:pinext/app/screens/subscriptions/subscription_plan_flutterwave.dart';
 import 'package:pinext/app/shared/widgets/custom_snackbar.dart';
 import 'package:pinext/app/shared/widgets/pinext_card_minimized.dart';
 
@@ -746,7 +747,8 @@ class _ProfileCompletenessPageState extends State<ProfileCompletenessPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const PlanScreen(),
+                        //builder: (context) => const PlanScreen(),
+                        builder: (context) => const SubscriptionPlanFlutterwaveScreen(),
                         //builder: (context) => const SubscriptionPlanScreen(),
                       ),
                     );

@@ -308,6 +308,7 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
                     builder: (context, state) {
                       return GestureDetector(
                         onTap: () {
+                          /*
                           String selectedMonth =
                               "0${int.parse(state.selectedMonth)}".length > 2
                                   ? "0${int.parse(state.selectedMonth)}"
@@ -317,6 +318,37 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
                             int.parse(selectedMonth),
                             context,
                           );
+
+                           */
+
+                          /*
+                          String selectedMonth =
+                          "0${int.parse(state.selectedMonth)}".length > 2
+                              ? "0${int.parse(state.selectedMonth)}"
+                              .substring(1, 3)
+                              : "0${int.parse(state.selectedMonth)}";
+
+                          FileHandler().createExcel(
+                            int.parse(selectedMonth),
+                            context,
+                          );
+
+                           */
+                          //working export function
+                          //FileHandler().createReport();
+                          //working export function
+
+                          String selectedMonth =
+                          "0${int.parse(state.selectedMonth)}".length > 2
+                              ? "0${int.parse(state.selectedMonth)}"
+                              .substring(1, 3)
+                              : "0${int.parse(state.selectedMonth)}";
+
+                          FileHandler().createExcelMonth(
+                            int.parse(selectedMonth),
+                            context,
+                          );
+                          //working export function
                         },
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -514,9 +546,12 @@ class TransactionsList extends StatelessWidget {
   }) : super(key: key);
 
   List<String> filters = [
-    //"All transactions",
-    //"Income",
-    //"Expenses",
+    /*
+    "All transactions",
+    "Income",
+    "Expenses",
+
+     */
   ];
 
   TextEditingController searchController = TextEditingController();
@@ -540,12 +575,21 @@ class TransactionsList extends StatelessWidget {
               Text(
                 "",
                 style: boldTextStyle.copyWith(
-                  fontSize: 18,
+                  fontSize: 15,
                 ),
               ),
               const SizedBox(
                 height: 2,
               ),
+
+
+
+
+
+
+
+
+
               BlocBuilder<ArchiveCubit, ArchiveState>(
                 builder: (context, state) {
                   String selectedMonth =
@@ -586,7 +630,7 @@ class TransactionsList extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  "404",
+                                  "No Record Available!",
                                   style: boldTextStyle.copyWith(
                                       fontSize: 25,
                                       color: customBlackColor.withOpacity(.5)),
@@ -595,7 +639,7 @@ class TransactionsList extends StatelessWidget {
                                   height: 4,
                                 ),
                                 Text(
-                                  "No record found!",
+                                  "No Record Available!",
                                   style: regularTextStyle.copyWith(
                                       color: customBlackColor.withOpacity(.5)),
                                 ),
@@ -625,7 +669,7 @@ class TransactionsList extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Wrap(
-                                  spacing: 5,
+                                  spacing: 2,
                                   runSpacing: -8,
                                   children: [
                                     ...List.generate(
@@ -740,7 +784,7 @@ class TransactionsList extends StatelessWidget {
                             builder: (context, searchState) {
                               return Padding(
                                 padding:
-                                    const EdgeInsets.symmetric(horizontal: 5.0),
+                                    const EdgeInsets.symmetric(horizontal: 0.0),
                                 child: ListView.builder(
                                   itemCount: snapshot.data!.docs.length,
                                   shrinkWrap: true,
@@ -980,6 +1024,15 @@ class TransactionsList extends StatelessWidget {
                   );
                 },
               ),
+
+
+
+
+
+
+
+
+
               const SizedBox(
                 height: 16,
               ),

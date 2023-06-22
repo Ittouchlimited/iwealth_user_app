@@ -59,4 +59,5 @@ class AuthenticatedUserState extends UserState {
         currentWeekOfTheYear,
         currentYear,
       ];
+
 }

@@ -6,6 +6,7 @@ class PinextUserModel {
   String username;
   String emailAddress;
   String netBalance;
+  //int netBalance;
   String monthlyBudget;
   String monthlyExpenses;
   String dailyExpenses;

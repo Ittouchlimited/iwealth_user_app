@@ -7,20 +7,18 @@ import 'package:pinext/view/market/bitcoin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../app/screens/home/pages/asset_portfolio_page.dart';
+
 class AboutiWealthView extends StatelessWidget {
   final String image;
   final String text1;
   final String text2;
-  final String text3;
-  final String text4;
   final String? graphImage;
   const AboutiWealthView(
       {super.key,
       required this.image,
       required this.text1,
       required this.text2,
-      required this.text3,
-      required this.text4,
       this.graphImage});
 
   @override
@@ -72,37 +70,6 @@ class AboutiWealthView extends StatelessWidget {
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
                             color: HexColor(AppTheme.secondaryColorString!),
-                          ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 15.5,
-                width: 50.45,
-                child: Image.asset(
-                  graphImage ?? DefaultImages.h29,
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      text3,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
-                          ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      text4,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            color: HexColor(AppTheme.greenColorString!),
                           ),
                     ),
                   ],

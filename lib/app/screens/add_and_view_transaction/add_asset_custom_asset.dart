@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:pinext/app/app_data/app_constants/fonts.dart';
 import 'package:pinext/app/app_data/extensions/string_extensions.dart';
 import 'package:pinext/app/app_data/routing/routes.dart';
@@ -18,8 +19,16 @@ import 'package:pinext/app/shared/widgets/custom_button.dart';
 import 'package:pinext/app/shared/widgets/custom_snackbar.dart';
 import 'package:pinext/app/shared/widgets/custom_text_field.dart';
 import 'package:pinext/market_api_stocks.dart';
+import 'package:provider/provider.dart';
 
 import '../../../config/textstyle.dart';
+import '../../../constFiles/colors.dart';
+import '../../../constFiles/strings.dart';
+import '../../../controller/reportController.dart';
+import '../../../controller/transDetailController.dart';
+import '../../../controller/transactionController.dart';
+import '../../../customWidgets/snackbar.dart';
+import '../../../model/transactionModel.dart';
 import '../../app_data/app_constants/constants.dart';
 import '../../app_data/custom_transition_page_route/custom_transition_page_route.dart';
 import '../../bloc/userBloc/user_bloc.dart';
@@ -73,6 +82,11 @@ class AddAssetCustomAssetView extends StatefulWidget {
 class _AddAssetCustomAssetViewState extends State<AddAssetCustomAssetView> {
   late TextEditingController amountController;
   late TextEditingController detailsController;
+  //Copy this
+  static TransDetailController? transDetailController;
+  static TransactionController? transController;
+  static ReportController? reportController;
+  //Copy this
 
   @override
   void initState() {
@@ -116,6 +130,11 @@ class _AddAssetCustomAssetViewState extends State<AddAssetCustomAssetView> {
 
   @override
   Widget build(BuildContext context) {
+    //Copy this
+    transDetailController = Provider.of<TransDetailController>(context);
+    transController = Provider.of<TransactionController>(context);
+    reportController = Provider.of<ReportController>(context);
+    //Copy this
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -174,6 +193,30 @@ class _AddAssetCustomAssetViewState extends State<AddAssetCustomAssetView> {
                       height: 12,
                     ),
 
+
+                    //Copy this
+
+                    Text(
+                      //transDetailController!.isIncomeSelected ? income : expense,
+                      transDetailController!.isIncomeSelected ? income : income,
+                      //transDetailController!.isIncomeSelected = "income,
+                      //pinextTransactionModel!.transactionType == 'Income'
+                      style:
+                      const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+
+
+                    /*
+                    IconButton(
+                        icon: const Icon(Icons.refresh_outlined),
+                        tooltip: "Change Category",
+                        onPressed: () => transDetailController!.changeCategory()),
+
+                     */
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    //Copy this
 
 
 
@@ -239,7 +282,13 @@ class _AddAssetCustomAssetViewState extends State<AddAssetCustomAssetView> {
                       controller: amountController,
                       hintTitle: "Enter amount/value of Asset",
                       textInputType: TextInputType.number,
-                      onChanged: (String value) {},
+                      //Copy this
+                      //onChanged: (String value) {},
+                      onChanged: (value) {
+                        //transController = value;
+                        transDetailController!.amountField.text = value;
+                      },
+                      //Copy this
                       validator: (value) {
                         return InputValidation(value).isCorrectNumber();
                       },
@@ -448,10 +497,119 @@ class _AddAssetCustomAssetViewState extends State<AddAssetCustomAssetView> {
 
   }
   */
+
+//Copy this
   Column SelectTransactionTypeCard() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
+      children: [
+        GridView(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3, childAspectRatio: 1.4),
+          children: [
+            /*
+            categoryIcons(
+                text: bankandcash,
+                svgName: bankSvg,
+                isSelected:
+                transDetailController!.selectedDepartment == bankandcash
+                    ? true
+                    : false,
+                onPress: () =>
+                    transDetailController!.changeDepartment(bankandcash)),
+
+
+             */
+            /*
+            categoryIcons(
+                text: stocks,
+                svgName: stocksSvg,
+                isSelected:
+                //Update this
+                transDetailController!.selectedDepartment == stocks
+                //Update this
+                    ? true
+                    : false,
+                onPress: () =>
+                //Update this
+                transDetailController!.changeDepartment(stocks)),
+
+             */
+            //Update this
+            /*
+            categoryIcons(
+                text: vehicle,
+                svgName: vehicleSvg,
+                isSelected:
+                transDetailController!.selectedDepartment == vehicle
+                    ? true
+                    : false,
+                onPress: () =>
+                    transDetailController!.changeDepartment(vehicle)),
+
+            categoryIcons(
+                text: digitalassets,
+                svgName: digitalassetSvg,
+                isSelected: transDetailController!.selectedDepartment == digitalassets
+                    ? true
+                    : false,
+                onPress: () => transDetailController!.changeDepartment(digitalassets)),
+
+            categoryIcons(
+                text: realestate,
+                svgName: realestateSvg,
+                isSelected:
+                transDetailController!.selectedDepartment == realestate
+                    ? true
+                    : false,
+                onPress: () =>
+                    transDetailController!.changeDepartment(realestate)),
+
+             */
+              categoryIcons(
+                  text: custom,
+                  svgName: customSvg,
+                  isSelected: transDetailController!.selectedDepartment == custom
+                      ? true
+                      : false,
+                  onPress: () =>
+                      transDetailController!.changeDepartment(custom)),
+            /*
+              categoryIcons(
+                  text: loan,
+                  svgName: loanSvg,
+                  isSelected:
+                      transDetailController!.selectedDepartment == loan
+                          ? true
+                          : false,
+                  onPress: () =>
+                      transDetailController!.changeDepartment(loan)),
+
+              categoryIcons(
+                  text: office,
+                  svgName: officeSvg,
+                  isSelected:
+                      transDetailController!.selectedDepartment == office
+                          ? true
+                          : false,
+                  onPress: () =>
+                      transDetailController!.changeDepartment(office)),
+
+              categoryIcons(
+                  text: others,
+                  svgName: othersSvg,
+                  isSelected:
+                      transDetailController!.selectedDepartment == others
+                          ? true
+                          : false,
+                  onPress: () =>
+                      transDetailController!.changeDepartment(others)),
+              */
+          ],
+        ),
+
 
 
         /*
@@ -471,7 +629,7 @@ class _AddAssetCustomAssetViewState extends State<AddAssetCustomAssetView> {
 
 
 
-      /*
+        /*
         const SizedBox(
           height: 8,
         ),
@@ -596,6 +754,9 @@ class _AddAssetCustomAssetViewState extends State<AddAssetCustomAssetView> {
       ],
     );
   }
+  //Copy this
+
+
 
   Column GetSuggestionsList() {
     return Column(
@@ -643,7 +804,7 @@ class _AddAssetCustomAssetViewState extends State<AddAssetCustomAssetView> {
                           style: regularTextStyle.copyWith(
                             color: listOfTransactionDetailSuggestions[index] ==
                                     state.selectedDescription
-                                ? whiteColor
+                                ? Colors.white
                                 : customBlackColor.withOpacity(.6),
                           ),
                         ),
@@ -774,6 +935,9 @@ class _AddAssetCustomAssetViewState extends State<AddAssetCustomAssetView> {
       child: BlocConsumer<AddTransactionsCubit, AddTransactionsState>(
         listener: (context, state) {
           if (state is AddTransactionsSuccessState) {
+            //Copy this
+            save(context);
+            //Copy this
             if (widget.isAQuickAction) {
               if (Platform.isAndroid) {
                 SystemNavigator.pop();
@@ -815,7 +979,7 @@ class _AddAssetCustomAssetViewState extends State<AddAssetCustomAssetView> {
         builder: (context, state) {
           return GetCustomButton(
             title: widget.isViewOnly ? "Update Asset" : "Add Asset",
-            titleColor: whiteColor,
+            titleColor: Colors.white,
             buttonColor: customBlueColor,
             isLoading: state is AddTransactionsLoadingState ? true : false,
             callBackFunction: () {
@@ -876,6 +1040,99 @@ class _AddAssetCustomAssetViewState extends State<AddAssetCustomAssetView> {
       ),
     );
   }
+  //Copy this
+  Padding categoryIcons({
+    required String text,
+    required String svgName,
+    required bool isSelected,
+    required Function() onPress,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 8.0),
+      child: InkWell(
+        splashFactory: NoSplash.splashFactory,
+        splashColor: Colors.transparent,
+        focusColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        onTap: onPress,
+        child: Container(
+          padding: const EdgeInsets.all(8.0),
+          decoration: BoxDecoration(
+              color: isSelected ? const Color(0xffeae1f9) : Colors.transparent,
+              borderRadius: const BorderRadius.all(Radius.circular(15.0))),
+          child: Column(
+            children: [
+              Expanded(
+                child: SvgPicture.asset(
+                  svgPath(svgName),
+                  height: 50.0,
+                  color: svgColor,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                text,
+                style: TextStyle(color: svgColor, fontSize: 10),
+                textAlign: TextAlign.center,
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+//Copy this
+
+  //Copy this
+  //save(BuildContext context) {}
+  save(BuildContext context) {
+    transDetailController!.titleField.text = "Custom Asset";
+    //transDetailController!.amountField.text = "";
+    //transDetailController!.amountField.text = amountController.text;
+
+
+    //Update this
+    transDetailController!.selectedDepartment == custom;
+    transDetailController!.changeDepartment(custom);
+    //Update this
+
+
+    if (transDetailController!.titleField.text.isEmpty) {
+      snackBar(context: context, title: "Title Is Mandatory");
+    } else if (double.tryParse(transDetailController!.amountField.text) ==
+        null ||
+        transDetailController!.amountField.text.contains("-")) {
+      snackBar(context: context, title: "Enter Valid Amount");
+    } else {
+      TransactionModel transactionModel = TransactionModel(
+        id: transDetailController!.savedTransaction
+            ? transDetailController!.transactionId
+            : DateTime.now().microsecondsSinceEpoch,
+        title: transDetailController!.titleField.text,
+        description: transDetailController!.descriptionField.text,
+        amount: transDetailController!.amountField.text,
+        isIncome: transDetailController!.isIncomeSelected ? 1 : 0,
+        category: transDetailController!.selectedDepartment,
+        dateTime: transDetailController!.savedTransaction
+            ? transDetailController!.date
+            : DateTime.now().toString(),
+      );
+
+      if (transDetailController!.savedTransaction) {
+        transController!.updateTransaction(transactionModel);
+      } else {
+        transController!.insertTransaction(transactionModel);
+      }
+      transController!.fetchTransaction();
+      reportController!.fetchTransaction();
+      //Navigator.pop(context);
+    }
+  }
+//Copy this
+
 /*
   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
   content: Text("Sorry, this feature is currently unavailable!"),

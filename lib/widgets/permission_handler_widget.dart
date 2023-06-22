@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:pinext/components/loading_indicator.dart';
 import 'dart:math';
@@ -159,3 +160,5 @@ class _PermissionState extends State<PermissionWidget> {
     });
   }
 }
+
+ */

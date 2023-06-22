@@ -397,10 +397,8 @@ class _HomeViewState extends State<HomeView> {
                               image: i == 0
                                   ? DefaultImages.h14b
                                   : DefaultImages.h19b,
-                              text1: i == 0 ? "About iWealth" : "Your SD Box",
+                              text1: i == 0 ? "Beneficiaries" : "Your SD Box",
                               text2: i == 0 ? "Read more" : "Continue",
-                              text3: i == 0 ? ">" : ">",
-                              text4: i == 0 ? "" : "",
                             ),
                           ),
                       ],
@@ -436,8 +434,6 @@ class _HomeViewState extends State<HomeView> {
                                   : DefaultImages.h19b,
                               text1: i == 0 ? "Life Checker" : "",
                               text2: i == 0 ? "Read more" : "Continue",
-                              text3: i == 0 ? ">" : ">",
-                              text4: i == 0 ? "" : "",
                             ),
                           ),
                       ],

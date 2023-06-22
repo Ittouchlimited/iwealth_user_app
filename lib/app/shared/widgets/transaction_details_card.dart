@@ -65,8 +65,11 @@ class TransactionDetailsCard extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: Text(
                   pinextTransactionModel.transactionType == 'Expense'
-                      ? "- ${pinextTransactionModel.amount} NGN"
-                      : "+ ${pinextTransactionModel.amount} NGN",
+                  //Remove the NGN here to remove the NGN at the end of the portfolio listing page (share page)
+                      //? "- ${pinextTransactionModel.amount} NGN"
+                      ? "- ${pinextTransactionModel.amount}"
+                      //: "+ ${pinextTransactionModel.amount} NGN",
+        : "+ ${pinextTransactionModel.amount}",
                   style: boldTextStyle.copyWith(
                     color: pinextTransactionModel.transactionType == 'Expense'
                         ? Colors.red

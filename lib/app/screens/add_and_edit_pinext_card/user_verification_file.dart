@@ -6,7 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pinext/app/screens/files/user_files_view.dart';
 
-import 'package:permission_handler/permission_handler.dart';
+//import 'package:permission_handler/permission_handler.dart';
 
 class UserFilesScreen extends StatelessWidget {
   const UserFilesScreen({Key? key}) : super(key: key);

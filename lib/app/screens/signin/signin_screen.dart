@@ -479,7 +479,7 @@ class _SigninScreenViewState extends State<SigninScreenView> {
                       GetCustomSnackbar(
                         title: "Successfully Signed In!",
                         message:
-                            "Welcome back boss, we are now connected to iWealth....",
+                            "Welcome back, you are now connected to iWealth....",
                         snackbarType: SnackbarType.info,
                         context: context,
                       );

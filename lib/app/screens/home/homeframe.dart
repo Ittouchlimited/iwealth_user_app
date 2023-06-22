@@ -24,9 +24,16 @@ import 'package:pinext/app/screens/home/pages/liability_portfolio_page.dart';
 import 'package:pinext/app/screens/home/pages/portfolio_page.dart';
 import 'package:pinext/app/screens/home/pages/silver_layout_page.dart';
 import 'package:pinext/app/screens/subscriptions/subscription_plan.dart';
+import 'package:pinext/app/screens/subscriptions/subscription_plan_paystack.dart';
 import 'package:pinext/screens/store.dart';
+import 'package:pinext/view/homeScreen.dart';
+import 'package:pinext/view/homeScreenPlan.dart';
 import 'package:pinext/view/market/empty_screen.dart';
 import 'package:pinext/view/market/maintenance_screen.dart';
+import 'package:pinext/view/reportAssetsScreen.dart';
+import 'package:pinext/view/reportLiabilitiesScreen.dart';
+import 'package:pinext/view/reportScreen.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../app_data/app_constants/constants.dart';
 import '../../app_data/app_constants/fonts.dart';
 import '../../bloc/archive_cubit/user_statistics_cubit/user_statistics_cubit.dart';
@@ -34,6 +41,7 @@ import '../../bloc/homeframe_cubit/homeframe_page_cubit.dart';
 import '../../services/handlers/app_handler.dart';
 import '../notifications/notificaiton_screen.dart';
 import '../subscriptions/plan_subs.dart';
+import '../subscriptions/subscription_plan_flutterwave.dart';
 
 class Homeframe extends StatefulWidget {
   const Homeframe({Key? key}) : super(key: key);
@@ -92,12 +100,17 @@ final String currentUserId = currentUser?.uid ?? '';
 
 List homeframePages = [
   const Homepage(),
-  const AssetPortfolioPage(),
-  const LiabilityPortfolioPage(),
+  //HomeScreenPlan(),
+  //const ReportScreen(),
+  const ReportAssetsScreen(),
+  //const ReportLiabilitiesScreen(),
+  //const LiabilityPortfolioPage(),
   //const PortfolioPage(),
   const ExportPage(),
-  AppSettingsScreen(currentUserId: currentUserId,),
-  const MaintenanceScreen()
+  //ArchivePage(),
+  AppSettingsScreen(currentUserId: currentUserId,)
+  //const MaintenanceScreen()
+
 /*
   const PortfolioPage(),
   const ExportPage(),
@@ -202,14 +215,20 @@ class HomeframeView extends StatelessWidget {
                           MaterialPageRoute(
                             //Click here to open the subscription page
                             //builder: (context) => const SubscriptionPlanScreen(),
+                            //builder: (context) => const SubscriptionPlanPaystackScreen(),
+                            builder: (context) => const SubscriptionPlanFlutterwaveScreen(),
                             //builder: (context) => const Store(),
-                            builder: (context) => const PlanScreen(),
+                            //builder: (context) => const PlanScreen(),
+                            //builder: (context) => const SubscriptionPaystackScreen(),
+
                           ),
                         );
                       },
                       backgroundColor: customOrangeColor,
                       child: const Icon(
-                        Icons.money_off_sharp,
+                        //Icons.published_with_changes,
+                        Icons.manage_history,
+                        //Icons.star_rate,
                         color: whiteColor,
                       ),
                     );
@@ -270,6 +289,7 @@ class HomeframeView extends StatelessWidget {
                     }),
                 label: "Archive",
               ),
+              /*
               BottomNavigationBarItem(
                 icon: IntroStepBuilder(
                     order: 4,
@@ -281,9 +301,11 @@ class HomeframeView extends StatelessWidget {
                     }),
                 label: "Wallet",
               ),
+
+               */
               BottomNavigationBarItem(
                 icon: IntroStepBuilder(
-                    order: 5,
+                    order: 4,
                     text: intro_label_five,
                     builder: (context, introkey) {
                       return const Icon(
@@ -295,7 +317,7 @@ class HomeframeView extends StatelessWidget {
 
               BottomNavigationBarItem(
                 icon: IntroStepBuilder(
-                    order: 6,
+                    order: 5,
                     text: intro_label_five,
                     builder: (context, introkey) {
                       return const Icon(
@@ -305,6 +327,7 @@ class HomeframeView extends StatelessWidget {
                 label: "Admin settings",
               ),
 
+              /*
               BottomNavigationBarItem(
                 icon: IntroStepBuilder(
                     order: 7,
@@ -316,6 +339,9 @@ class HomeframeView extends StatelessWidget {
                     }),
                 label: "Admin settings",
               ),
+
+               */
+
             ],
           ),
         );
@@ -418,6 +444,8 @@ class PinextDrawer extends StatelessWidget {
                     ],
                   ),
                 ),
+
+                //Send Bug Report
                 const SizedBox(
                   height: 8,
                 ),
@@ -427,6 +455,21 @@ class PinextDrawer extends StatelessWidget {
                   },
                   icon: Icon(
                     FontAwesomeIcons.bug,
+                    size: 18,
+                    color: customBlackColor.withOpacity(.8),
+                  ),
+                ),
+
+                //View Terms and Conditions
+                const SizedBox(
+                  height: 8,
+                ),
+                IconButton(
+                  onPressed: () {
+                    _launchURL();
+                  },
+                  icon: Icon(
+                    FontAwesomeIcons.fileCircleCheck,
                     size: 18,
                     color: customBlackColor.withOpacity(.8),
                   ),
@@ -482,4 +525,13 @@ class PinextDrawer extends StatelessWidget {
       ),
     );
   }
+
+  Future<void> _launchURL() async {
+
+    final Uri url = Uri.parse('https://netorgft7975710-my.sharepoint.com/:w:/g/personal/james_ittouch_io/ER2QyV6D_HVNmRFVj9LYkzgBn9qVsqfbwsbUSXeRAsJH6Q?e=2UxCkk');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
 }

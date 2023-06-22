@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pinext/app/shared/widgets/custom_button.dart';
 
 class EmContact extends StatefulWidget {
   const EmContact({super.key});
@@ -185,16 +186,27 @@ class _EmContactState extends State<EmContact> {
                   ),
                 ),
               ),
+
+
               const SizedBox(height: 32.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.fromLTRB(40, 25, 40, 25),
+
+                    ),
                     onPressed: _toggleEditMode,
                     child: Text(_isEditMode ? 'Cancel' : 'Edit'),
                   ),
                   const SizedBox(width: 16.0),
                   ElevatedButton(
+
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black87,
+                        padding: const EdgeInsets.fromLTRB(60, 25, 60, 25)
+                    ),
                     onPressed: _saveChanges,
                     child: const Text('Save'),
                   ),

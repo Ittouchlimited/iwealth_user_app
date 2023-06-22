@@ -47,6 +47,7 @@ class AddTransactionsCubit extends Cubit<AddTransactionsState> {
         selectedCardNo: state.selectedCardNo,
         selectedDescription: state.selectedDescription,
       ));
+
     } else {
       emit(AddTransactionsErrorState(
         selectedTransactionMode: state.selectedTransactionMode,

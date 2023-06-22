@@ -6,11 +6,11 @@ part 'search_state.dart';
 class ArchiveSearchCubit extends Cubit<ArchiveSearchState> {
   ArchiveSearchCubit()
       : super(
-          ArchiveSearchDefaultState(
-            isSearchActive: false,
-            searchTerm: "",
-          ),
-        );
+    ArchiveSearchDefaultState(
+      isSearchActive: false,
+      searchTerm: "",
+    ),
+  );
   toogleSearch() {
     emit(
       ArchiveSearchDefaultState(

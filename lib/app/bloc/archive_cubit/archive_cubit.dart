@@ -9,16 +9,16 @@ part 'archive_state.dart';
 class ArchiveCubit extends Cubit<ArchiveState> {
   ArchiveCubit()
       : super(
-          ArchiveInitialState(
-            selectedMonth: (int.parse(
-                      DateTime.now().toString().substring(5, 7),
-                    ) -
-                    1)
-                .toString(),
-            selectedFilter: "All transactions",
-            selectedYear: currentYear,
-          ),
-        );
+    ArchiveInitialState(
+      selectedMonth: (int.parse(
+        DateTime.now().toString().substring(5, 7),
+      ) -
+          1)
+          .toString(),
+      selectedFilter: "All transactions",
+      selectedYear: currentYear,
+    ),
+  );
 
   changeMonth(String selectedMonth) {
     emit(

@@ -11,6 +11,8 @@ import 'package:pinext/app/app_data/extensions/string_extensions.dart';
 import 'package:pinext/app/bloc/add_card_cubit/add_card_cubit.dart';
 import 'package:pinext/app/bloc/cards_and_balances_cubit/cards_and_balances_cubit.dart';
 import 'package:pinext/app/models/pinext_card_model.dart';
+import 'package:pinext/app/screens/home/pages/home_page.dart';
+import 'package:pinext/app/screens/signup/signup_screen.dart';
 import 'package:pinext/app/shared/widgets/custom_snackbar.dart';
 import 'package:pinext/app/shared/widgets/pinext_card.dart';
 import 'package:pinext/widget/image_picker_widget.dart';
@@ -25,7 +27,7 @@ import '../../shared/widgets/custom_text_field.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 //Added on the 15052023
-import 'package:permission_handler/permission_handler.dart';
+//import 'package:permission_handler/permission_handler.dart';
 
 
 //Added on the 17052023
@@ -112,6 +114,7 @@ class AddAndEditPinextCardView extends StatefulWidget {
   @override
   State<AddAndEditPinextCardView> createState() =>
       _AddAndEditPinextCardViewState();
+
 }
 
 class _AddAndEditPinextCardViewState extends State<AddAndEditPinextCardView> {
@@ -127,7 +130,16 @@ class _AddAndEditPinextCardViewState extends State<AddAndEditPinextCardView> {
 
   @override
   void initState() {
+
+    //permissionServiceCall();
+    /*
     _requestPermission(Permission.photos);
+    _requestPermission(Permission.storage);
+    _requestPermission(Permission.manageExternalStorage);
+    _requestPermission(Permission.mediaLibrary);
+
+     */
+
     titleController = TextEditingController();
     descriptionController = TextEditingController();
     balanceController = TextEditingController();
@@ -144,6 +156,31 @@ class _AddAndEditPinextCardViewState extends State<AddAndEditPinextCardView> {
     super.initState();
   }
 
+
+  /*
+  permissionServiceCall() async {
+    await permissionServices().then(
+          (value) {
+        if (value != null) {
+          if (value[Permission.storage]!.isGranted
+          // &&
+              //value[Permission.camera]!.isGranted &&
+              //value[Permission.microphone]!.isGranted
+          ) {
+            /* ========= New Screen Added  ============= */
+
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const SignupScreen()),
+            );
+          }
+        }
+      },
+    );
+  }
+
+   */
+
   String? isEditCardColor;
 
   @override
@@ -155,6 +192,50 @@ class _AddAndEditPinextCardViewState extends State<AddAndEditPinextCardView> {
   }
 
   final _formKey = GlobalKey<FormState>();
+
+
+/*
+  /*Permission services*/
+  Future<Map<Permission, PermissionStatus>> permissionServices() async {
+    // You can request multiple permissions at once.
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.storage,
+      //Permission.camera,
+      //Permission.microphone,
+      //add more permission to request here.
+    ].request();
+
+    if (statuses[Permission.storage]!.isPermanentlyDenied) {
+      openAppSettings();
+      //setState(() {});
+    } else {
+      if (statuses[Permission.storage]!.isDenied) {
+        permissionServiceCall();
+      }
+    } /*
+    if (statuses[Permission.microphone]!.isPermanentlyDenied) {
+      openAppSettings();
+      // setState(() {});
+    } else {
+      if (statuses[Permission.microphone]!.isDenied) {
+        permissionServiceCall();
+      }
+    }
+    if (statuses[Permission.camera]!.isPermanentlyDenied) {
+      openAppSettings();
+      // setState(() {});
+    } else {
+      if (statuses[Permission.camera]!.isDenied) {
+        permissionServiceCall();
+      }
+    }
+    */
+    /*{Permission.camera: PermissionStatus.granted, Permission.storage: PermissionStatus.granted}*/
+    return statuses;
+  }
+
+ */
+
 
   @override
   Widget build(BuildContext context) {
@@ -192,6 +273,27 @@ class _AddAndEditPinextCardViewState extends State<AddAndEditPinextCardView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
 
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    /*
+                    ElevatedButton(
+                        //onPressed: _requestPermission(Permission.photos),
+                  onPressed: _requestPermissionButtonrequestPermissionButton(Permission.photos),
+
+                  child: child),
+
+                     */
+
+                    /*
+                    GetCustomButton(
+                        title: "Access Photos",
+                        titleColor: Colors.white,
+                        buttonColor: Colors.black,
+                        callBackFunction: _requestPermission(Permission.photos),
+                    ),
+
+                     */
                     const SizedBox(
                       height: 12,
                     ),
@@ -698,6 +800,7 @@ class _AddAndEditPinextCardViewState extends State<AddAndEditPinextCardView> {
       ),
     );
   }
+  /*
   Future<bool> _requestPermission(Permission permission) async {
     if (await permission.isGranted) {
       return true;
@@ -709,4 +812,22 @@ class _AddAndEditPinextCardViewState extends State<AddAndEditPinextCardView> {
     }
     return false;
   }
+
+  void _requestPermissionButton(Permission permission) async {
+    if (await permission.isGranted) {
+      //return true;
+      print("Permission granted");
+    } else {
+      var result = await permission.request();
+      if (result == PermissionStatus.granted) {
+        //return true;
+        print("Permission granted");
+      }
+    }
+    print("Permission NOT granted");
+
+    //return false;
+  }
+
+   */
 }

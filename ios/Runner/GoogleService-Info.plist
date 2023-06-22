@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1049606352114-pm6ss9hlua6ka2tf5af354mnhtg30bg0.apps.googleusercontent.com</string>
+	<string>793738107822-c0p4o6jfd59insjhf4gqbqm1h3nmcaeu.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1049606352114-pm6ss9hlua6ka2tf5af354mnhtg30bg0</string>
+	<string>com.googleusercontent.apps.793738107822-c0p4o6jfd59insjhf4gqbqm1h3nmcaeu</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>793738107822-to57r3v38dbo40m8575bbcecsgrjhpvi.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyB75AGAVnyd5jTW0Wqll7qNbSV_Nkd-BmQ</string>
+	<string>AIzaSyC4TLorW1xqteJPr97TqmNd_-aTfacC7tQ</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1049606352114</string>
+	<string>793738107822</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.workwithafridi.pinext</string>
+	<string>com.iwealth.app</string>
 	<key>PROJECT_ID</key>
-	<string>pinext-495de</string>
+	<string>iwealth-by-norrenberger</string>
 	<key>STORAGE_BUCKET</key>
-	<string>pinext-495de.appspot.com</string>
+	<string>iwealth-by-norrenberger.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1049606352114:ios:2a30fd6663c6da6659346b</string>
+	<string>1:793738107822:ios:790b414c1d727e99e1863f</string>
 </dict>
 </plist>

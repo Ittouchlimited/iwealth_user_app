@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:pinext/app/screens/onboarding/onboarding_contents.dart';
 import 'package:pinext/app/screens/onboarding/size_config.dart';
+import 'package:pinext/pages/breed_form_page.dart';
+import 'package:pinext/pages/dog_form_page.dart';
 
 import '../../app_data/routing/routes.dart';
 import '../../app_data/theme_data/colors.dart';
+
+
+
+import 'package:flutter/material.dart';
+import 'package:pinext/common_widgets/dog_builder.dart';
+import 'package:pinext/common_widgets/breed_builder.dart';
+import 'package:pinext/common_widgets/plan_builder.dart';
+import 'package:pinext/models/breed.dart';
+import 'package:pinext/models/dog.dart';
+import 'package:pinext/pages/breed_form_page.dart';
+import 'package:pinext/pages/dog_form_page.dart';
+import 'package:pinext/services/database_service.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -13,6 +29,10 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  final DatabaseService _databaseService = DatabaseService();
+
+
+
   late PageController _controller;
 
   @override
@@ -44,6 +64,25 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       curve: Curves.easeIn,
       width: _currentPage == index ? 20 : 10,
     );
+  }
+
+
+  Future<List<Dog>> _getDogs() async {
+    return await _databaseService.dogs();
+  }
+
+  Future<List<Breed>> _getBreeds() async {
+    return await _databaseService.breeds();
+  }
+
+  Future<void> _onDogDelete(Dog dog) async {
+    await _databaseService.deleteDog(dog.id!);
+    setState(() {});
+  }
+
+  Future<void> _onBreedDelete(Dog dog) async {
+    await _databaseService.deleteDog(dog.id!);
+    setState(() {});
   }
 
   @override
@@ -119,13 +158,45 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ? Padding(
                           padding: const EdgeInsets.all(30),
                           child: ElevatedButton(
+
+
                             onPressed: () {
+                              //_createSubscription();
+
+                              Navigator.of(context)
+                                  .push(
+                                MaterialPageRoute(
+                                  //builder: (_) => const DogFormPage(),
+                                  //builder: (context) => const BreedFormPage(),
+                                  builder: (_) => const BreedFormPage(),
+                                  //fullscreenDialog: true,
+                                ),
+                              );
+
+                              /*
+                              Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                ROUTES.getLoginRoute,
+                                    (route) => false,
+                              );
+
+                               */
+
+
+
+                            },
+                            /*
+                            onPressed: () {
+                              //Add the iWealth Subscriptions creation function here
+
                               Navigator.pushNamedAndRemoveUntil(
                                 context,
                                 ROUTES.getLoginRoute,
                                 (route) => false,
                               );
                             },
+
+                             */
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.black,
                               shape: RoundedRectangleBorder(
@@ -149,12 +220,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             children: [
                               TextButton(
                                 onPressed: () {
+                                  //createSubscription();
                                   Navigator.pushNamedAndRemoveUntil(
                                     context,
                                     ROUTES.getLoginRoute,
                                     (route) => false,
                                   );
                                 },
+
                                 style: TextButton.styleFrom(
                                   elevation: 0,
                                   textStyle: TextStyle(
@@ -200,5 +273,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         ),
       ),
     );
+  }
+
+  void _createSubscription() {
+    Navigator.of(context)
+        .push(
+      MaterialPageRoute(
+        builder: (_) => const DogFormPage(),
+        fullscreenDialog: true,
+      ),
+    )
+        .then((_) => setState(() {}));
+
+
+
   }
 }

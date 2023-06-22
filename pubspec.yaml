@@ -5,7 +5,7 @@ description: A new Flutter project.
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.1.4+1146
+version: 1.2.3+1236
 
 environment:
   sdk: ">=2.17.6 <3.0.0"
@@ -58,22 +58,19 @@ dependencies:
   file_picker: 5.3.0
   badges: ^3.1.1
   provider: ^6.0.5
-
   #Homepage image slider
   carousel_slider: ^4.2.1
-
   get: ^4.6.5
-
   #Drop down menus
   country_pickers: ^2.0.0
   dropdown_button2: ^2.1.0
   flutter_svg: ^2.0.5
   google_sign_in: ^6.1.0
-  http: ^0.13.5
+  http: ^0.13.6
 
 #Added on the 10052023
   in_app_purchase: ^3.1.5
-  permission_handler: ^10.2.0
+  #permission_handler: ^10.2.0
   baseflow_plugin_template: ^2.1.1
   flutter_spinkit: ^5.2.0
   fl_chart: ^0.62.0
@@ -81,15 +78,29 @@ dependencies:
   onepref: ^0.0.5
   flutter_staggered_animations: ^1.1.1
 
-#Added on the 11052023
+
+  #Added on the 11052023
   js: ^0.6.3
-  flutter_paystack: ^1.0.7
-  flutter_paystack_client: ^0.1.1
+  #flutter_paystack: ^1.0.7
+  #flutter_paystack_client: ^0.1.1
 
 #13052023
 #fluttertoast: ^8.2.1
 #added around 8pm
 #saf: ^1.0.3+4
+#Added 25052023
+  flutter_local_notifications: ^14.1.0
+  timezone: ^0.9.2
+  rxdart: ^0.27.7
+  flutter_datetime_picker: ^1.5.1
+#08am
+  okra_widget_official: ^3.1.5
+  #okra_widget_official: ^3.1.4
+  #okra_widget: ^1.0.0
+  #okra_widget: ^2.0.9
+  webview_flutter: ^4.2.0
+  platform_device_id: ^1.0.1
+  device_info_plus: ^8.0.0
 
 
 #14052023
@@ -101,8 +112,22 @@ dependencies:
     # See https://dart.dev/tools/pub/dependencies#version-constraints
     # The example app is bundled with the plugin so we use a path dependency on
     # the parent directory to use the current plugin's version.
+  sqflite: ^2.0.0+3
+  path: ^1.8.0
+  auto_size_text: ^3.0.0-nullsafety.0
+  date_range_picker: ^1.0.7
 
-
+  #Added 06062023
+  money_formatter: ^0.0.3
+  #flutterwave_standard: ^1.0.7
+  #ade_flutterwave_working_version: ^0.0.2+2
+  #http: ^0.13.0
+  fluttertoast: ^8.0.8
+  #webview_flutter: ^4.2.2
+  modal_bottom_sheet: ^2.1.0
+  flutter_inappwebview: ^5.7.2+3
+  flutterwave_standard:
+  #excel: ^2.1.0
 
 
 dev_dependencies:
@@ -122,6 +147,7 @@ flutter:
   assets:
     - assets/animations/
     - assets/images/
+    - assets/svgImages/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:iconsax/iconsax.dart';
+//import 'package:permission_handler/permission_handler.dart';
 import 'package:pinext/app/app_data/app_constants/constants.dart';
 import 'package:pinext/app/app_data/theme_data/colors.dart';
 import 'package:pinext/app/bloc/archive_cubit/search_cubit/search_cubit.dart';
@@ -20,6 +23,7 @@ import '../../../services/handlers/file_handler.dart';
 import '../../../shared/widgets/transaction_details_card.dart';
 import '../../add_and_view_transaction/add_and_view_transaction.dart';
 import '../../add_and_view_transaction/add_and_view_transaction_again.dart';
+import '../../settings/settings.dart';
 
 class ArchivePage extends StatelessWidget {
   const ArchivePage({Key? key}) : super(key: key);
@@ -51,8 +55,14 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
   String dateTimeNow = DateTime.now().toString();
 
   late ScrollController monthScrollController;
+
+  String? selectedYear;
+
+  int? selectedMonth;
+
   @override
   void initState() {
+    //_requestPermission(Permission.photos);
     monthScrollController =
         ScrollController(initialScrollOffset: 40.0 * int.parse(currentMonth));
     super.initState();
@@ -117,6 +127,46 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
                             color: customBlackColor.withOpacity(.8),
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 40.0),
+                          child: Row(
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  // handle button 1 press
+                                  context
+                                      .read<HomeframeCubit>()
+                                      .openAddTransactionsPage(context);
+                                },
+                                child: Icon(Icons.add),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.black,
+                                  shape: CircleBorder(),
+                                  padding: const EdgeInsets.all(16),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              ElevatedButton(
+                                onPressed: () {
+                                  // handle button 2 press
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          AddAndViewTransactionAgainScreen(),
+                                    ),
+                                  );
+                                },
+                                child: Icon(Icons.send_outlined),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.black,
+                                  shape: CircleBorder(),
+                                  padding: const EdgeInsets.all(16),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     );
                   } else {
@@ -124,124 +174,261 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
                   }
                 },
               ),
+
+              // StreamBuilder<QuerySnapshot>(
+              //   stream: selectedYear != null && selectedMonth != null
+              //       ? FirebaseServices()
+              //           .firebaseFirestore
+              //           .collection('pinext_users')
+              //           .doc(FirebaseServices().getUserId())
+              //           .collection('pinext_transactions')
+              //           .doc(selectedYear)
+              //           .collection(selectedMonth.toString())
+              //           .orderBy(
+              //             "amount",
+              //           )
+              //           .snapshots()
+              //       : null, // Return null stream if year and month are not selected
+              //   builder: (context, snapshot) {
+              //     if (snapshot.connectionState == ConnectionState.waiting) {
+              //       return Center(
+              //         child: CircularProgressIndicator(),
+              //       );
+              //     }
+
+              //     if (snapshot.hasError) {
+              //       return Text('Error: ${snapshot.error}');
+              //     }
+
+              //     double totalAmount = 0;
+              //     if (snapshot.hasData) {
+              //       for (var doc in snapshot.data!.docs) {
+              //         if (doc['amount'] != null) {
+              //           double amount = double.parse(doc['amount'].toString());
+              //           totalAmount += amount;
+              //         }
+              //       }
+              //     }
+
+              //     return GetCatArchButtonWithIcon(
+              //       onTapFunction: () {
+              //         // Navigator.of(context).push(
+              //         //   MaterialPageRoute(
+              //         //     builder: (context) => EmContact(),
+              //         //   ),
+              //         // );
+              //       },
+              //       label: "Bank & Cash",
+              //       icon: Iconsax.setting,
+              //       iconSize: 12,
+              //       count: 1,
+              //       subLabel: totalAmount.toStringAsFixed(2),
+              //     );
+              //   },
+              // ),
+              // const SizedBox(
+              //   height: 8,
+              // ),
+              // GetCatArchButtonWithIcon(
+              //   onTapFunction: () {
+              //     // Navigator.of(context).push(
+              //     //   MaterialPageRoute(
+              //     //     builder: (context) => EmContact(),
+              //     //   ),
+              //     // );
+              //   },
+              //   label: "Stocks",
+              //   icon: Iconsax.setting,
+              //   iconSize: 12,
+              //   count: 1,
+              //   subLabel: '2000',
+              // ),
+              // const SizedBox(
+              //   height: 8,
+              // ),
+              // GetCatArchButtonWithIcon(
+              //   onTapFunction: () {
+              //     // Navigator.of(context).push(
+              //     //   MaterialPageRoute(
+              //     //     builder: (context) => EmContact(),
+              //     //   ),
+              //     // );
+              //   },
+              //   label: "Vehicles",
+              //   icon: Iconsax.setting,
+              //   iconSize: 12,
+              //   count: 1,
+              //   subLabel: '2000',
+              // ),
+              // const SizedBox(
+              //   height: 8,
+              // ),
+              // GetCatArchButtonWithIcon(
+              //   onTapFunction: () {
+              //     // Navigator.of(context).push(
+              //     //   MaterialPageRoute(
+              //     //     builder: (context) => EmContact(),
+              //     //   ),
+              //     // );
+              //   },
+              //   label: "Digital Assets",
+              //   icon: Iconsax.setting,
+              //   iconSize: 12,
+              //   count: 1,
+              //   subLabel: '2000',
+              // ),
+              // const SizedBox(
+              //   height: 8,
+              // ),
+              // GetCatArchButtonWithIcon(
+              //   onTapFunction: () {
+              //     // Navigator.of(context).push(
+              //     //   MaterialPageRoute(
+              //     //     builder: (context) => EmContact(),
+              //     //   ),
+              //     // );
+              //   },
+              //   label: "Real Estate",
+              //   icon: Iconsax.setting,
+              //   iconSize: 12,
+              //   count: 1,
+              //   subLabel: '2000',
+              // ),
+              // const SizedBox(
+              //   height: 8,
+              // ),
+              // GetCatArchButtonWithIcon(
+              //   onTapFunction: () {
+              //     // Navigator.of(context).push(
+              //     //   MaterialPageRoute(
+              //     //     builder: (context) => EmContact(),
+              //     //   ),
+              //     // );
+              //   },
+              //   label: "Custom Assets",
+              //   icon: Iconsax.setting,
+              //   iconSize: 12,
+              //   count: 1,
+              //   subLabel: '2000',
+              // ),
               // const SizedBox(
               //   height: 8,
               // ),
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 8,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AddAndViewTransactionScreen(),
-                    ),
-                  );
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(
-                    defaultPadding,
-                  ),
-                  width: getWidth(context),
-                  decoration: BoxDecoration(
-                    color: greyColor,
-                    borderRadius: BorderRadius.circular(
-                      defaultBorder,
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Add Asset",
-                            style: boldTextStyle.copyWith(
-                              fontSize: 21,
-                            ),
-                          ),
-                          Text(
-                            "Click to continue",
-                            style: boldTextStyle.copyWith(
-                              fontSize: 15,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 8,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AddAndViewTransactionAgainScreen(),
-                    ),
-                  );
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(
-                    defaultPadding,
-                  ),
-                  width: getWidth(context),
-                  decoration: BoxDecoration(
-                    color: greyColor,
-                    borderRadius: BorderRadius.circular(
-                      defaultBorder,
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Add liability",
-                            style: boldTextStyle.copyWith(
-                              fontSize: 21,
-                            ),
-                          ),
-                          Text(
-                            "Click to continue",
-                            style: boldTextStyle.copyWith(
-                              fontSize: 15,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+        //   child: Column(
+        //     crossAxisAlignment: CrossAxisAlignment.start,
+        //     children: [
+        //       const SizedBox(
+        //         height: 8,
+        //       ),
+        //       GestureDetector(
+        //         onTap: () {
+        //           Navigator.push(
+        //             context,
+        //             MaterialPageRoute(
+        //               builder: (context) => AddAndViewTransactionScreen(),
+        //             ),
+        //           );
+        //         },
+        //         child: Container(
+        //           padding: const EdgeInsets.all(
+        //             defaultPadding,
+        //           ),
+        //           width: getWidth(context),
+        //           decoration: BoxDecoration(
+        //             color: greyColor,
+        //             borderRadius: BorderRadius.circular(
+        //               defaultBorder,
+        //             ),
+        //           ),
+        //           child: Row(
+        //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //             children: [
+        //               Column(
+        //                 crossAxisAlignment: CrossAxisAlignment.start,
+        //                 children: [
+        //                   Text(
+        //                     "Link to All Income List Layout",
+        //                     style: boldTextStyle.copyWith(
+        //                       fontSize: 21,
+        //                     ),
+        //                   ),
+        //                   Text(
+        //                     "Click to continue",
+        //                     style: boldTextStyle.copyWith(
+        //                       fontSize: 15,
+        //                       color: Colors.grey,
+        //                     ),
+        //                   ),
+        //                 ],
+        //               ),
+        //             ],
+        //           ),
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // ),
+        // Padding(
+        //   padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+        //   child: Column(
+        //     crossAxisAlignment: CrossAxisAlignment.start,
+        //     children: [
+        //       const SizedBox(
+        //         height: 8,
+        //       ),
+        //       GestureDetector(
+        //         onTap: () {
+        //           Navigator.push(
+        //             context,
+        //             MaterialPageRoute(
+        //               builder: (context) => AddAndViewTransactionAgainScreen(),
+        //             ),
+        //           );
+        //         },
+        //         child: Container(
+        //           padding: const EdgeInsets.all(
+        //             defaultPadding,
+        //           ),
+        //           width: getWidth(context),
+        //           decoration: BoxDecoration(
+        //             color: greyColor,
+        //             borderRadius: BorderRadius.circular(
+        //               defaultBorder,
+        //             ),
+        //           ),
+        //           child: Row(
+        //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //             children: [
+        //               Column(
+        //                 crossAxisAlignment: CrossAxisAlignment.start,
+        //                 children: [
+        //                   Text(
+        //                     "Link to All Expense List Layout",
+        //                     style: boldTextStyle.copyWith(
+        //                       fontSize: 21,
+        //                     ),
+        //                   ),
+        //                   Text(
+        //                     "Click to continue",
+        //                     style: boldTextStyle.copyWith(
+        //                       fontSize: 15,
+        //                       color: Colors.grey,
+        //                     ),
+        //                   ),
+        //                 ],
+        //               ),
+        //             ],
+        //           ),
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // ),
         const SizedBox(
           height: 25,
         ),
@@ -281,7 +468,7 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
-                              "Generate report",
+                              "Transactions History",
                               style: boldTextStyle.copyWith(
                                 fontSize: 18,
                               ),
@@ -290,7 +477,7 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
                               width: 2,
                             ),
                             const Icon(
-                              Icons.download,
+                              Icons.history_toggle_off,
                               size: 18,
                               color: customBlueColor,
                             ),
@@ -308,8 +495,6 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-
-
                   GestureDetector(
                     onTap: () {
                       var selectedDate = DateTime.now();
@@ -372,8 +557,6 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
                       },
                     ),
                   ),
-
-
                   const SizedBox(
                     height: 8,
                   ),
@@ -381,6 +564,9 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
               ),
             ],
           ),
+        ),
+        const SizedBox(
+          height: 18,
         ),
         Material(
           elevation: 4,
@@ -460,11 +646,31 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
             ),
           ),
         ),
-        TransactionsList()
+        const SizedBox(
+          height: 18,
+        ),
+        TransactionsList(),
       ],
     );
   }
 }
+
+
+/*
+Future<bool> _requestPermission(Permission photos) async {
+  var permission;
+  if (await permission.isGranted) {
+    return true;
+  } else {
+    var result = await permission.request();
+    if (result == PermissionStatus.granted) {
+      return true;
+    }
+  }
+  return false;
+}
+
+ */
 
 class TransactionsList extends StatelessWidget {
   TransactionsList({
@@ -570,12 +776,6 @@ class TransactionsList extends StatelessWidget {
                           ),
                         );
                       }
-
-
-
-
-
-
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -791,35 +991,22 @@ class TransactionsList extends StatelessWidget {
                                               MainAxisAlignment.start,
                                           children: [
                                             const SizedBox(
-                                              height: 12,
+                                              height: 15,
                                             ),
-
-
-                                            /*
-
                                             Text(
                                               "Statistics",
                                               style: boldTextStyle.copyWith(
                                                 fontSize: 18,
                                               ),
                                             ),
-
-
-
-                                            */
                                             const SizedBox(
-                                              height: 6,
+                                              height: 12,
                                             ),
                                             Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
                                                       .spaceBetween,
-                                              children: const [
-
-
-
-
-                                                /*
+                                              children: [
                                                 Text(
                                                   "Total Expenses: ",
                                                   style:
@@ -829,17 +1016,12 @@ class TransactionsList extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Text(
-                                                  "-${state.totalExpenses} NGN.",
+                                                  "-${state.totalExpenses}Tk.",
                                                   style: boldTextStyle.copyWith(
                                                     color:
                                                         Colors.redAccent[400],
                                                   ),
                                                 )
-
-
-
-
-                                                */
                                               ],
                                             ),
                                             const SizedBox(
@@ -849,12 +1031,7 @@ class TransactionsList extends StatelessWidget {
                                               mainAxisAlignment:
                                                   MainAxisAlignment
                                                       .spaceBetween,
-                                              children: const [
-
-
-
-                                                /*
-
+                                              children: [
                                                 Text(
                                                   "Total Savings: ",
                                                   style:
@@ -864,15 +1041,11 @@ class TransactionsList extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Text(
-                                                  "+${state.totalSavings} NGN.",
+                                                  "+${state.totalSavings}Tk.",
                                                   style: boldTextStyle.copyWith(
                                                     color: Colors.green,
                                                   ),
                                                 )
-
-
-
-                                                */
                                               ],
                                             ),
                                             const SizedBox(
@@ -891,10 +1064,7 @@ class TransactionsList extends StatelessWidget {
                                               mainAxisAlignment:
                                                   MainAxisAlignment
                                                       .spaceBetween,
-                                              children: const [
-
-                                                /*
-
+                                              children: [
                                                 Text(
                                                   "Outcome: ",
                                                   style:
@@ -904,16 +1074,11 @@ class TransactionsList extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Text(
-                                                  "${state.outcome} NGN.",
+                                                  "${state.outcome}Tk.",
                                                   style: boldTextStyle.copyWith(
                                                     color: customBlueColor,
                                                   ),
                                                 )
-
-
-
-
-                                                */
                                               ],
                                             ),
                                           ],
@@ -924,15 +1089,6 @@ class TransactionsList extends StatelessWidget {
                           )
                         ],
                       );
-
-
-
-
-
-
-
-
-
                     }),
                   );
                 },
@@ -946,4 +1102,18 @@ class TransactionsList extends StatelessWidget {
       ),
     );
   }
+  /*
+  Future<bool> _requestPermission(Permission permission) async {
+    if (await permission.isGranted) {
+      return true;
+    } else {
+      var result = await permission.request();
+      if (result == PermissionStatus.granted) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+   */
 }

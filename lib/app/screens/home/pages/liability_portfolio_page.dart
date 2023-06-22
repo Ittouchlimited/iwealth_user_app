@@ -159,7 +159,7 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children:  const [
               SizedBox(
-                height: 25,
+                height: 20,
               ),
 
 
@@ -297,7 +297,7 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
 */
         //Old UI button begin
         const SizedBox(
-          height: 25,
+          height: 0,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(
@@ -368,7 +368,7 @@ class _ArchiveMonthViewState extends State<ArchiveMonthView> {
 
 
                   SizedBox(
-                    height: 6,
+                    height: 0,
                   ),
                 ],
               ),
@@ -642,8 +642,8 @@ class TransactionsList extends StatelessWidget {
                               : DefaultImages.h19b,
                           text1: i == 0 ? "Loans" : "Your SD Box",
                           text2: i == 0 ? "Liability" : "Continue",
-                          text3: i == 0 ? "0" : "",
-                          text4: i == 0 ? "Total" : "",
+                          text3: i == 0 ? "" : "",
+                          text4: i == 0 ? "" : "",
                         ),
                       ),
                   ],
@@ -667,14 +667,85 @@ class TransactionsList extends StatelessWidget {
                               : DefaultImages.h19b,
                           text1: i == 0 ? "Others" : "Your SD Box",
                           text2: i == 0 ? "Liability" : "Continue",
-                          text3: i == 0 ? "0" : "",
-                          text4: i == 0 ? "Total" : "",
+                          text3: i == 0 ? "" : "",
+                          text4: i == 0 ? "" : "",
                         ),
                       ),
                   ],
                 ),
               ),
 
+
+
+
+
+              BlocBuilder<ArchiveSearchCubit, ArchiveSearchState>(
+                builder: (context, archiveSearchState) {
+                  return BlocBuilder<UserStatisticsCubit,
+                      UserStatisticsState>(
+                    builder: (context, state) {
+                      return archiveSearchState.isSearchActive
+                          ? const SizedBox.shrink()
+                          : Column(
+                        crossAxisAlignment:
+                        CrossAxisAlignment.start,
+                        mainAxisAlignment:
+                        MainAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 0,
+                          ),
+                          const SizedBox(
+                            height: 4,
+                          ),
+
+                          Row(
+                            mainAxisAlignment:
+                            MainAxisAlignment
+                                .spaceBetween,
+                            children: const [
+                              /*
+                              Text(
+                                "Total Liability Amount: ",
+                                style:
+                                regularTextStyle.copyWith(
+                                  color: customBlackColor
+                                      .withOpacity(.80),
+                                ),
+                              ),
+                              Text(
+                                "-${state.totalExpenses} NGN.",
+                                style: boldTextStyle.copyWith(
+                                  color:
+                                  Colors.redAccent[400],
+                                ),
+                              )
+
+                               */
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 4,
+                          ),
+
+                          const SizedBox(
+                            height: 4,
+                          ),
+                          Container(
+                            height: 1,
+                            width: getWidth(context),
+                            color: customBlackColor
+                                .withOpacity(.05),
+                          ),
+                          const SizedBox(
+                            height: 4,
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+              )
 
 
             ],

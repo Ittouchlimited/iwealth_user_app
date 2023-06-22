@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mccounting_text/mccounting_text.dart';
 import 'package:pinext/app/screens/add_and_view_transaction/add_and_view_transaction_again.dart';
 import 'package:pinext/config/images.dart';
 import 'package:pinext/config/textstyle.dart';
@@ -17,6 +18,26 @@ import '../../app/app_data/app_constants/fonts.dart';
 import '../../app/bloc/userBloc/user_bloc.dart';
 import '../../app/screens/add_and_view_transaction/add_and_view_transaction.dart';
 
+import 'package:intl/intl.dart';
+
+import 'package:money_formatter/money_formatter.dart';
+
+
+//final formatCurrency = new NumberFormat.simpleCurrency(locale: 'en_NG', decimalDigits: 2,);
+/*final formatCurrency = NumberFormat.currency(
+    customPattern: '#,### \u00a4',
+    symbol: 'FCFA',
+    decimalDigits: 2);
+
+
+ */
+
+//late final int netBalance;
+
+//MoneyFormatter fmf = MoneyFormatter(amount: 12345678.9012345);
+
+
+
 class CardView extends StatelessWidget {
   const CardView({super.key});
 
@@ -25,8 +46,8 @@ class CardView extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: AppTheme.isLightTheme == true
-            ? HexColor(AppTheme.lightGrayString!)
-            : HexColor(AppTheme.darkGrayString!),
+            ? HexColor(AppTheme.primaryColorString!)
+            : HexColor(AppTheme.primaryColorString!),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Padding(
@@ -43,7 +64,9 @@ class CardView extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            "Total Worth ( NGN)",
+                            //"Total Worth (NGN)",
+                            "Total Worth"
+                                "",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText1!
@@ -51,7 +74,8 @@ class CardView extends StatelessWidget {
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600,
                                   color:
-                                      HexColor(AppTheme.secondaryColorString!),
+                              //HexColor(AppTheme.secondaryColorString!),
+                              HexColor(AppTheme.whiteColorString!),
                                 ),
                           ),
                           const SizedBox(width: 5),
@@ -69,12 +93,73 @@ class CardView extends StatelessWidget {
                       BlocBuilder<UserBloc, UserState>(
                         builder: (context, state) {
                           if (state is AuthenticatedUserState) {
+                            //Here we convert the sting to Integer
+                           //int balanceInt = int.parse("1234");
+                            //int balanceInt = int.parse("1234");
+                            //var f = NumberFormat("##,###,###.00", "en_US");
+                            //String netBalance = state.netBalance;
+                            //int newBalance = int.parse(netBalance);
+                            // print(num == 1); // prints true
+                            //final moneyText = 1000;
+                            //NumberFormat.currency().format(moneyText);
+
+
+                            /*
                             return Text(
-                              "${state.netBalance} ₦",
+                              //"₦ ${formatCurrency.format(state.netBalance)}",
+                              //"₦ ${formatCurrency.format(state.a)}",
+                              "₦ ${(double.parse(state.netBalance))}",
+                              //"₦ ${formatCurrency.format(-1000000)}",
+                              //working
+                              //NumberFormat.currency(locale: 'en_NG').format(100000),
+                              //NumberFormat.currency(locale: 'en_NG').format(balanceInt),
+                              //f.format(newBalance),
                               style: boldTextStyle.copyWith(
-                                fontSize: 25,
+                                fontSize: 20,
                               ),
                             );
+                            */
+
+                            /*
+                            //Working Networth display with animatino
+                            return McCountingText(
+                              begin: 0,
+                              end: double.parse(state.netBalance),
+                              maxLines: 1,
+                              precision: 2,
+                              style: boldTextStyle.copyWith(
+                                color: Colors.deepOrangeAccent,
+                                fontSize: 35,
+                              ),
+                              duration: const Duration(seconds: 3),
+                              curve: Curves.fastOutSlowIn,
+                            );
+
+
+                             */
+                            return Text(
+                              //"₦ ${formatCurrency.format(state.netBalance)}",
+                              //"₦ ${formatCurrency.format(state.a)}",
+                              //"₦ ${(double.parse(state.netBalance))}",
+                              //"₦ ${formatCurrency.format(-1000000)}",
+                              //working
+                              //NumberFormat.currency(locale: 'en_NG').format(100000),
+                              //NumberFormat.currency(locale: 'en_NG').format(balanceInt),
+                              //f.format(newBalance),
+                              NumberFormat.currency(customPattern: '₦ ###,###,###,###,###',).format(double.parse(state.netBalance)),
+                              //NumberFormat.simpleCurrency(locale: Platform.localeName) as String,
+                              style: boldTextStyle.copyWith(
+                                fontSize: 20,
+                                //color: Colors.deepOrange,
+                                  color: Colors.white,
+                                fontFamily: 'Roboto'
+                              ),
+                            );
+
+
+
+
+
                           }
                           return Text(
                             "Loading...",
@@ -184,7 +269,9 @@ class CardView extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           //builder: (context) => AddAndViewTransactionScreen(),
-                          builder: (context) => const AddAssetScreen(),
+                            builder: (context) => const AddAssetScreen(),
+                            //builder: (context) => AddAndViewTransactionScreen(),
+
 
                         ),
                       );
@@ -244,7 +331,7 @@ class CardView extends StatelessWidget {
                       );*/
                     },
                     */
-                    bg: HexColor(AppTheme.secondaryColorString!),
+                    bg: HexColor(AppTheme.whiteColorString!),
                   ),
                 ),
 

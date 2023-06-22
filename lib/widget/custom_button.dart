@@ -72,7 +72,7 @@ class SmallButton extends StatelessWidget {
         width: Get.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
-          color: bg ?? HexColor(AppTheme.primaryColorString!),
+          color: bg ?? HexColor(AppTheme.whiteColorString!),
           border: Border.all(color: borderColor ?? Colors.transparent),
         ),
         child: Center(
@@ -81,7 +81,7 @@ class SmallButton extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyText2!.copyWith(
                   fontWeight: FontWeight.w700,
                   fontSize: 12,
-                  color: textColor ?? Colors.white,
+                  color: textColor ?? Colors.black,
                 ),
           ),
         ),
